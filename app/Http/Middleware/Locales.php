@@ -22,7 +22,6 @@ class Locales {
 	public function handle($request, Closure $next) {
 
 		$locales = Config::get('app.available_locales');
-		dd($locales); // return null
 
 		if (in_array(Session::get('locale'), $locales))
 			App::setLocale(Session::get('locale'));

@@ -2,38 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Log;
 
-class User extends Authenticatable
-{
-    use Notifiable;
+class User extends Model implements AuthenticatableContract {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+	use SoftDeletes;
+	use Authenticatable;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+	protected $primaryKey = 'user_id';
+	protected $fillable = [
+		'notifications_instant', 'notifications_day', 'notifications_week',
+	];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	public static function firstSciperOrCreate($sciper) {
+
+		$u = self::where("sciper", "=", $sciper)->get();
+
+		if ($u->isEmpty()) {
+			$u = new User;
+			$u->sciper = $sciper;
+
+			$u->save();
+
+			// TODO remove when cleaning code for production
+			$u->admin = $u->user_id == 1;
+
+			return $u;
+		} else {
+			return $u->first();
+		}
+	}
+
 }
