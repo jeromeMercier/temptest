@@ -15,6 +15,13 @@
 </head>
 <body>
   <v-app id="app">
+    <myjob-navbar></myjob-navbar>
+    <v-content>
+      <v-container fluid>
+        @yield('content')
+      </v-container>
+    </v-content>
+    <myjob-footer></myjob-footer>
   </v-app>
 
 <script type="text/javascript" src="/js/app.js"></script>
