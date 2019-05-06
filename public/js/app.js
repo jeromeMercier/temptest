@@ -1831,6 +1831,146 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobHome.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobHome.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['students', 'publishers'],
+  components: {
+    SheetFooter: {
+      functional: true,
+      render: function render(h, _ref) {
+        var children = _ref.children;
+        return h('v-sheet', {
+          staticClass: 'mt-auto align-center justify-center d-flex',
+          props: {
+            color: 'rgba(0, 0, 0, .36)',
+            dark: true,
+            height: 50
+          }
+        }, children);
+      }
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function fetchData() {
+      console.log(' mounted');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNavbar.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobNavbar.vue?vue&type=script&lang=js& ***!
@@ -37375,6 +37515,356 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-layout",
+    { attrs: { row: "", wrap: "" } },
+    [
+      _c(
+        "v-flex",
+        { attrs: { xs12: "", md4: "" } },
+        [
+          _c(
+            "v-card",
+            {
+              staticClass:
+                "text-xs-center ma-4 align-center adopte-etudiant-card"
+            },
+            [
+              _c(
+                "v-layout",
+                { attrs: { "align-center": "", "fill-height": "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-card-text", { attrs: { "primary-title": "" } }, [
+                        _c("h1", [
+                          _vm._v(
+                            "\r\n                            Adopte un étudiant EPFL\r\n                        "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-card-text", [
+                        _vm._v(
+                          "\r\n                        L'Association Générale des Etudiants de l'Ecole Polytechnique Fédérale de Lausanne met gratuitement cette plateforme à disposition pour mettre en relation étudiants et employeurs. Le but est de permettre aux étudiants de\r\n                        trouver\r\n                        facilement un job/emploi durant leurs études, et en même temps d'offrir aux employeurs des profils variés et qualifiés.\r\n                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-container",
+                        { staticClass: "pt-0" },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { sm6: "" } },
+                                [
+                                  _c(
+                                    "v-card",
+                                    { attrs: { flat: "" } },
+                                    [
+                                      _c(
+                                        "v-card-text",
+                                        {
+                                          attrs: { width: "150", height: "150" }
+                                        },
+                                        [
+                                          _c(
+                                            "h1",
+                                            { staticClass: "epfl-txt-color" },
+                                            [_vm._v(_vm._s(_vm.students))]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "justify-center " },
+                                        [_vm._v("Etudiants")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { sm6: "" } },
+                                [
+                                  _c(
+                                    "v-card",
+                                    { attrs: { flat: "" } },
+                                    [
+                                      _c(
+                                        "v-card-text",
+                                        {
+                                          attrs: { width: "150", height: "150" }
+                                        },
+                                        [
+                                          _c(
+                                            "h1",
+                                            { staticClass: "epfl-txt-color" },
+                                            [_vm._v(_vm._s(_vm.publishers))]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "justify-center " },
+                                        [_vm._v("Employeurs")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        { attrs: { xs12: "", md4: "" } },
+        [
+          _c(
+            "v-card",
+            { staticClass: "text-xs-center ma-4" },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { flat: "" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { size: "130", color: "black" } },
+                                    [_vm._v("work_outline")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { flat: "" } },
+                            [
+                              _c("v-card-text", [
+                                _c("h1", [_vm._v("Employeur")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                { staticClass: "justify-center" },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "epfl-bg-color",
+                                      attrs: { "text-color": "white", dark: "" }
+                                    },
+                                    [_vm._v("Je recherche un étudiant")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "pb-0" }, [
+                                _vm._v("Aucune inscription, gestion par email.")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "pt-0" }, [
+                                _c("a", [
+                                  _vm._v("Retrouver une ancienne annonce.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        { attrs: { xs12: "", md4: "" } },
+        [
+          _c(
+            "v-card",
+            { staticClass: "text-xs-center ma-4" },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { flat: "" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { size: "130", color: "black" } },
+                                    [_vm._v("school")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { flat: "" } },
+                            [
+                              _c("v-card-text", [
+                                _c("h1", [_vm._v("Students")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                { staticClass: "justify-center" },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "epfl-bg-color",
+                                      attrs: { "text-color": "white", dark: "" }
+                                    },
+                                    [_vm._v("Je recherche un job")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "pb-0" }, [
+                                _vm._v("Accès Tequila requis.")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "pt-0" }, [
+                                _c("a", [
+                                  _vm._v("Recevoir un nouveau mot de passe.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNavbar.vue?vue&type=template&id=70dfc866&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobNavbar.vue?vue&type=template&id=70dfc866& ***!
@@ -37396,14 +37886,19 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { color: "white", extended: "" } },
+        {
+          staticClass: "align-center",
+          attrs: { color: "white", height: "128" }
+        },
         [
-          _c("v-toolbar-items", [
-            _c("img", {
-              staticClass: "myagep",
-              attrs: { src: "/contents/images/myagep.svg", alt: "Myjob" }
-            })
-          ]),
+          _c("img", {
+            staticClass: "myagep",
+            attrs: {
+              src: "/contents/images/myagep.svg",
+              alt: "EPFL",
+              width: "120"
+            }
+          }),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -37474,7 +37969,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                        EN\n                    "
+                          "\r\n                        EN\r\n                    "
                         )
                       ]
                     ),
@@ -37491,7 +37986,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                        FR\n                    "
+                          "\r\n                        FR\r\n                    "
                         )
                       ]
                     )
@@ -75709,6 +76204,7 @@ Vue.use(Vuetify);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('myjob-navbar', __webpack_require__(/*! ./components/MyjobNavbar.vue */ "./resources/js/components/MyjobNavbar.vue")["default"]);
+Vue.component('myjob-home', __webpack_require__(/*! ./components/MyjobHome.vue */ "./resources/js/components/MyjobHome.vue")["default"]);
 Vue.component('myjob-footer', __webpack_require__(/*! ./components/MyjobFooter.vue */ "./resources/js/components/MyjobFooter.vue")["default"]);
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
@@ -75914,6 +76410,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFooter_vue_vue_type_template_id_5ba4b71e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFooter_vue_vue_type_template_id_5ba4b71e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobHome.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/MyjobHome.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyjobHome.vue?vue&type=template&id=cbd00d96& */ "./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96&");
+/* harmony import */ var _MyjobHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyjobHome.vue?vue&type=script&lang=js& */ "./resources/js/components/MyjobHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyjobHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MyjobHome.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobHome.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/MyjobHome.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobHome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobHome.vue?vue&type=template&id=cbd00d96& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobHome.vue?vue&type=template&id=cbd00d96&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobHome_vue_vue_type_template_id_cbd00d96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

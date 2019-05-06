@@ -1,10 +1,10 @@
 <template>
 <v-card flat>
-    <v-toolbar color="white" extended>
+    <v-toolbar color="white" height="128"  class="align-center">
 
-        <v-toolbar-items>
-            <img class="myagep" :src="'/contents/images/myagep.svg'" alt="Myjob">
-        </v-toolbar-items>
+
+            <img class="myagep":src="'/contents/images/myagep.svg'" alt="EPFL" width="120"></v-toolbar-items>
+
 
         <v-spacer></v-spacer>
 

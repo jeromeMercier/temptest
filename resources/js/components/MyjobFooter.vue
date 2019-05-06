@@ -17,7 +17,7 @@
                     </v-card-text>
                 </v-flex>
                 <v-flex md4 class="hidden-sm-and-down">
-                    <img class="" :src="'/contents/images/epfl.svg'" alt="EPFL" width="120"></v-toolbar-items>
+                    <img :src="'/contents/images/epfl.svg'" alt="EPFL" width="120"></v-toolbar-items>
                 </v-flex>
             </v-layout>
         </v-container>

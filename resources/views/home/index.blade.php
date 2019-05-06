@@ -2,8 +2,9 @@
 
 @section('title')
 Home
+
 @endsection
 
 @section('content')
-<h1>CONTENT</h1>
+<myjob-home publishers="{{$publishers}}" students={{$students}}></myjob-home>
 @endsection

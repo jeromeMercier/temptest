@@ -22,6 +22,7 @@ Vue.use(Vuetify)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('myjob-navbar', require('./components/MyjobNavbar.vue').default);
+Vue.component('myjob-home', require('./components/MyjobHome.vue').default);
 Vue.component('myjob-footer', require('./components/MyjobFooter.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

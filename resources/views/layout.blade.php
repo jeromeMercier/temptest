@@ -17,7 +17,7 @@
   <v-app id="app">
     <myjob-navbar></myjob-navbar>
     <v-content>
-      <v-container fluid>
+      <v-container fluid fill-height>
         @yield('content')
       </v-container>
     </v-content>

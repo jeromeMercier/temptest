@@ -1,5 +1,4 @@
 .myagep{
-  margin-top:2px;
   width:360px;
   height:60px;
 }
@@ -10,4 +9,26 @@
 }
 .sub-navbar{
   background-color: #c61618!important;
+}
+
+.epfl-bg-color{
+  background-color: #c61618!important;
+}
+
+.agep-bg-color{
+  background-color: #69ABD6!important;
+}
+
+.epfl-txt-color{
+  color:#c61618!important;
+}
+
+.adopte-etudiant-card{
+  height:412px;
+}
+
+@media screen and (max-width: 1264px) {
+  .adopte-etudiant-card{
+    height:auto;
+  }
 }
