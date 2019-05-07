@@ -56,7 +56,7 @@
                                 <h1>Employeur</h1>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <v-btn class="epfl-bg-color" text-color="white" dark>Je recherche un étudiant</v-btn>
+                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/new-job')">Je recherche un étudiant</v-btn>
                             </v-card-actions>
                             <v-card-text class="pb-0">Aucune inscription, gestion par email.</v-card-text>
                             <v-card-text class="pt-0"><a>Retrouver une ancienne annonce.</a></v-card-text>

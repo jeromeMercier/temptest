@@ -1787,6 +1787,129 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobContact.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobContact.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prenom: '',
+      nom: '',
+      email: '',
+      message: ''
+    };
+  },
+  created: function created() {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['items'],
+  data: function data() {
+    return {
+      questions: this.items
+    };
+  },
+  created: function created() {},
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFooter.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobFooter.vue?vue&type=script&lang=js& ***!
@@ -2028,15 +2151,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['links'],
   data: function data() {
     return {
       expand: false,
-      marker: false
+      marker: false,
+      array: JSON.parse(this.links)
     };
   },
   created: function created() {
-    this.fetchData();
+    console.log(this.links);
   },
   methods: {
     fetchData: function fetchData() {
@@ -2044,6 +2171,270 @@ __webpack_require__.r(__webpack_exports__);
     },
     switchLanguageAndCloseExpand: function switchLanguageAndCloseExpand(language) {
       this.expand = false;
+    },
+    isLogin: function isLogin(value) {
+      if (value == 'login' || value == 'logout') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['students', 'publishers'],
+  components: {
+    SheetFooter: {
+      functional: true,
+      render: function render(h, _ref) {
+        var children = _ref.children;
+        return h('v-sheet', {
+          staticClass: 'mt-auto align-center justify-center d-flex',
+          props: {
+            color: 'rgba(0, 0, 0, .36)',
+            dark: true,
+            height: 50
+          }
+        }, children);
+      }
+    }
+  },
+  data: function data() {
+    return {
+      projetJe: false,
+      titre: '',
+      sections: [],
+      categorie: '',
+      lieuDeTravail: '',
+      dateDebut: new Date().toISOString().substr(0, 10),
+      menuDateDebut: false,
+      menuDateFin: false,
+      dateFin: '',
+      dureeInactive: '',
+      remuneration: '',
+      competences: '',
+      langues: '',
+      description: '',
+      prenom: '',
+      nom: '',
+      email: '',
+      telephone: '',
+      listeCategorie: ['Aide à domicile', 'Babysitting', 'Expériences', 'Informatique', 'Job de bureau', 'Flyering', 'Administratif', 'Etudes/experiences', 'Promotion', 'Restauration/Hôtellerie', 'Soutien scolaire', 'Autre'],
+      listeDuree: ['Temps plein', 'A côté des études', 'Weekends', 'Vacances', 'Autre'],
+      listeSections: ['Architecture', 'Chimie et génie chimique', 'Cours de mathématiques spéciales', 'EME (EPFL Middle East)', 'Génie civil', 'Génie mecanique', 'Génie électrique et electronique', 'Humanités digitales', 'Informatique', 'Ingénierie des sciences du vivant', 'Ingénierie financière', 'Management de la technologie', 'Mathématiques', 'Microtechnique', 'Physique', 'Science et génie des materiaux', "Science et ingénierie de l'environnement", 'section FCUE', 'Système de communication'],
+      date: new Date().toISOString().substr(0, 10)
+    };
+  },
+  created: function created() {
+    this.fetchData();
+  },
+  computed: {
+    icon: function icon() {
+      if (this.sections.length === this.listeSections.length) return 'cancel';
+      return 'check_box_outline_blank';
+    }
+  },
+  methods: {
+    fetchData: function fetchData() {
+      console.log(' mounted');
+    },
+    selectAllSections: function selectAllSections() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        if (_this.sections.length === _this.listeSections.length) {
+          _this.sections = [];
+        } else {
+          _this.sections = _this.listeSections.slice();
+        }
+      });
     }
   }
 });
@@ -37381,6 +37772,274 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
+    [
+      _c("v-card-title", { staticClass: "pb-2" }, [
+        _c("h2", [_vm._v("Formulaire de contact")])
+      ]),
+      _vm._v(" "),
+      _c("v-card-text", [
+        _vm._v(
+          "Pour toute·s question·s (après avoir lu attentivement la foire aux questions) et/ou suggestion·s, vous pouvez contacter rapidement l'équipe par ici.\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-form",
+        {
+          ref: "form",
+          attrs: { "lazy-validation": "" },
+          model: {
+            value: _vm.valid,
+            callback: function($$v) {
+              _vm.valid = $$v
+            },
+            expression: "valid"
+          }
+        },
+        [
+          _c(
+            "v-card-text",
+            { staticClass: "px-3" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "pa-0", attrs: { fluid: "" } },
+                [
+                  _c(
+                    "v-layout",
+                    { staticClass: "pa-0", attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Prenom", required: "" },
+                            model: {
+                              value: _vm.prenom,
+                              callback: function($$v) {
+                                _vm.prenom = $$v
+                              },
+                              expression: "prenom"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Nom", required: "" },
+                            model: {
+                              value: _vm.nom,
+                              callback: function($$v) {
+                                _vm.nom = $$v
+                              },
+                              expression: "nom"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Email", required: "" },
+                            model: {
+                              value: _vm.email,
+                              callback: function($$v) {
+                                _vm.email = $$v
+                              },
+                              expression: "email"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { staticClass: "px-1", attrs: { xs12: "" } },
+                        [
+                          _c("v-textarea", {
+                            attrs: {
+                              rows: "4",
+                              "auto-grow": "",
+                              rules: _vm.message.length < 500,
+                              counter: 500
+                            },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "label",
+                                fn: function() {
+                                  return [
+                                    _c("div", [
+                                      _vm._v(
+                                        "\n                                  Message\n                              "
+                                      )
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ]),
+                            model: {
+                              value: _vm.message,
+                              callback: function($$v) {
+                                _vm.message = $$v
+                              },
+                              expression: "message"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card-actions",
+        { staticClass: "justify-center" },
+        [
+          _c(
+            "v-btn",
+            {
+              staticClass: "epfl-bg-color",
+              attrs: { "text-color": "white", dark: "" }
+            },
+            [
+              _c("v-icon", { attrs: { left: "", dark: "" } }, [_vm._v("send")]),
+              _vm._v("Envoyer le message\n        ")
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { staticClass: "ma-4" },
+    [
+      _c("v-card-title", { staticClass: "pb-2" }, [
+        _c("h2", [_vm._v("Foire aux questions")])
+      ]),
+      _vm._v(" "),
+      _c("v-card-text", [
+        _vm._v(
+          "\n        Après de nombreuses années de services, l'équipe de Myjob a soigneusement répertorié ici les questions les plus posées.\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-expansion-panel",
+        { staticClass: "pb-4", attrs: { popout: "" } },
+        _vm._l(_vm.questions, function(item, i) {
+          return _c(
+            "v-expansion-panel-content",
+            {
+              key: i,
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "header",
+                    fn: function() {
+                      return [_c("div", [_vm._v(_vm._s(item.question_fr))])]
+                    },
+                    proxy: true
+                  }
+                ],
+                null,
+                true
+              )
+            },
+            [
+              _vm._v(" "),
+              _c(
+                "v-card",
+                [
+                  _c("v-card-text", {
+                    domProps: { innerHTML: _vm._s(item.answer_fr) }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        }),
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFooter.vue?vue&type=template&id=5ba4b71e&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobFooter.vue?vue&type=template&id=5ba4b71e& ***!
@@ -37402,11 +38061,18 @@ var render = function() {
     [
       _c(
         "v-card",
-        { staticClass: "flex", attrs: { flat: "", tile: "" } },
+        {
+          staticClass: "flex",
+          staticStyle: { "background-color": "#FAFAFA" },
+          attrs: { flat: "", tile: "" }
+        },
         [
           _c(
             "v-container",
-            { attrs: { "grid-list-md": "", "text-xs-center": "" } },
+            {
+              staticStyle: { "background-color": "#FAFAFA" },
+              attrs: { "grid-list-md": "", "text-xs-center": "" }
+            },
             [
               _c(
                 "v-layout",
@@ -37722,7 +38388,15 @@ var render = function() {
                                     "v-btn",
                                     {
                                       staticClass: "epfl-bg-color",
-                                      attrs: { "text-color": "white", dark: "" }
+                                      attrs: {
+                                        "text-color": "white",
+                                        dark: ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.redirect("/new-job")
+                                        }
+                                      }
                                     },
                                     [_vm._v("Je recherche un étudiant")]
                                   )
@@ -38016,28 +38690,916 @@ var render = function() {
                   _c(
                     "v-toolbar",
                     {
-                      staticClass: "sub-navbar",
+                      staticClass: "epfl-bg-color",
                       attrs: { card: "", prominent: "", dark: "" }
                     },
                     [
                       _c(
                         "v-toolbar-items",
                         { staticClass: "hidden-sm-and-down" },
+                        _vm._l(_vm.array, function(link, title) {
+                          return !_vm.isLogin(title)
+                            ? _c(
+                                "v-btn",
+                                {
+                                  key: title,
+                                  attrs: { flat: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.redirect(link)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(title))]
+                              )
+                            : _vm._e()
+                        }),
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-toolbar-items",
+                        { staticClass: "hidden-sm-and-down" },
+                        _vm._l(_vm.array, function(link, title) {
+                          return _vm.isLogin(title)
+                            ? _c(
+                                "v-btn",
+                                {
+                                  key: title,
+                                  attrs: { flat: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.redirect(link)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(title))]
+                              )
+                            : _vm._e()
+                        }),
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-layout",
+    { attrs: { row: "", wrap: "" } },
+    [
+      _c(
+        "v-flex",
+        {
+          staticClass: "align-center text-xs-center",
+          attrs: { xs12: "", md8: "", "align-center": "" }
+        },
+        [
+          _c(
+            "v-form",
+            {
+              ref: "form",
+              attrs: { "lazy-validation": "" },
+              model: {
+                value: _vm.valid,
+                callback: function($$v) {
+                  _vm.valid = $$v
+                },
+                expression: "valid"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                {
+                  staticClass: "text-xs-left ma-4 align-center",
+                  attrs: { "align-center": "" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "agep-bg-color",
+                      staticStyle: { width: "100%", height: "53px" }
+                    },
+                    [
+                      _c("v-card-text", [
+                        _c("h4", { staticStyle: { color: "white" } }, [
+                          _vm._v("INFORMATIONS GÉNÉRALES")
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
                         [
-                          _c("v-btn", { attrs: { flat: "" } }, [
-                            _vm._v("Link One")
-                          ]),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Titre", required: "" },
+                                model: {
+                                  value: _vm.titre,
+                                  callback: function($$v) {
+                                    _vm.titre = $$v
+                                  },
+                                  expression: "titre"
+                                }
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("v-btn", { attrs: { flat: "" } }, [
-                            _vm._v("Link Two")
-                          ]),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.listeCategorie,
+                                  label: "Categories"
+                                }
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("v-btn", { attrs: { flat: "" } }, [
-                            _vm._v("Link Three")
-                          ])
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Lieu de travail",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.lieuDeTravail,
+                                  callback: function($$v) {
+                                    _vm.lieuDeTravail = $$v
+                                  },
+                                  expression: "lieuDeTravail"
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card",
+                {
+                  staticClass: "text-xs-left ma-4 align-center",
+                  attrs: { "align-center": "" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "agep-bg-color",
+                      staticStyle: { width: "100%", height: "53px" }
+                    },
+                    [
+                      _c("v-card-text", [
+                        _c("h4", { staticStyle: { color: "white" } }, [
+                          _vm._v("DÉTAILS DU JOB")
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c(
+                                "v-menu",
+                                {
+                                  attrs: {
+                                    "close-on-content-click": false,
+                                    "nudge-right": 40,
+                                    lazy: "",
+                                    transition: "scale-transition",
+                                    "offset-y": "",
+                                    "full-width": "",
+                                    "min-width": "290px"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        return [
+                                          _c(
+                                            "v-text-field",
+                                            _vm._g(
+                                              {
+                                                attrs: {
+                                                  label: "Date de début",
+                                                  "prepend-icon": "event",
+                                                  readonly: ""
+                                                },
+                                                model: {
+                                                  value: _vm.dateDebut,
+                                                  callback: function($$v) {
+                                                    _vm.dateDebut = $$v
+                                                  },
+                                                  expression: "dateDebut"
+                                                }
+                                              },
+                                              on
+                                            )
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.menuDateDebut,
+                                    callback: function($$v) {
+                                      _vm.menuDateDebut = $$v
+                                    },
+                                    expression: "menuDateDebut"
+                                  }
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c("v-date-picker", {
+                                    attrs: { min: _vm.date },
+                                    on: {
+                                      input: function($event) {
+                                        _vm.menuDateDebut = false
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.dateDebut,
+                                      callback: function($$v) {
+                                        _vm.dateDebut = $$v
+                                      },
+                                      expression: "dateDebut"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c(
+                                "v-menu",
+                                {
+                                  attrs: {
+                                    "close-on-content-click": false,
+                                    "nudge-right": 40,
+                                    lazy: "",
+                                    transition: "scale-transition",
+                                    "offset-y": "",
+                                    "full-width": "",
+                                    "min-width": "290px"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        return [
+                                          _c(
+                                            "v-text-field",
+                                            _vm._g(
+                                              {
+                                                attrs: {
+                                                  label: "Date de fin",
+                                                  "prepend-icon": "event",
+                                                  readonly: ""
+                                                },
+                                                model: {
+                                                  value: _vm.dateFin,
+                                                  callback: function($$v) {
+                                                    _vm.dateFin = $$v
+                                                  },
+                                                  expression: "dateFin"
+                                                }
+                                              },
+                                              on
+                                            )
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.menuDateFin,
+                                    callback: function($$v) {
+                                      _vm.menuDateFin = $$v
+                                    },
+                                    expression: "menuDateFin"
+                                  }
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c("v-date-picker", {
+                                    attrs: { min: _vm.dateDebut },
+                                    on: {
+                                      input: function($event) {
+                                        _vm.menuDateFin = false
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.dateFin,
+                                      callback: function($$v) {
+                                        _vm.dateFin = $$v
+                                      },
+                                      expression: "dateFin"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.listeDuree,
+                                  label: "Durée indicative"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Rémuneration", required: "" },
+                                model: {
+                                  value: _vm.remuneration,
+                                  callback: function($$v) {
+                                    _vm.remuneration = $$v
+                                  },
+                                  expression: "remuneration"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Compétences", required: "" },
+                                model: {
+                                  value: _vm.competences,
+                                  callback: function($$v) {
+                                    _vm.competences = $$v
+                                  },
+                                  expression: "competences"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Langues", required: "" },
+                                model: {
+                                  value: _vm.langues,
+                                  callback: function($$v) {
+                                    _vm.langues = $$v
+                                  },
+                                  expression: "langues"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs12: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.listeSections,
+                                  label: "Favorite Fruits",
+                                  multiple: ""
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "prepend-item",
+                                    fn: function() {
+                                      return [
+                                        _c(
+                                          "v-list-tile",
+                                          {
+                                            attrs: { ripple: "" },
+                                            on: { click: _vm.selectAllSections }
+                                          },
+                                          [
+                                            _c(
+                                              "v-list-tile-action",
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  {
+                                                    attrs: {
+                                                      color:
+                                                        _vm.sections.length > 0
+                                                          ? "indigo darken-4"
+                                                          : ""
+                                                    }
+                                                  },
+                                                  [_vm._v(_vm._s(_vm.icon))]
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list-tile-content",
+                                              [
+                                                _c("v-list-tile-title", [
+                                                  _vm._v("Select All")
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-divider", { staticClass: "mt-2" })
+                                      ]
+                                    },
+                                    proxy: true
+                                  },
+                                  {
+                                    key: "selection",
+                                    fn: function(ref) {
+                                      var item = ref.item
+                                      var index = ref.index
+                                      return [
+                                        index < 3 &&
+                                        !(
+                                          _vm.sections.length ===
+                                          _vm.listeSections.length
+                                        ) &&
+                                        !(index === _vm.sections.length - 1)
+                                          ? _c("span", [
+                                              _vm._v(_vm._s(item) + ", ")
+                                            ])
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        index < 3 &&
+                                        !(
+                                          _vm.sections.length ===
+                                          _vm.listeSections.length
+                                        ) &&
+                                        index === _vm.sections.length - 1
+                                          ? _c("span", [
+                                              _vm._v(_vm._s(item) + " ")
+                                            ])
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.sections.length > 2 &&
+                                        !(
+                                          _vm.sections.length ===
+                                          _vm.listeSections.length
+                                        ) &&
+                                        index === 3
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "grey--text caption"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "(+" +
+                                                    _vm._s(
+                                                      _vm.sections.length - 3
+                                                    ) +
+                                                    " others)"
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.sections.length ===
+                                          _vm.listeSections.length &&
+                                        index === 0
+                                          ? _c("span", [_vm._v("All")])
+                                          : _vm._e()
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.sections,
+                                  callback: function($$v) {
+                                    _vm.sections = $$v
+                                  },
+                                  expression: "sections"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card",
+                {
+                  staticClass: "text-xs-left ma-4 align-center",
+                  attrs: { "align-center": "" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "agep-bg-color",
+                      staticStyle: { width: "100%", height: "53px" }
+                    },
+                    [
+                      _c("v-card-text", [
+                        _c("h4", { staticStyle: { color: "white" } }, [
+                          _vm._v("CORPS DE L'ANNONCE")
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs12: "" } },
+                            [
+                              _c("v-textarea", {
+                                attrs: {
+                                  color: "teal",
+                                  "auto-grow": "",
+                                  rules: _vm.description.length < 500,
+                                  counter: 500
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "label",
+                                    fn: function() {
+                                      return [
+                                        _c("div", [
+                                          _vm._v(
+                                            "\r\n                                        Description\r\n                                    "
+                                          )
+                                        ])
+                                      ]
+                                    },
+                                    proxy: true
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.description,
+                                  callback: function($$v) {
+                                    _vm.description = $$v
+                                  },
+                                  expression: "description"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card",
+                {
+                  staticClass: "text-xs-left ma-4 align-center",
+                  attrs: { "align-center": "" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "agep-bg-color",
+                      staticStyle: { width: "100%", height: "53px" }
+                    },
+                    [
+                      _c("v-card-text", [
+                        _c("h4", { staticStyle: { color: "white" } }, [
+                          _vm._v("PERSONNE DE CONTACT")
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Prenom", required: "" },
+                                model: {
+                                  value: _vm.prenom,
+                                  callback: function($$v) {
+                                    _vm.prenom = $$v
+                                  },
+                                  expression: "prenom"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Nom", required: "" },
+                                model: {
+                                  value: _vm.nom,
+                                  callback: function($$v) {
+                                    _vm.nom = $$v
+                                  },
+                                  expression: "nom"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Email", required: "" },
+                                model: {
+                                  value: _vm.email,
+                                  callback: function($$v) {
+                                    _vm.email = $$v
+                                  },
+                                  expression: "email"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { staticClass: "px-1", attrs: { xs6: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Telephone", required: "" },
+                                model: {
+                                  value: _vm.telephone,
+                                  callback: function($$v) {
+                                    _vm.telephone = $$v
+                                  },
+                                  expression: "telephone"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-container",
+                { staticClass: "mx-4 mt-4 pa-0" },
+                [
+                  _c("v-checkbox", {
+                    attrs: {
+                      color: "#7595af",
+                      label: "Lancer le projet avec la junior entreprise"
+                    },
+                    model: {
+                      value: _vm.projetJe,
+                      callback: function($$v) {
+                        _vm.projetJe = $$v
+                      },
+                      expression: "projetJe"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { staticClass: "epfl-bg-color", attrs: { dark: "" } },
+                [_vm._v("Enregistrer la nouvelle annonce")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        { attrs: { xs12: "", md4: "" } },
+        [
+          _c(
+            "v-card",
+            { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
+            [
+              _c("v-card-title", { staticClass: "pb-2" }, [
+                _c("h2", [_vm._v("Gestion de l'annonce")])
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v(
+                  "Il existe deux façons de gérer l'annonce. Pour les collaborateurs et les étudiants de l'EPFL, il est possible de se connecter au moyen de Tequila, puis d'aller dans la rubrique \"mes annonces\". Pour les autres, il suffit de\r\n                cliquer sur le lien envoyé par email à la création de l'annonce ou d'en redemander un. Dans tous les cas, l'annonce est visible durant 15 jours, durée après laquelle il faut la renouveler.\r\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "epfl-bg-color",
+                      attrs: { "text-color": "white", dark: "" }
+                    },
+                    [
+                      _c("v-icon", { attrs: { left: "", dark: "" } }, [
+                        _vm._v("restore")
+                      ]),
+                      _vm._v("Récuperer une annonce\r\n                ")
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
+            [
+              _c("v-card-title", { staticClass: "pb-2" }, [
+                _c("h2", [_vm._v("Conditions d'acceptation")])
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _c("p", [
+                  _vm._v(
+                    "\r\n                    L'annonce doit respecter les critères suivants pour être validée:\r\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("ol", [
+                  _c("li", [
+                    _vm._v("cible un étudiant durant ses études à l'EPFL")
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("respect du tarif minimum : CHF 24.—/h")]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("pas de lien de postulation extérieure")]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "les annonces doivent être rédigées en français ou anglais"
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "epfl-bg-color",
+                      attrs: { "text-color": "white", dark: "" }
+                    },
+                    [
+                      _c("v-icon", { attrs: { left: "", dark: "" } }, [
+                        _vm._v("contact_support")
+                      ]),
+                      _vm._v("Poser une question\r\n                ")
                     ],
                     1
                   )
@@ -76205,7 +77767,10 @@ Vue.use(Vuetify);
 
 Vue.component('myjob-navbar', __webpack_require__(/*! ./components/MyjobNavbar.vue */ "./resources/js/components/MyjobNavbar.vue")["default"]);
 Vue.component('myjob-home', __webpack_require__(/*! ./components/MyjobHome.vue */ "./resources/js/components/MyjobHome.vue")["default"]);
+Vue.component('myjob-faq', __webpack_require__(/*! ./components/MyjobFaq.vue */ "./resources/js/components/MyjobFaq.vue")["default"]);
+Vue.component('myjob-contact', __webpack_require__(/*! ./components/MyjobContact.vue */ "./resources/js/components/MyjobContact.vue")["default"]);
 Vue.component('myjob-footer', __webpack_require__(/*! ./components/MyjobFooter.vue */ "./resources/js/components/MyjobFooter.vue")["default"]);
+Vue.component('myjob-new-ad', __webpack_require__(/*! ./components/MyjobNewAd.vue */ "./resources/js/components/MyjobNewAd.vue")["default"]);
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -76213,6 +77778,13 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.mixin({
+  methods: {
+    redirect: function redirect(value) {
+      window.location.href = value;
+    }
+  }
+});
 var app = new Vue({
   el: '#app'
 });
@@ -76341,6 +77913,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobContact.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/MyjobContact.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyjobContact.vue?vue&type=template&id=371c7cba& */ "./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba&");
+/* harmony import */ var _MyjobContact_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyjobContact.vue?vue&type=script&lang=js& */ "./resources/js/components/MyjobContact.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyjobContact_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MyjobContact.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobContact.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/MyjobContact.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobContact_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobContact.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobContact.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobContact_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobContact.vue?vue&type=template&id=371c7cba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobContact.vue?vue&type=template&id=371c7cba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobContact_vue_vue_type_template_id_371c7cba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobFaq.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/MyjobFaq.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyjobFaq.vue?vue&type=template&id=180dc9b0& */ "./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0&");
+/* harmony import */ var _MyjobFaq_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyjobFaq.vue?vue&type=script&lang=js& */ "./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyjobFaq_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MyjobFaq.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFaq_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobFaq.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFaq.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFaq_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0& ***!
+  \*****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobFaq.vue?vue&type=template&id=180dc9b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobFaq.vue?vue&type=template&id=180dc9b0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobFaq_vue_vue_type_template_id_180dc9b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -76548,6 +78258,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNavbar_vue_vue_type_template_id_70dfc866___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNavbar_vue_vue_type_template_id_70dfc866___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobNewAd.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/MyjobNewAd.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyjobNewAd.vue?vue&type=template&id=2bc3bd06& */ "./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06&");
+/* harmony import */ var _MyjobNewAd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyjobNewAd.vue?vue&type=script&lang=js& */ "./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyjobNewAd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MyjobNewAd.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNewAd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobNewAd.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNewAd.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNewAd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyjobNewAd.vue?vue&type=template&id=2bc3bd06& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobNewAd.vue?vue&type=template&id=2bc3bd06&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyjobNewAd_vue_vue_type_template_id_2bc3bd06___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

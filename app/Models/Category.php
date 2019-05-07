@@ -14,6 +14,6 @@ class Category extends Model
   protected $primaryKey = 'category_id';
 
   public static function get_id_name_mapping() {
-    return self::lists('name_' . App::getLocale(), 'category_id');
+    return self::pluck('name_' . App::getLocale(), 'category_id');
   }
 }

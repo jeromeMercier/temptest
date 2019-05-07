@@ -11,8 +11,9 @@ use Validator;
 class HelpController extends Controller {
 
     public function index() {
-        $faq_items = FAQ::all();
-        return view('help.index', ['faq_items' => $faq_items]);
+        $faq_items_array = FAQ::all();
+
+        return view('help.index', ['faq_items_array' => $faq_items_array]);
     }
 
     public function send() {

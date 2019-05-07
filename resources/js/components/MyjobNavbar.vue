@@ -1,9 +1,9 @@
 <template>
 <v-card flat>
-    <v-toolbar color="white" height="128"  class="align-center">
+    <v-toolbar color="white" height="128" class="align-center">
 
 
-            <img class="myagep":src="'/contents/images/myagep.svg'" alt="EPFL" width="120"></v-toolbar-items>
+        <img class="myagep" :src="'/contents/images/myagep.svg'" alt="EPFL" width="120"></v-toolbar-items>
 
 
         <v-spacer></v-spacer>
@@ -33,11 +33,13 @@
     <v-layout row pb-2>
         <v-flex xs12>
             <v-card class="card--flex-toolbar" flat>
-                <v-toolbar card prominent class="sub-navbar" dark>
+                <v-toolbar card prominent class="epfl-bg-color" dark>
                     <v-toolbar-items class="hidden-sm-and-down">
-                        <v-btn flat>Link One</v-btn>
-                        <v-btn flat>Link Two</v-btn>
-                        <v-btn flat>Link Three</v-btn>
+                        <v-btn v-for="(link, title) in array" v-if="!isLogin(title)" flat @click="redirect(link)" :key="title">{{title}}</v-btn>
+                    </v-toolbar-items>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items class="hidden-sm-and-down">
+                        <v-btn v-for="(link, title) in array" v-if="isLogin(title)" flat @click="redirect(link)" :key="title">{{title}}</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
             </v-card>
@@ -48,14 +50,16 @@
 
 <script>
 export default {
+    props: ['links'],
     data() {
         return {
             expand: false,
             marker: false,
+            array: JSON.parse(this.links),
         };
     },
     created() {
-        this.fetchData();
+        console.log(this.links)
     },
     methods: {
         fetchData() {
@@ -63,6 +67,13 @@ export default {
         },
         switchLanguageAndCloseExpand(language) {
             this.expand = false;
+        },
+        isLogin(value) {
+            if (value == 'login' || value == 'logout') {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

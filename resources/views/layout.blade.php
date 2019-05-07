@@ -15,7 +15,19 @@
 </head>
 <body>
   <v-app id="app">
-    <myjob-navbar></myjob-navbar>
+    <?php
+    $links = array(
+      "home" => "/",
+      "create" =>"/new-job",
+      "help" => "/help",
+      "login" =>"/log",
+    );
+    if($auth){
+      array_push($links, "Mes jobs", "options");
+      $links["Mes jobs"] = '/dickdick';
+    }
+    ?>
+    <myjob-navbar links='{!!json_encode($links)!!}'></myjob-navbar>
     <v-content>
       <v-container fluid fill-height>
         @yield('content')

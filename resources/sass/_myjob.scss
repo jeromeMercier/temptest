@@ -7,16 +7,13 @@
   padding-right:24px!important;
   max-width:350px;
 }
-.sub-navbar{
-  background-color: #c61618!important;
-}
 
 .epfl-bg-color{
   background-color: #c61618!important;
 }
 
 .agep-bg-color{
-  background-color: #69ABD6!important;
+  background-color: #7595af!important;
 }
 
 .epfl-txt-color{
@@ -27,8 +24,15 @@
   height:412px;
 }
 
+.container{
+  background-color: white;
+}
 @media screen and (max-width: 1264px) {
   .adopte-etudiant-card{
     height:auto;
   }
+}
+
+.v-card{
+  border-radius:0px;
 }

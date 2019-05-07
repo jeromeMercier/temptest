@@ -60,6 +60,7 @@ function expired($ad) {
 
 /** Generate menu item. */
 function item($nav, $action, $icon = null) {
+				echo("dick");
 	$navAction = config('app.routes.' . $nav);
 	$activeHTML = $action == $navAction ? 'active ': '';
 	$actionHTML = e(action($navAction));

@@ -23,7 +23,10 @@ Vue.use(Vuetify)
 
 Vue.component('myjob-navbar', require('./components/MyjobNavbar.vue').default);
 Vue.component('myjob-home', require('./components/MyjobHome.vue').default);
+Vue.component('myjob-faq', require('./components/MyjobFaq.vue').default);
+Vue.component('myjob-contact', require('./components/MyjobContact.vue').default);
 Vue.component('myjob-footer', require('./components/MyjobFooter.vue').default);
+Vue.component('myjob-new-ad', require('./components/MyjobNewAd.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
@@ -31,7 +34,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+         Vue.mixin({
+           methods: {
+             redirect(value) {
+                         window.location.href = value;
+                     },
+           }
+         })
 const app = new Vue({
     el: '#app',
 });
