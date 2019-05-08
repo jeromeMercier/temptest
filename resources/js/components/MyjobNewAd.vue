@@ -11,13 +11,13 @@
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-text-field v-model="form.titre" label="Titre" required :rules="titleRules"></v-text-field>
+                            <v-text-field v-model="form.title" label="Titre" required :rules="titleRules"></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-select v-model="form.categorie" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" label="Categorie" required></v-select>
+                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" label="Categorie" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.lieuDeTravail" label="Lieu de travail" required :rules="lieuRules"></v-text-field>
+                            <v-text-field v-model="form.place" label="Lieu de travail" required :rules="lieuRules"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -33,30 +33,30 @@
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.dateDebut" label="Date de début" prepend-icon="event" readonly v-on="on"></v-text-field>
+                                    <v-text-field v-model="form.starts_at" label="Date de début" prepend-icon="event" readonly v-on="on"></v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.dateDebut" @input="menuDateDebut = false" :min="date"></v-date-picker>
+                                <v-date-picker v-model="form.starts_at" @input="menuDateDebut = false" :min="date"></v-date-picker>
                             </v-menu>
                         </v-flex>
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateFin" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.dateFin" label="Date de fin" prepend-icon="event" readonly v-on="on"></v-text-field>
+                                    <v-text-field v-model="form.ends_at" label="Date de fin" prepend-icon="event" readonly v-on="on"></v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.dateFin" @input="menuDateFin = false" :min="form.dateDebut"></v-date-picker>
+                                <v-date-picker v-model="form.ends_at" @input="menuDateFin = false" :min="form.starts_at"></v-date-picker>
                             </v-menu>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-select :items="listeDuree" label="Durée indicative" v-model="form.duree" :rules="[v => !!v || 'Item is required']" required></v-select>
+                            <v-select :items="listeDuree" label="Durée indicative" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.remuneration" label="Rémuneration" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.salary" label="Rémuneration" :rules="[v => !!v || 'Item is required']" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.competences" label="Compétences" required></v-text-field>
+                            <v-text-field v-model="form.skills" label="Compétences" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.langues" label="Langues" required></v-text-field>
+                            <v-text-field v-model="form.languages" label="Langues" required></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
                             <v-select v-model="form.sections" :items="listeSections" label="Favorite Fruits" multiple>
@@ -112,16 +112,16 @@
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.prenom" label="Prenom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.contact_first_name" label="Prenom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.nom" label="Nom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.contact_last_name" label="Nom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.email" label="Email" :rules="emailRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_email" label="Email" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.telephone" label="Telephone" required></v-text-field>
+                            <v-text-field v-model="form.contact_phone" label="Telephone" required></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -130,7 +130,7 @@
                 <v-checkbox color="#7595af" v-model="form.projetJe" label="Lancer le projet avec la junior entreprise"></v-checkbox>
             </v-container>
 
-            <v-btn :disabled="!valid" @click="validate" :class="buttonColor" >Enregistrer la nouvelle annonce</v-btn>
+            <v-btn :disabled="!valid" @click="validate" :class="buttonColor">Enregistrer la nouvelle annonce</v-btn>
 
         </v-form>
     </v-flex>
@@ -198,25 +198,27 @@ export default {
         return {
             form: {
                 projetJe: false,
-                titre: '',
+                title: '',
                 sections: [],
-                categorie: null,
-                lieuDeTravail: '',
-                dateDebut: null,
-                dateFin: null,
-                remuneration: '',
-                competences: '',
-                langues: '',
+                category_id: ['1'],
+                place: '',
+                starts_at: null,
+                ends_at: null,
+                salary: '',
+                duration:'textextet',
+                skills: '',
+                languages: '',
                 description: '',
-                prenom: '',
-                nom: '',
-                email: '',
-                telephone: '',
+                contact_first_name: '',
+                contact_last_name: '',
+                contact_email: '',
+                contact_phone: '',
             },
             menuDateDebut: false,
             menuDateFin: false,
 
             valid: true,
+            errore:{},
 
             titleRules: [
                 v => !!v || 'Title is required',
@@ -264,10 +266,10 @@ export default {
             if (this.form.sections.length === this.listeSections.length) return 'cancel'
             return 'check_box_outline_blank'
         },
-        buttonColor(){
-          if(this.validate){
-            return"epfl-bg-color white-text";
-          }
+        buttonColor() {
+            if (this.validate) {
+                return "epfl-bg-color white-text";
+            }
         }
     },
     methods: {
@@ -286,7 +288,19 @@ export default {
         validate() {
             if (this.$refs.form.validate()) {
                 this.snackbar = true
+                this.submit();
             }
+        },
+        submit() {
+          console.log("submit");
+            this.errors = {};
+            axios.post('/new-job', this.form).then(response => {
+                alert('Message sent!');
+            }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors || {};
+                }
+            });
         },
     }
 }

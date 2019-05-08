@@ -2414,24 +2414,26 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         projetJe: false,
-        titre: '',
+        title: '',
         sections: [],
-        categorie: null,
-        lieuDeTravail: '',
-        dateDebut: null,
-        dateFin: null,
-        remuneration: '',
-        competences: '',
-        langues: '',
+        category_id: ['1'],
+        place: '',
+        starts_at: null,
+        ends_at: null,
+        salary: '',
+        duration: 'textextet',
+        skills: '',
+        languages: '',
         description: '',
-        prenom: '',
-        nom: '',
-        email: '',
-        telephone: ''
+        contact_first_name: '',
+        contact_last_name: '',
+        contact_email: '',
+        contact_phone: ''
       },
       menuDateDebut: false,
       menuDateFin: false,
       valid: true,
+      errore: {},
       titleRules: [function (v) {
         return !!v || 'Title is required';
       }, function (v) {
@@ -2493,7 +2495,21 @@ __webpack_require__.r(__webpack_exports__);
     validate: function validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.submit();
       }
+    },
+    submit: function submit() {
+      var _this2 = this;
+
+      console.log("submit");
+      this.errors = {};
+      axios.post('/new-job', this.form).then(function (response) {
+        alert('Message sent!');
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        }
+      });
     }
   }
 });
@@ -38926,11 +38942,11 @@ var render = function() {
                                   rules: _vm.titleRules
                                 },
                                 model: {
-                                  value: _vm.form.titre,
+                                  value: _vm.form.title,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "titre", $$v)
+                                    _vm.$set(_vm.form, "title", $$v)
                                   },
-                                  expression: "form.titre"
+                                  expression: "form.title"
                                 }
                               })
                             ],
@@ -38953,11 +38969,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.categorie,
+                                  value: _vm.form.category_id,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "categorie", $$v)
+                                    _vm.$set(_vm.form, "category_id", $$v)
                                   },
-                                  expression: "form.categorie"
+                                  expression: "form.category_id"
                                 }
                               })
                             ],
@@ -38975,11 +38991,11 @@ var render = function() {
                                   rules: _vm.lieuRules
                                 },
                                 model: {
-                                  value: _vm.form.lieuDeTravail,
+                                  value: _vm.form.place,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "lieuDeTravail", $$v)
+                                    _vm.$set(_vm.form, "place", $$v)
                                   },
-                                  expression: "form.lieuDeTravail"
+                                  expression: "form.place"
                                 }
                               })
                             ],
@@ -39057,15 +39073,15 @@ var render = function() {
                                                   readonly: ""
                                                 },
                                                 model: {
-                                                  value: _vm.form.dateDebut,
+                                                  value: _vm.form.starts_at,
                                                   callback: function($$v) {
                                                     _vm.$set(
                                                       _vm.form,
-                                                      "dateDebut",
+                                                      "starts_at",
                                                       $$v
                                                     )
                                                   },
-                                                  expression: "form.dateDebut"
+                                                  expression: "form.starts_at"
                                                 }
                                               },
                                               on
@@ -39093,11 +39109,11 @@ var render = function() {
                                       }
                                     },
                                     model: {
-                                      value: _vm.form.dateDebut,
+                                      value: _vm.form.starts_at,
                                       callback: function($$v) {
-                                        _vm.$set(_vm.form, "dateDebut", $$v)
+                                        _vm.$set(_vm.form, "starts_at", $$v)
                                       },
-                                      expression: "form.dateDebut"
+                                      expression: "form.starts_at"
                                     }
                                   })
                                 ],
@@ -39139,15 +39155,15 @@ var render = function() {
                                                   readonly: ""
                                                 },
                                                 model: {
-                                                  value: _vm.form.dateFin,
+                                                  value: _vm.form.ends_at,
                                                   callback: function($$v) {
                                                     _vm.$set(
                                                       _vm.form,
-                                                      "dateFin",
+                                                      "ends_at",
                                                       $$v
                                                     )
                                                   },
-                                                  expression: "form.dateFin"
+                                                  expression: "form.ends_at"
                                                 }
                                               },
                                               on
@@ -39168,18 +39184,18 @@ var render = function() {
                                 [
                                   _vm._v(" "),
                                   _c("v-date-picker", {
-                                    attrs: { min: _vm.form.dateDebut },
+                                    attrs: { min: _vm.form.starts_at },
                                     on: {
                                       input: function($event) {
                                         _vm.menuDateFin = false
                                       }
                                     },
                                     model: {
-                                      value: _vm.form.dateFin,
+                                      value: _vm.form.ends_at,
                                       callback: function($$v) {
-                                        _vm.$set(_vm.form, "dateFin", $$v)
+                                        _vm.$set(_vm.form, "ends_at", $$v)
                                       },
-                                      expression: "form.dateFin"
+                                      expression: "form.ends_at"
                                     }
                                   })
                                 ],
@@ -39205,11 +39221,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.duree,
+                                  value: _vm.form.duration,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "duree", $$v)
+                                    _vm.$set(_vm.form, "duration", $$v)
                                   },
-                                  expression: "form.duree"
+                                  expression: "form.duration"
                                 }
                               })
                             ],
@@ -39231,11 +39247,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.remuneration,
+                                  value: _vm.form.salary,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "remuneration", $$v)
+                                    _vm.$set(_vm.form, "salary", $$v)
                                   },
-                                  expression: "form.remuneration"
+                                  expression: "form.salary"
                                 }
                               })
                             ],
@@ -39249,11 +39265,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Compétences", required: "" },
                                 model: {
-                                  value: _vm.form.competences,
+                                  value: _vm.form.skills,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "competences", $$v)
+                                    _vm.$set(_vm.form, "skills", $$v)
                                   },
-                                  expression: "form.competences"
+                                  expression: "form.skills"
                                 }
                               })
                             ],
@@ -39267,11 +39283,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Langues", required: "" },
                                 model: {
-                                  value: _vm.form.langues,
+                                  value: _vm.form.languages,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "langues", $$v)
+                                    _vm.$set(_vm.form, "languages", $$v)
                                   },
-                                  expression: "form.langues"
+                                  expression: "form.languages"
                                 }
                               })
                             ],
@@ -39555,11 +39571,15 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.prenom,
+                                  value: _vm.form.contact_first_name,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "prenom", $$v)
+                                    _vm.$set(
+                                      _vm.form,
+                                      "contact_first_name",
+                                      $$v
+                                    )
                                   },
-                                  expression: "form.prenom"
+                                  expression: "form.contact_first_name"
                                 }
                               })
                             ],
@@ -39581,11 +39601,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.nom,
+                                  value: _vm.form.contact_last_name,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "nom", $$v)
+                                    _vm.$set(_vm.form, "contact_last_name", $$v)
                                   },
-                                  expression: "form.nom"
+                                  expression: "form.contact_last_name"
                                 }
                               })
                             ],
@@ -39603,11 +39623,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.form.email,
+                                  value: _vm.form.contact_email,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "email", $$v)
+                                    _vm.$set(_vm.form, "contact_email", $$v)
                                   },
-                                  expression: "form.email"
+                                  expression: "form.contact_email"
                                 }
                               })
                             ],
@@ -39621,11 +39641,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Telephone", required: "" },
                                 model: {
-                                  value: _vm.form.telephone,
+                                  value: _vm.form.contact_phone,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "telephone", $$v)
+                                    _vm.$set(_vm.form, "contact_phone", $$v)
                                   },
-                                  expression: "form.telephone"
+                                  expression: "form.contact_phone"
                                 }
                               })
                             ],
