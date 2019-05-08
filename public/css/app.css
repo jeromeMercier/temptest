@@ -39,6 +39,10 @@
   }
 }
 
+.white-text {
+  color: white !important;
+}
+
 .v-card {
   border-radius: 0px;
 }

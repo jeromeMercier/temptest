@@ -1848,18 +1848,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      valid: true,
       prenom: '',
       nom: '',
       email: '',
-      message: ''
+      message: '',
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'E-mail must be valid';
+      }],
+      messageRules: [function (v) {
+        return !!v || 'Message is required';
+      }, function (v) {
+        return v && v.length <= 500 || 'Title must be less than 500 characters';
+      }]
     };
   },
+  computed: {
+    buttonColor: function buttonColor() {
+      if (this.validate) {
+        return "epfl-bg-color white-text";
+      }
+    }
+  },
   created: function created() {},
-  methods: {}
+  methods: {
+    validate: function validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2368,6 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['students', 'publishers'],
   components: {
@@ -2388,24 +2412,49 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      projetJe: false,
-      titre: '',
-      sections: [],
-      categorie: '',
-      lieuDeTravail: '',
-      dateDebut: new Date().toISOString().substr(0, 10),
+      form: {
+        projetJe: false,
+        titre: '',
+        sections: [],
+        categorie: null,
+        lieuDeTravail: '',
+        dateDebut: null,
+        dateFin: null,
+        remuneration: '',
+        competences: '',
+        langues: '',
+        description: '',
+        prenom: '',
+        nom: '',
+        email: '',
+        telephone: ''
+      },
       menuDateDebut: false,
       menuDateFin: false,
-      dateFin: '',
-      dureeInactive: '',
-      remuneration: '',
-      competences: '',
-      langues: '',
-      description: '',
-      prenom: '',
-      nom: '',
-      email: '',
-      telephone: '',
+      valid: true,
+      titleRules: [function (v) {
+        return !!v || 'Title is required';
+      }, function (v) {
+        return v && v.length <= 80 || 'Title must be less than 80 characters';
+      }],
+      lieuRules: [function (v) {
+        return !!v || 'Lieu is required';
+      }, function (v) {
+        return v && v.length <= 40 || 'Lieu must be less than 40 characters';
+      }],
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'E-mail must be valid';
+      }],
+      categorieRules: [function (v) {
+        return !!v || 'Categorie is required';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'E-mail must be valid';
+      }],
+      dateRules: [function (v) {
+        return !!v || 'Date is required';
+      }],
       listeCategorie: ['Aide à domicile', 'Babysitting', 'Expériences', 'Informatique', 'Job de bureau', 'Flyering', 'Administratif', 'Etudes/experiences', 'Promotion', 'Restauration/Hôtellerie', 'Soutien scolaire', 'Autre'],
       listeDuree: ['Temps plein', 'A côté des études', 'Weekends', 'Vacances', 'Autre'],
       listeSections: ['Architecture', 'Chimie et génie chimique', 'Cours de mathématiques spéciales', 'EME (EPFL Middle East)', 'Génie civil', 'Génie mecanique', 'Génie électrique et electronique', 'Humanités digitales', 'Informatique', 'Ingénierie des sciences du vivant', 'Ingénierie financière', 'Management de la technologie', 'Mathématiques', 'Microtechnique', 'Physique', 'Science et génie des materiaux', "Science et ingénierie de l'environnement", 'section FCUE', 'Système de communication'],
@@ -2417,8 +2466,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     icon: function icon() {
-      if (this.sections.length === this.listeSections.length) return 'cancel';
+      if (this.form.sections.length === this.listeSections.length) return 'cancel';
       return 'check_box_outline_blank';
+    },
+    buttonColor: function buttonColor() {
+      if (this.validate) {
+        return "epfl-bg-color white-text";
+      }
     }
   },
   methods: {
@@ -2429,12 +2483,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$nextTick(function () {
-        if (_this.sections.length === _this.listeSections.length) {
-          _this.sections = [];
+        if (_this.form.sections.length === _this.listeSections.length) {
+          _this.form.sections = [];
         } else {
-          _this.sections = _this.listeSections.slice();
+          _this.form.sections = _this.listeSections.slice();
         }
       });
+    },
+    validate: function validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
     }
   }
 });
@@ -37832,7 +37891,15 @@ var render = function() {
                         { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Prenom", required: "" },
+                            attrs: {
+                              label: "Prenom",
+                              required: "",
+                              rules: [
+                                function(v) {
+                                  return !!v || "Item is required"
+                                }
+                              ]
+                            },
                             model: {
                               value: _vm.prenom,
                               callback: function($$v) {
@@ -37850,7 +37917,15 @@ var render = function() {
                         { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Nom", required: "" },
+                            attrs: {
+                              label: "Nom",
+                              required: "",
+                              rules: [
+                                function(v) {
+                                  return !!v || "Item is required"
+                                }
+                              ]
+                            },
                             model: {
                               value: _vm.nom,
                               callback: function($$v) {
@@ -37868,7 +37943,11 @@ var render = function() {
                         { staticClass: "px-1", attrs: { xs12: "", md4: "" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Email", required: "" },
+                            attrs: {
+                              label: "Email",
+                              required: "",
+                              rules: _vm.emailRules
+                            },
                             model: {
                               value: _vm.email,
                               callback: function($$v) {
@@ -37889,7 +37968,8 @@ var render = function() {
                             attrs: {
                               rows: "4",
                               "auto-grow": "",
-                              rules: _vm.message.length < 500,
+                              required: "",
+                              rules: _vm.messageRules,
                               counter: 500
                             },
                             scopedSlots: _vm._u([
@@ -37938,12 +38018,13 @@ var render = function() {
           _c(
             "v-btn",
             {
-              staticClass: "epfl-bg-color",
-              attrs: { "text-color": "white", dark: "" }
+              class: _vm.buttonColor,
+              attrs: { disabled: !_vm.valid },
+              on: { click: _vm.validate }
             },
             [
               _c("v-icon", { attrs: { left: "", dark: "" } }, [_vm._v("send")]),
-              _vm._v("Envoyer le message\n        ")
+              _vm._v("Envoyer le message")
             ],
             1
           )
@@ -37986,7 +38067,7 @@ var render = function() {
       _vm._v(" "),
       _c("v-card-text", [
         _vm._v(
-          "\n        Après de nombreuses années de services, l'équipe de Myjob a soigneusement répertorié ici les questions les plus posées.\n    "
+          "\r\n        Après de nombreuses années de services, l'équipe de Myjob a soigneusement répertorié ici les questions les plus posées.\r\n    "
         )
       ]),
       _vm._v(" "),
@@ -38839,13 +38920,17 @@ var render = function() {
                             { staticClass: "px-1", attrs: { xs12: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Titre", required: "" },
+                                attrs: {
+                                  label: "Titre",
+                                  required: "",
+                                  rules: _vm.titleRules
+                                },
                                 model: {
-                                  value: _vm.titre,
+                                  value: _vm.form.titre,
                                   callback: function($$v) {
-                                    _vm.titre = $$v
+                                    _vm.$set(_vm.form, "titre", $$v)
                                   },
-                                  expression: "titre"
+                                  expression: "form.titre"
                                 }
                               })
                             ],
@@ -38859,7 +38944,20 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeCategorie,
-                                  label: "Categories"
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    }
+                                  ],
+                                  label: "Categorie",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.categorie,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "categorie", $$v)
+                                  },
+                                  expression: "form.categorie"
                                 }
                               })
                             ],
@@ -38873,14 +38971,15 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: "Lieu de travail",
-                                  required: ""
+                                  required: "",
+                                  rules: _vm.lieuRules
                                 },
                                 model: {
-                                  value: _vm.lieuDeTravail,
+                                  value: _vm.form.lieuDeTravail,
                                   callback: function($$v) {
-                                    _vm.lieuDeTravail = $$v
+                                    _vm.$set(_vm.form, "lieuDeTravail", $$v)
                                   },
-                                  expression: "lieuDeTravail"
+                                  expression: "form.lieuDeTravail"
                                 }
                               })
                             ],
@@ -38958,11 +39057,15 @@ var render = function() {
                                                   readonly: ""
                                                 },
                                                 model: {
-                                                  value: _vm.dateDebut,
+                                                  value: _vm.form.dateDebut,
                                                   callback: function($$v) {
-                                                    _vm.dateDebut = $$v
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "dateDebut",
+                                                      $$v
+                                                    )
                                                   },
-                                                  expression: "dateDebut"
+                                                  expression: "form.dateDebut"
                                                 }
                                               },
                                               on
@@ -38990,11 +39093,11 @@ var render = function() {
                                       }
                                     },
                                     model: {
-                                      value: _vm.dateDebut,
+                                      value: _vm.form.dateDebut,
                                       callback: function($$v) {
-                                        _vm.dateDebut = $$v
+                                        _vm.$set(_vm.form, "dateDebut", $$v)
                                       },
-                                      expression: "dateDebut"
+                                      expression: "form.dateDebut"
                                     }
                                   })
                                 ],
@@ -39036,11 +39139,15 @@ var render = function() {
                                                   readonly: ""
                                                 },
                                                 model: {
-                                                  value: _vm.dateFin,
+                                                  value: _vm.form.dateFin,
                                                   callback: function($$v) {
-                                                    _vm.dateFin = $$v
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "dateFin",
+                                                      $$v
+                                                    )
                                                   },
-                                                  expression: "dateFin"
+                                                  expression: "form.dateFin"
                                                 }
                                               },
                                               on
@@ -39061,18 +39168,18 @@ var render = function() {
                                 [
                                   _vm._v(" "),
                                   _c("v-date-picker", {
-                                    attrs: { min: _vm.dateDebut },
+                                    attrs: { min: _vm.form.dateDebut },
                                     on: {
                                       input: function($event) {
                                         _vm.menuDateFin = false
                                       }
                                     },
                                     model: {
-                                      value: _vm.dateFin,
+                                      value: _vm.form.dateFin,
                                       callback: function($$v) {
-                                        _vm.dateFin = $$v
+                                        _vm.$set(_vm.form, "dateFin", $$v)
                                       },
-                                      expression: "dateFin"
+                                      expression: "form.dateFin"
                                     }
                                   })
                                 ],
@@ -39089,7 +39196,20 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeDuree,
-                                  label: "Durée indicative"
+                                  label: "Durée indicative",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    }
+                                  ],
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.duree,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "duree", $$v)
+                                  },
+                                  expression: "form.duree"
                                 }
                               })
                             ],
@@ -39101,13 +39221,21 @@ var render = function() {
                             { staticClass: "px-1", attrs: { xs6: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Rémuneration", required: "" },
+                                attrs: {
+                                  label: "Rémuneration",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    }
+                                  ],
+                                  required: ""
+                                },
                                 model: {
-                                  value: _vm.remuneration,
+                                  value: _vm.form.remuneration,
                                   callback: function($$v) {
-                                    _vm.remuneration = $$v
+                                    _vm.$set(_vm.form, "remuneration", $$v)
                                   },
-                                  expression: "remuneration"
+                                  expression: "form.remuneration"
                                 }
                               })
                             ],
@@ -39121,11 +39249,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Compétences", required: "" },
                                 model: {
-                                  value: _vm.competences,
+                                  value: _vm.form.competences,
                                   callback: function($$v) {
-                                    _vm.competences = $$v
+                                    _vm.$set(_vm.form, "competences", $$v)
                                   },
-                                  expression: "competences"
+                                  expression: "form.competences"
                                 }
                               })
                             ],
@@ -39139,11 +39267,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Langues", required: "" },
                                 model: {
-                                  value: _vm.langues,
+                                  value: _vm.form.langues,
                                   callback: function($$v) {
-                                    _vm.langues = $$v
+                                    _vm.$set(_vm.form, "langues", $$v)
                                   },
-                                  expression: "langues"
+                                  expression: "form.langues"
                                 }
                               })
                             ],
@@ -39180,7 +39308,8 @@ var render = function() {
                                                   {
                                                     attrs: {
                                                       color:
-                                                        _vm.sections.length > 0
+                                                        _vm.form.sections
+                                                          .length > 0
                                                           ? "indigo darken-4"
                                                           : ""
                                                     }
@@ -39217,10 +39346,13 @@ var render = function() {
                                       return [
                                         index < 3 &&
                                         !(
-                                          _vm.sections.length ===
+                                          _vm.form.sections.length ===
                                           _vm.listeSections.length
                                         ) &&
-                                        !(index === _vm.sections.length - 1)
+                                        !(
+                                          index ===
+                                          _vm.form.sections.length - 1
+                                        )
                                           ? _c("span", [
                                               _vm._v(_vm._s(item) + ", ")
                                             ])
@@ -39228,18 +39360,18 @@ var render = function() {
                                         _vm._v(" "),
                                         index < 3 &&
                                         !(
-                                          _vm.sections.length ===
+                                          _vm.form.sections.length ===
                                           _vm.listeSections.length
                                         ) &&
-                                        index === _vm.sections.length - 1
+                                        index === _vm.form.sections.length - 1
                                           ? _c("span", [
                                               _vm._v(_vm._s(item) + " ")
                                             ])
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.sections.length > 2 &&
+                                        _vm.form.sections.length > 2 &&
                                         !(
-                                          _vm.sections.length ===
+                                          _vm.form.sections.length ===
                                           _vm.listeSections.length
                                         ) &&
                                         index === 3
@@ -39261,7 +39393,7 @@ var render = function() {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.sections.length ===
+                                        _vm.form.sections.length ===
                                           _vm.listeSections.length &&
                                         index === 0
                                           ? _c("span", [_vm._v("All")])
@@ -39271,11 +39403,11 @@ var render = function() {
                                   }
                                 ]),
                                 model: {
-                                  value: _vm.sections,
+                                  value: _vm.form.sections,
                                   callback: function($$v) {
-                                    _vm.sections = $$v
+                                    _vm.$set(_vm.form, "sections", $$v)
                                   },
-                                  expression: "sections"
+                                  expression: "form.sections"
                                 }
                               })
                             ],
@@ -39329,7 +39461,17 @@ var render = function() {
                                 attrs: {
                                   color: "teal",
                                   "auto-grow": "",
-                                  rules: _vm.description.length < 500,
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    },
+                                    function(v) {
+                                      return (
+                                        _vm.form.description.length < 500 ||
+                                        "Description must be lass than 500 car"
+                                      )
+                                    }
+                                  ],
                                   counter: 500
                                 },
                                 scopedSlots: _vm._u([
@@ -39348,11 +39490,11 @@ var render = function() {
                                   }
                                 ]),
                                 model: {
-                                  value: _vm.description,
+                                  value: _vm.form.description,
                                   callback: function($$v) {
-                                    _vm.description = $$v
+                                    _vm.$set(_vm.form, "description", $$v)
                                   },
-                                  expression: "description"
+                                  expression: "form.description"
                                 }
                               })
                             ],
@@ -39403,13 +39545,21 @@ var render = function() {
                             { staticClass: "px-1", attrs: { xs6: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Prenom", required: "" },
+                                attrs: {
+                                  label: "Prenom",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    }
+                                  ],
+                                  required: ""
+                                },
                                 model: {
-                                  value: _vm.prenom,
+                                  value: _vm.form.prenom,
                                   callback: function($$v) {
-                                    _vm.prenom = $$v
+                                    _vm.$set(_vm.form, "prenom", $$v)
                                   },
-                                  expression: "prenom"
+                                  expression: "form.prenom"
                                 }
                               })
                             ],
@@ -39421,13 +39571,21 @@ var render = function() {
                             { staticClass: "px-1", attrs: { xs6: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Nom", required: "" },
+                                attrs: {
+                                  label: "Nom",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Item is required"
+                                    }
+                                  ],
+                                  required: ""
+                                },
                                 model: {
-                                  value: _vm.nom,
+                                  value: _vm.form.nom,
                                   callback: function($$v) {
-                                    _vm.nom = $$v
+                                    _vm.$set(_vm.form, "nom", $$v)
                                   },
-                                  expression: "nom"
+                                  expression: "form.nom"
                                 }
                               })
                             ],
@@ -39439,13 +39597,17 @@ var render = function() {
                             { staticClass: "px-1", attrs: { xs6: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Email", required: "" },
+                                attrs: {
+                                  label: "Email",
+                                  rules: _vm.emailRules,
+                                  required: ""
+                                },
                                 model: {
-                                  value: _vm.email,
+                                  value: _vm.form.email,
                                   callback: function($$v) {
-                                    _vm.email = $$v
+                                    _vm.$set(_vm.form, "email", $$v)
                                   },
-                                  expression: "email"
+                                  expression: "form.email"
                                 }
                               })
                             ],
@@ -39459,11 +39621,11 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: { label: "Telephone", required: "" },
                                 model: {
-                                  value: _vm.telephone,
+                                  value: _vm.form.telephone,
                                   callback: function($$v) {
-                                    _vm.telephone = $$v
+                                    _vm.$set(_vm.form, "telephone", $$v)
                                   },
-                                  expression: "telephone"
+                                  expression: "form.telephone"
                                 }
                               })
                             ],
@@ -39489,11 +39651,11 @@ var render = function() {
                       label: "Lancer le projet avec la junior entreprise"
                     },
                     model: {
-                      value: _vm.projetJe,
+                      value: _vm.form.projetJe,
                       callback: function($$v) {
-                        _vm.projetJe = $$v
+                        _vm.$set(_vm.form, "projetJe", $$v)
                       },
-                      expression: "projetJe"
+                      expression: "form.projetJe"
                     }
                   })
                 ],
@@ -39502,7 +39664,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { staticClass: "epfl-bg-color", attrs: { dark: "" } },
+                {
+                  class: _vm.buttonColor,
+                  attrs: { disabled: !_vm.valid },
+                  on: { click: _vm.validate }
+                },
                 [_vm._v("Enregistrer la nouvelle annonce")]
               )
             ],

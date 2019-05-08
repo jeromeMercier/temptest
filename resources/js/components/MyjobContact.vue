@@ -12,24 +12,24 @@
                 <v-layout row wrap class="pa-0">
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="prenom" label="Prenom" required></v-text-field>
+                        <v-text-field v-model="prenom" label="Prenom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="nom" label="Nom" required></v-text-field>
+                        <v-text-field v-model="nom" label="Nom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="email" label="Email" required></v-text-field>
+                        <v-text-field v-model="email" label="Email" required :rules="emailRules"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 class="px-1">
-                      <v-textarea v-model="message" rows="4"  auto-grow :rules="message.length<500" :counter="500">
+                      <v-textarea v-model="message" rows="4"  auto-grow required :rules="messageRules" :counter="500">
                           <template v-slot:label>
                               <div>
                                   Message
@@ -43,9 +43,8 @@
         </v-card-text>
     </v-form>
     <v-card-actions class="justify-center">
-        <v-btn class="epfl-bg-color" text-color="white" dark>
-            <v-icon left dark>send</v-icon>Envoyer le message
-        </v-btn>
+      <v-btn :disabled="!valid" @click="validate" :class="buttonColor" ><v-icon left dark>send</v-icon>Envoyer le message</v-btn>
+
     </v-card-actions>
 
 </v-card>
@@ -55,16 +54,39 @@
 export default {
     data() {
         return {
+          valid:true,
             prenom: '',
             nom: '',
             email: '',
             message: '',
+
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'E-mail must be valid'
+            ],
+            messageRules: [
+                v => !!v || 'Message is required',
+                v => (v && v.length <= 500) || 'Title must be less than 500 characters'
+            ],
         };
+    },
+    computed: {
+        buttonColor(){
+          if(this.validate){
+            return"epfl-bg-color white-text";
+          }
+        }
     },
     created() {
 
     },
-    methods: {}
+    methods: {
+      validate() {
+          if (this.$refs.form.validate()) {
+              this.snackbar = true
+          }
+      },
+    }
 
 }
 </script>
