@@ -74,6 +74,8 @@ class CreateAllTables extends Migration
 			$table->string('contact_email', config('data.ad.contact_email.max'));
 			$table->string('contact_phone', config('data.ad.contact_phone.max'))->nullable();
 
+      $table->string('section');
+
 			$table->boolean('validated')->nullable();
 			$table->dateTime('validated_at')->nullable();
 			$table->dateTime('expires_at');

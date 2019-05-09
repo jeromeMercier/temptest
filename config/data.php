@@ -29,7 +29,7 @@ return [
 		],
 
 		'starts_at'          => [
-			'required' => true,
+			'required' => false,
 			'readOnly' => true,
 			'class'    => 'datepicker date',
 		],
@@ -76,6 +76,9 @@ return [
 			'min' => 5,
 			'max' => 50,
 		],
+		'section'  						=> [
+			'required' => false,
+		]
 	],
 
 	'contact' => [

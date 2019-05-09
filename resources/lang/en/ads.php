@@ -26,6 +26,7 @@ return [
 		'contact_last_name'  => "Last name",
 		'contact_email'      => "Email",
 		'contact_phone'      => "Phone number",
+		'section' 	=> "Section",
 	],
 
 	'placeholders' => [

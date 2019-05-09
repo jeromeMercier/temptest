@@ -59,11 +59,11 @@
                             <v-text-field v-model="form.languages" label="Langues" required></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
-                            <v-select v-model="form.sections" :items="listeSections" label="Favorite Fruits" multiple>
+                            <v-select v-model="form.section" :items="listeSections" label="Sections" multiple>
                                 <template v-slot:prepend-item>
                                     <v-list-tile ripple @click="selectAllSections">
                                         <v-list-tile-action>
-                                            <v-icon :color="form.sections.length > 0 ? 'indigo darken-4' : ''">{{icon}}</v-icon>
+                                            <v-icon :color="form.section.length > 0 ? 'indigo darken-4' : ''">{{icon}}</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>Select All</v-list-tile-title>
@@ -72,10 +72,10 @@
                                     <v-divider class="mt-2"></v-divider>
                                 </template>
                                 <template v-slot:selection="{ item, index }">
-                                    <span v-if="index<3 && !(form.sections.length === listeSections.length) && !(index===form.sections.length-1)">{{ item }},&nbsp;</span>
-                                    <span v-if="index<3 && !(form.sections.length === listeSections.length) && (index===form.sections.length-1)">{{ item }}&nbsp;</span>
-                                    <span v-if="form.sections.length >2 && !(form.sections.length === listeSections.length) && index ===3" class="grey--text caption">(+{{ sections.length - 3 }} others)</span>
-                                    <span v-if="form.sections.length === listeSections.length && index===0">All</span>
+                                    <span v-if="index<3 && !(form.section.length === listeSections.length) && !(index===form.section.length-1)">{{ item }},&nbsp;</span>
+                                    <span v-if="index<3 && !(form.section.length === listeSections.length) && (index===form.section.length-1)">{{ item }}&nbsp;</span>
+                                    <span v-if="form.section.length >2 && !(form.section.length === listeSections.length) && index ===3" class="grey--text caption">(+{{ section.length - 3 }} others)</span>
+                                    <span v-if="form.section.length === listeSections.length && index===0">All</span>
                                 </template>
                             </v-select>
                         </v-flex>
@@ -199,13 +199,13 @@ export default {
             form: {
                 projetJe: false,
                 title: '',
-                sections: [],
-                category_id: ['1'],
+                section: 1,
+                category_id: 1,
                 place: '',
-                starts_at: null,
-                ends_at: null,
+                starts_at: '',
+                ends_at: '',
                 salary: '',
-                duration:'textextet',
+                duration:'une duration',
                 skills: '',
                 languages: '',
                 description: '',
@@ -263,7 +263,7 @@ export default {
     },
     computed: {
         icon() {
-            if (this.form.sections.length === this.listeSections.length) return 'cancel'
+            if (this.form.section.length === this.listeSections.length) return 'cancel'
             return 'check_box_outline_blank'
         },
         buttonColor() {
@@ -278,10 +278,10 @@ export default {
         },
         selectAllSections() {
             this.$nextTick(() => {
-                if (this.form.sections.length === this.listeSections.length) {
-                    this.form.sections = []
+                if (this.form.section.length === this.listeSections.length) {
+                    this.form.section = []
                 } else {
-                    this.form.sections = this.listeSections.slice()
+                    this.form.section = this.listeSections.slice()
                 }
             })
         },
@@ -295,11 +295,10 @@ export default {
           console.log("submit");
             this.errors = {};
             axios.post('/new-job', this.form).then(response => {
+              console.log(response)
                 alert('Message sent!');
             }).catch(error => {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors || {};
-                }
+                console.log(error);
             });
         },
     }

@@ -12,24 +12,24 @@
                 <v-layout row wrap class="pa-0">
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="prenom" label="Prenom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.first_name" label="Prenom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="nom" label="Nom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.last_name" label="Nom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="email" label="Email" required :rules="emailRules"></v-text-field>
+                        <v-text-field v-model="form.email" label="Email" required :rules="emailRules"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 class="px-1">
-                      <v-textarea v-model="message" rows="4"  auto-grow required :rules="messageRules" :counter="500">
+                      <v-textarea v-model="form.message" rows="4"  auto-grow required :rules="messageRules" :counter="500">
                           <template v-slot:label>
                               <div>
                                   Message
@@ -43,7 +43,7 @@
         </v-card-text>
     </v-form>
     <v-card-actions class="justify-center">
-      <v-btn :disabled="!valid" @click="validate" :class="buttonColor" ><v-icon left dark>send</v-icon>Envoyer le message</v-btn>
+      <v-btn :disabled="!valid" @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>Envoyer le message</v-btn>
 
     </v-card-actions>
 
@@ -55,10 +55,13 @@ export default {
     data() {
         return {
           valid:true,
-            prenom: '',
-            nom: '',
+          form: {
+            first_name: '',
+            last_name: '',
             email: '',
             message: '',
+          },
+
 
             emailRules: [
                 v => !!v || 'E-mail is required',
@@ -85,6 +88,19 @@ export default {
           if (this.$refs.form.validate()) {
               this.snackbar = true
           }
+          else{
+            this.sumbit();
+          }
+      },
+      submit() {
+        console.log("submit");
+          this.errors = {};
+          axios.post('/help', this.form).then(response => {
+            console.log(response)
+              alert('Message sent!');
+          }).catch(error => {
+              console.log(error);
+          });
       },
     }
 

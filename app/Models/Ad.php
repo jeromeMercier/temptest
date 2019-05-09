@@ -17,7 +17,7 @@ class Ad extends Model {
 	protected $fillable = [
 		'title', 'category_id', 'place', 'description',
 		'starts_at', 'ends_at', 'duration', 'salary', 'skills', 'languages',
-		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone',
+		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone', 'section'
 	];
 
 	const WEEK = 7 * 24 * 3600;

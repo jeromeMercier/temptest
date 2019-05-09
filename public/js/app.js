@@ -1852,10 +1852,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       valid: true,
-      prenom: '',
-      nom: '',
-      email: '',
-      message: '',
+      form: {
+        first_name: '',
+        last_name: '',
+        email: '',
+        message: ''
+      },
       emailRules: [function (v) {
         return !!v || 'E-mail is required';
       }, function (v) {
@@ -1880,7 +1882,19 @@ __webpack_require__.r(__webpack_exports__);
     validate: function validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+      } else {
+        this.sumbit();
       }
+    },
+    submit: function submit() {
+      console.log("submit");
+      this.errors = {};
+      axios.post('/help', this.form).then(function (response) {
+        console.log(response);
+        alert('Message sent!');
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -2415,13 +2429,13 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         projetJe: false,
         title: '',
-        sections: [],
-        category_id: ['1'],
+        section: 1,
+        category_id: 1,
         place: '',
-        starts_at: null,
-        ends_at: null,
+        starts_at: '',
+        ends_at: '',
         salary: '',
-        duration: 'textextet',
+        duration: 'une duration',
         skills: '',
         languages: '',
         description: '',
@@ -2468,7 +2482,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     icon: function icon() {
-      if (this.form.sections.length === this.listeSections.length) return 'cancel';
+      if (this.form.section.length === this.listeSections.length) return 'cancel';
       return 'check_box_outline_blank';
     },
     buttonColor: function buttonColor() {
@@ -2485,10 +2499,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$nextTick(function () {
-        if (_this.form.sections.length === _this.listeSections.length) {
-          _this.form.sections = [];
+        if (_this.form.section.length === _this.listeSections.length) {
+          _this.form.section = [];
         } else {
-          _this.form.sections = _this.listeSections.slice();
+          _this.form.section = _this.listeSections.slice();
         }
       });
     },
@@ -2499,16 +2513,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     submit: function submit() {
-      var _this2 = this;
-
       console.log("submit");
       this.errors = {};
       axios.post('/new-job', this.form).then(function (response) {
+        console.log(response);
         alert('Message sent!');
       })["catch"](function (error) {
-        if (error.response.status === 422) {
-          _this2.errors = error.response.data.errors || {};
-        }
+        console.log(error);
       });
     }
   }
@@ -37917,11 +37928,11 @@ var render = function() {
                               ]
                             },
                             model: {
-                              value: _vm.prenom,
+                              value: _vm.form.first_name,
                               callback: function($$v) {
-                                _vm.prenom = $$v
+                                _vm.$set(_vm.form, "first_name", $$v)
                               },
-                              expression: "prenom"
+                              expression: "form.first_name"
                             }
                           })
                         ],
@@ -37943,11 +37954,11 @@ var render = function() {
                               ]
                             },
                             model: {
-                              value: _vm.nom,
+                              value: _vm.form.last_name,
                               callback: function($$v) {
-                                _vm.nom = $$v
+                                _vm.$set(_vm.form, "last_name", $$v)
                               },
-                              expression: "nom"
+                              expression: "form.last_name"
                             }
                           })
                         ],
@@ -37965,11 +37976,11 @@ var render = function() {
                               rules: _vm.emailRules
                             },
                             model: {
-                              value: _vm.email,
+                              value: _vm.form.email,
                               callback: function($$v) {
-                                _vm.email = $$v
+                                _vm.$set(_vm.form, "email", $$v)
                               },
-                              expression: "email"
+                              expression: "form.email"
                             }
                           })
                         ],
@@ -38004,11 +38015,11 @@ var render = function() {
                               }
                             ]),
                             model: {
-                              value: _vm.message,
+                              value: _vm.form.message,
                               callback: function($$v) {
-                                _vm.message = $$v
+                                _vm.$set(_vm.form, "message", $$v)
                               },
-                              expression: "message"
+                              expression: "form.message"
                             }
                           })
                         ],
@@ -38036,7 +38047,7 @@ var render = function() {
             {
               class: _vm.buttonColor,
               attrs: { disabled: !_vm.valid },
-              on: { click: _vm.validate }
+              on: { click: _vm.submit }
             },
             [
               _c("v-icon", { attrs: { left: "", dark: "" } }, [_vm._v("send")]),
@@ -39301,7 +39312,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeSections,
-                                  label: "Favorite Fruits",
+                                  label: "Sections",
                                   multiple: ""
                                 },
                                 scopedSlots: _vm._u([
@@ -39324,7 +39335,7 @@ var render = function() {
                                                   {
                                                     attrs: {
                                                       color:
-                                                        _vm.form.sections
+                                                        _vm.form.section
                                                           .length > 0
                                                           ? "indigo darken-4"
                                                           : ""
@@ -39362,13 +39373,10 @@ var render = function() {
                                       return [
                                         index < 3 &&
                                         !(
-                                          _vm.form.sections.length ===
+                                          _vm.form.section.length ===
                                           _vm.listeSections.length
                                         ) &&
-                                        !(
-                                          index ===
-                                          _vm.form.sections.length - 1
-                                        )
+                                        !(index === _vm.form.section.length - 1)
                                           ? _c("span", [
                                               _vm._v(_vm._s(item) + ", ")
                                             ])
@@ -39376,18 +39384,18 @@ var render = function() {
                                         _vm._v(" "),
                                         index < 3 &&
                                         !(
-                                          _vm.form.sections.length ===
+                                          _vm.form.section.length ===
                                           _vm.listeSections.length
                                         ) &&
-                                        index === _vm.form.sections.length - 1
+                                        index === _vm.form.section.length - 1
                                           ? _c("span", [
                                               _vm._v(_vm._s(item) + " ")
                                             ])
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.form.sections.length > 2 &&
+                                        _vm.form.section.length > 2 &&
                                         !(
-                                          _vm.form.sections.length ===
+                                          _vm.form.section.length ===
                                           _vm.listeSections.length
                                         ) &&
                                         index === 3
@@ -39401,7 +39409,7 @@ var render = function() {
                                                 _vm._v(
                                                   "(+" +
                                                     _vm._s(
-                                                      _vm.sections.length - 3
+                                                      _vm.section.length - 3
                                                     ) +
                                                     " others)"
                                                 )
@@ -39409,7 +39417,7 @@ var render = function() {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.form.sections.length ===
+                                        _vm.form.section.length ===
                                           _vm.listeSections.length &&
                                         index === 0
                                           ? _c("span", [_vm._v("All")])
@@ -39419,11 +39427,11 @@ var render = function() {
                                   }
                                 ]),
                                 model: {
-                                  value: _vm.form.sections,
+                                  value: _vm.form.section,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form, "sections", $$v)
+                                    _vm.$set(_vm.form, "section", $$v)
                                   },
-                                  expression: "form.sections"
+                                  expression: "form.section"
                                 }
                               })
                             ],

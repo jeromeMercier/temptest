@@ -26,6 +26,7 @@ class AdsTableSeeder extends Seeder
   				'contact_phone'      => '0211235566',
   				'starts_at'          => '2016-01-01',
   				'ends_at'            => '2016-12-31',
+          'section'   => 'syscom',
   			],
   			[
   				'title'              => 'Expérience psychologique au CHUV',
@@ -41,6 +42,7 @@ class AdsTableSeeder extends Seeder
   				'contact_email'      => 'a.boulette@chuv.ch',
   				'contact_phone'      => '0215957555',
   				'starts_at'          => '2016-03-02',
+          'section'   => 'syscom',
   			],
   			[
   				'title'              => 'Aide en informatique',
@@ -73,6 +75,7 @@ class AdsTableSeeder extends Seeder
   				'contact_phone'      => '0216661120',
   				'starts_at'          => '2016-05-12',
   				'ends_at'            => '',
+          'section'   => 'syscom',
   			],
   		];
 
