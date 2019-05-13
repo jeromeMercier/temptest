@@ -6,20 +6,20 @@ use Auth;
 use Input;
 use App\Models\FAQ;
 use App\Models\Publisher;
+use App\Models\Ad;
 use App\Models\User;
 use Session;
 use Validator;
 
-class HomeController extends Controller {
+class HomeController extends ProjectController {
 
     const OLD_ADS_App_1 = 3528;
 
     public function index() {
-
         if (Auth::check())
             return redirect()->action('AdController@index');
 
-        $publishers = Publisher::withTrashed()->count() + self::OLD_ADS_App_1;
+        $publishers = Ad::withTrashed()->count();
         $students = User::withTrashed()->count();
 
         return view('home.index', ['publishers' => $publishers, 'students' => $students]);

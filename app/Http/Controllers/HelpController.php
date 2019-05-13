@@ -8,7 +8,7 @@ use App\Models\FAQ;
 use Session;
 use Validator;
 
-class HelpController extends Controller {
+class HelpController extends ProjectController {
 
     public function index() {
         $faq_items_array = FAQ::all();

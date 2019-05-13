@@ -12,6 +12,9 @@
   background-color: #c61618!important;
 }
 
+.cursor-pointer{
+  cursor : pointer;
+}
 .agep-bg-color{
   background-color: #7595af!important;
 }
@@ -20,6 +23,12 @@
   color:#c61618!important;
 }
 
+.myjob-alert{
+  position:fixed;
+  top:28px;
+  left:10%;
+  width:80%;
+}
 .adopte-etudiant-card{
   height:412px;
 }

@@ -10,8 +10,7 @@
                     <v-card-text>
                         <a href="https://github.com/agepoly">AGEPINFO</a> ·
                         <a href="https://github.com/zifeo/Myjob">Sources</a><br>
-                        <a href="https://github.com/timozattol">Timothée Lottaz</a> ·
-                        <a href="https://github.com/zifeo">Teo Stocco</a><br>
+                        <a href="https://github.com/jeromemercier">Jérôme Mercier</a><br>
                         <a href="https://petitesannonces.epfl.ch">Petites annonces</a> ·
                         <a href="https://polyhelp.epfl.ch">PolyHelp</a>
                     </v-card-text>

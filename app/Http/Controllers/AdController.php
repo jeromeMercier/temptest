@@ -15,7 +15,7 @@ use Request;
 use Mail;
 use Log;
 
-class AdController extends Controller {
+class AdController extends ProjectController {
 
 	/**
 	 * Display a listing of the resource.
@@ -102,7 +102,7 @@ class AdController extends Controller {
 		$validator->setAttributeNames(array_map('strtolower', trans('ads.labels')));
 
 		if ($validator->fails()) {
-            return back()->withInput()->withErrors($validator);
+            return $validator->failed();
         }
 
 		/* If this is the first ad with that email,

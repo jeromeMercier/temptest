@@ -26,7 +26,9 @@ Vue.component('myjob-home', require('./components/MyjobHome.vue').default);
 Vue.component('myjob-faq', require('./components/MyjobFaq.vue').default);
 Vue.component('myjob-contact', require('./components/MyjobContact.vue').default);
 Vue.component('myjob-footer', require('./components/MyjobFooter.vue').default);
+Vue.component('myjob-ad-index', require('./components/MyjobAdIndex.vue').default);
 Vue.component('myjob-new-ad', require('./components/MyjobNewAd.vue').default);
+Vue.component('myjob-options', require('./components/MyjobOptions.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

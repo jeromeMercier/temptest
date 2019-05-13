@@ -17,7 +17,7 @@
                             <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" label="Categorie" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.place" label="Lieu de travail" required :rules="lieuRules"></v-text-field>
+                            <v-text-field v-model="form.place" label="Lieu de travail" required :rules="baseRules"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -33,7 +33,7 @@
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.starts_at" label="Date de début" prepend-icon="event" readonly v-on="on"></v-text-field>
+                                    <v-text-field v-model="form.starts_at" label="Date de début" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || 'Item is required']"></v-text-field>
                                 </template>
                                 <v-date-picker v-model="form.starts_at" @input="menuDateDebut = false" :min="date"></v-date-picker>
                             </v-menu>
@@ -50,20 +50,20 @@
                             <v-select :items="listeDuree" label="Durée indicative" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.salary" label="Rémuneration" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.salary" label="Rémuneration" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.skills" label="Compétences" required></v-text-field>
+                            <v-text-field v-model="form.skills" label="Compétences" :rules="skillRules"></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.languages" label="Langues" required></v-text-field>
+                            <v-text-field v-model="form.languages" label="Langues" :rules="languageRules"></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
-                            <v-select v-model="form.section" :items="listeSections" label="Sections" multiple>
+                            <v-select v-model="form.section_ids" :items="listeSections" label="Sections" multiple>
                                 <template v-slot:prepend-item>
                                     <v-list-tile ripple @click="selectAllSections">
                                         <v-list-tile-action>
-                                            <v-icon :color="form.section.length > 0 ? 'indigo darken-4' : ''">{{icon}}</v-icon>
+                                            <v-icon :color="form.section_ids.length > 0 ? 'indigo darken-4' : ''">{{icon}}</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>Select All</v-list-tile-title>
@@ -72,10 +72,10 @@
                                     <v-divider class="mt-2"></v-divider>
                                 </template>
                                 <template v-slot:selection="{ item, index }">
-                                    <span v-if="index<3 && !(form.section.length === listeSections.length) && !(index===form.section.length-1)">{{ item }},&nbsp;</span>
-                                    <span v-if="index<3 && !(form.section.length === listeSections.length) && (index===form.section.length-1)">{{ item }}&nbsp;</span>
-                                    <span v-if="form.section.length >2 && !(form.section.length === listeSections.length) && index ===3" class="grey--text caption">(+{{ section.length - 3 }} others)</span>
-                                    <span v-if="form.section.length === listeSections.length && index===0">All</span>
+                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && !(index===form.section_ids.length-1)">{{ item }},&nbsp;</span>
+                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && (index===form.section_ids.length-1)">{{ item }}&nbsp;</span>
+                                    <span v-if="form.section_ids.length >2 && !(form.section_ids.length === listeSections.length) && index ===3" class="grey--text caption">(+{{ section.length - 3 }} others)</span>
+                                    <span v-if="form.section_ids.length === listeSections.length && index===0">All</span>
                                 </template>
                             </v-select>
                         </v-flex>
@@ -91,7 +91,7 @@
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-textarea v-model="form.description" color="teal" auto-grow :rules="[v => !!v || 'Item is required', v => form.description.length<500 || 'Description must be lass than 500 car']" :counter="500">
+                            <v-textarea v-model="form.description" color="teal" auto-grow :rules="descriptionRules" :counter="500">
                                 <template v-slot:label>
                                     <div>
                                         Description
@@ -112,16 +112,16 @@
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_first_name" label="Prenom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.contact_first_name" label="Prenom" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_last_name" label="Nom" :rules="[v => !!v || 'Item is required']" required></v-text-field>
+                            <v-text-field v-model="form.contact_last_name" label="Nom" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
                             <v-text-field v-model="form.contact_email" label="Email" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_phone" label="Telephone" required></v-text-field>
+                            <v-text-field v-model="form.contact_phone" label="Telephone" :rules="phoneRules"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -197,15 +197,14 @@ export default {
     data() {
         return {
             form: {
-                projetJe: false,
                 title: '',
-                section: 1,
-                category_id: 1,
+                section_ids: [],
+                category_id: '',
                 place: '',
-                starts_at: '',
+                starts_at: new Date().toISOString().substr(0, 10),
                 ends_at: '',
                 salary: '',
-                duration:'une duration',
+                duration: '',
                 skills: '',
                 languages: '',
                 description: '',
@@ -218,19 +217,38 @@ export default {
             menuDateFin: false,
 
             valid: true,
-            errore:{},
-
+            errore: {},
+            phoneRules: [
+                v => (!v || v.length <= 15) || 'Item must be less than 15 characters',
+                v => (!v || v.length > 5 || 'Item must be at least 5 characters')
+            ],
+            skillRules: [
+                v => (!v || v.length <= 40) || 'Item must be less than 40 characters',
+                v => (!v || v.length > 1 || 'Item must be at least 2 characters')
+            ],
+            languageRules: [
+                v => (!v || v.length <= 40) || 'Item must be less than 40 characters',
+                v => (!v || v.length > 1 || 'Item must be at least 2 characters')
+            ],
             titleRules: [
                 v => !!v || 'Title is required',
-                v => (v && v.length <= 80) || 'Title must be less than 80 characters'
+                v => (v && v.length <= 80) || 'Title must be less than 80 characters',
+                v => (v && v.length > 4 || 'Item must be at least 5 characters')
             ],
-            lieuRules: [
-                v => !!v || 'Lieu is required',
-                v => (v && v.length <= 40) || 'Lieu must be less than 40 characters'
+            descriptionRules: [
+                v => !!v || 'Item is required',
+                v => (v && v.length <= 80) || 'Item must be less than 500 characters',
+                v => (v && v.length > 9 || 'Item must be at least 10 characters')
+            ],
+            baseRules: [
+                v => !!v || 'Item is required',
+                v => (v && v.length <= 40) || 'Item must be less than 40 characters',
+                v => (v && v.length > 1 || 'Item must be at least 2 characters')
             ],
             emailRules: [
                 v => !!v || 'E-mail is required',
-                v => /.+@.+/.test(v) || 'E-mail must be valid'
+                v => /.+@.+/.test(v) || 'E-mail must be valid',
+                v => (v && v.length > 4 || 'Item must be at least 5 characters')
             ],
             categorieRules: [
                 v => !!v || 'Categorie is required',
@@ -242,9 +260,18 @@ export default {
 
 
             listeCategorie: [
-                'Aide à domicile', 'Babysitting', 'Expériences', 'Informatique', 'Job de bureau',
-                'Flyering', 'Administratif', 'Etudes/experiences',
-                'Promotion', 'Restauration/Hôtellerie', 'Soutien scolaire', 'Autre'
+                'Aide à domicile',
+                'Babysitting',
+                'Expériences',
+                'Informatique',
+                'Job de bureau',
+                'Flyering',
+                'Administratif',
+                'Etudes/expériences',
+                'Promotion',
+                'Restauration / Hôtellerie',
+                'Soutien scolaire',
+                'Autre'
             ],
             listeDuree: [
                 'Temps plein', 'A côté des études', 'Weekends', 'Vacances', 'Autre'
@@ -259,11 +286,12 @@ export default {
         };
     },
     created() {
-        this.fetchData();
+
+
     },
     computed: {
         icon() {
-            if (this.form.section.length === this.listeSections.length) return 'cancel'
+            if (this.form.section_ids.length === this.listeSections.length) return 'cancel'
             return 'check_box_outline_blank'
         },
         buttonColor() {
@@ -278,10 +306,10 @@ export default {
         },
         selectAllSections() {
             this.$nextTick(() => {
-                if (this.form.section.length === this.listeSections.length) {
-                    this.form.section = []
+                if (this.form.section_ids.length === this.listeSections.length) {
+                    this.form.section_ids = []
                 } else {
-                    this.form.section = this.listeSections.slice()
+                    this.form.section_ids = this.listeSections.slice()
                 }
             })
         },
@@ -292,10 +320,30 @@ export default {
             }
         },
         submit() {
-          console.log("submit");
+            console.log("submit");
             this.errors = {};
-            axios.post('/new-job', this.form).then(response => {
-              console.log(response)
+            var sendableForm = {};
+            for (var key in this.form) {
+                if (!(this.form[key] === null || this.form[key] === '')) {
+                    if (key === "category_id") {
+                        sendableForm[key] = this.listeCategorie.indexOf(this.form[key]) + 1;
+                    } else if (key === "duration") {
+                        sendableForm[key] = this.listeDuree.indexOf(this.form[key]) + 1;
+                    } else if (key === "section_ids") {
+                        var sectionIdsSendable = [];
+                        for (let i = 0; i < this.form.section_ids.length; i++) {
+                            sectionIdsSendable.push(this.listeSections.indexOf(this.form.section_ids[i]));
+                        }
+                        sendableForm[key] = sectionIdsSendable;
+                    } else {
+                        sendableForm[key] = this.form[key];
+                    }
+
+                }
+            }
+            console.log(sendableForm)
+            axios.post('/new-job', sendableForm).then(response => {
+                console.log(response)
                 alert('Message sent!');
             }).catch(error => {
                 console.log(error);

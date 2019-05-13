@@ -6,7 +6,7 @@ use Auth;
 use Input;
 use Log;
 
-class OptionsController extends Controller {
+class OptionsController extends ProjectController {
 
 	public function index() {
 
@@ -16,11 +16,10 @@ class OptionsController extends Controller {
 	}
 
 	public function update() {
-
 		$values = [
-			'notifications_instant' => Input::has('notifications_instant') ? 1: 0,
-			'notifications_day'     => Input::has('notifications_day') ? 1: 0,
-			'notifications_week'    => Input::has('notifications_week') ? 1: 0,
+			'notifications_instant' => Input::get('notifications_instant') ? 1: 0,
+			'notifications_day'     => Input::get('notifications_day') ? 1: 0,
+			'notifications_week'    => Input::get('notifications_week') ? 1: 0,
 		];
 
 		$user = Auth::user();
@@ -29,7 +28,7 @@ class OptionsController extends Controller {
 
         Log::info('update notifications');
 
-		return redirect()->action('OptionsController@index')->with('success', trans('general.successes.options'));
+		return 'Notifications updated';
 	}
 
 }
