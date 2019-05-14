@@ -22,25 +22,25 @@
       "home" => "/",
     );
     if(Auth::user() || Session::has('connected_visitor')){
-      $links['My jobs']= "/my-jobs";
+        $links['myjobs']= "/my-jobs";
     }
-    $links['New']= "/new-job";
+    $links['newjob']= "/new-job";
     if(Auth::user()){
       if(Auth::user()->admin == 1){
-        $links['Moderation']= "/moderation";
+        $links['moderation']= "/moderation";
       }
     }
     if(Auth::user()){
-      $links['Options']= "/options";
+      $links['options']= "/options";
     }
-    $links['Help']= "/help";
+    $links['help']= "/help";
     if(Auth::user() || Session::has('connected_visitor')){
-      $links['logout']= "/disconnect";
+      $links['disconnect']= "/disconnect";
     }else{
-      $links['login']= "/connect";
+      $links['connect']= "/connect";
     }
     ?>
-        <myjob-navbar links='{!!json_encode($links)!!}'></myjob-navbar>
+        <myjob-navbar links='{!!json_encode($links)!!}' ></myjob-navbar>
         <v-content>
             <v-container fluid fill-height>
                 @yield('content')
@@ -48,8 +48,8 @@
         </v-content>
         <myjob-footer></myjob-footer>
     </v-app>
-
     <script type="text/javascript" src="/js/app.js"></script>
+
 </body>
 
 </html>

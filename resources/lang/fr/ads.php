@@ -26,7 +26,7 @@ return [
 		'contact_last_name'  => "Nom",
 		'contact_email'      => "Email",
 		'contact_phone'      => "Téléphone",
-		'section_ids' 	=> "Section",
+		'section_ids'						=>"Sections",
 	],
 
 	'placeholders' => [

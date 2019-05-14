@@ -3,12 +3,12 @@
     <v-flex xs12>
         <v-card class="text-xs-left ma-4 align-center text-xs-left" max-width="550">
             <v-card-title class="pb-2">
-                <h2>Options</h2>
+                <h2>{{ $t('general.titles.notifications') }}</h2>
             </v-card-title>
             <v-card-text>
-                <v-switch v-model="arrayOptions.notifications_instant" label="Notification instantanée (dès la modération de l'annonce)" @change="submit()"></v-switch>
-                <v-switch v-model="arrayOptions.notifications_day" label="Notification journalière (nouvelles annonces du jour)" @change="submit()"></v-switch>
-                <v-switch v-model="arrayOptions.notifications_week" label="Notification hebdomadaire (nouvelles annonces de la semaine)" @change="submit()"></v-switch>
+                <v-switch v-model="arrayOptions.notifications_instant" :label="$t('options.labels.notifications_instant')" @change="submit()"></v-switch>
+                <v-switch v-model="arrayOptions.notifications_day" :label="$t('options.labels.notifications_day')" @change="submit()"></v-switch>
+                <v-switch v-model="arrayOptions.notifications_week" :label="$t('options.labels.notifications_week')" @change="submit()"></v-switch>
             </v-card-text>
 
         </v-card>
@@ -16,7 +16,7 @@
     </v-flex>
 
     <v-alert v-model="showAlert" color="success" icon="check_circle" dismissible class="myjob-alert elevation-24">
-        Options updated
+        {{$t('options.labels.options_updated')}}
     </v-alert>
 </v-layout>
 </template>
@@ -36,6 +36,7 @@ export default {
     },
     created() {
         console.log(this.arrayOptions);
+
     },
     methods: {
         submit() {

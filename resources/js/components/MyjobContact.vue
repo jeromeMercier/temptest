@@ -2,9 +2,9 @@
 <v-card class="text-xs-left ma-4 align-center text-xs-left">
 
     <v-card-title class="pb-2">
-        <h2>Formulaire de contact</h2>
+        <h2>{{ $t('general.titles.contact')}}</h2>
     </v-card-title>
-    <v-card-text>Pour toute·s question·s (après avoir lu attentivement la foire aux questions) et/ou suggestion·s, vous pouvez contacter rapidement l'équipe par ici.
+    <v-card-text>{{ $t('general.texts.contact')}}
     </v-card-text>
     <v-form ref="form" v-model="valid" lazy-validation>
         <v-card-text class="px-3">
@@ -12,19 +12,19 @@
                 <v-layout row wrap class="pa-0">
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="form.first_name" label="Prenom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.first_name" :label="$t('contacts.placeholders.first_name')" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="form.last_name" label="Nom" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.last_name" :label="$t('contacts.placeholders.last_name')" required :rules="[v => !!v || 'Item is required']"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="form.email" label="Email" required :rules="emailRules"></v-text-field>
+                        <v-text-field v-model="form.email" :label="$t('contacts.placeholders.email')" required :rules="emailRules"></v-text-field>
 
 
                     </v-flex>
@@ -32,7 +32,7 @@
                       <v-textarea v-model="form.message" rows="4"  auto-grow required :rules="messageRules" :counter="500">
                           <template v-slot:label>
                               <div>
-                                  Message
+                                  {{$t('contacts.placeholders.message')}}
                               </div>
                           </template>
                       </v-textarea>
@@ -43,7 +43,7 @@
         </v-card-text>
     </v-form>
     <v-card-actions class="justify-center">
-      <v-btn :disabled="!valid" @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>Envoyer le message</v-btn>
+      <v-btn :disabled="!valid" @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>{{ $t('general.buttons.submit.send') }}</v-btn>
 
     </v-card-actions>
 

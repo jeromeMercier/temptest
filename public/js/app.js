@@ -1754,39 +1754,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobAdIndex.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobAdIndex.vue?vue&type=script&lang=js& ***!
@@ -1996,7 +1963,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {},
-  methods: {}
+  computed: {},
+  methods: {
+    getQuestion: function getQuestion(item, locale) {
+      return eval('item.question_' + locale);
+    },
+    getAnswer: function getAnswer(item, locale) {
+      return eval('item.answer_' + locale);
+    }
+  }
 });
 
 /***/ }),
@@ -2053,7 +2028,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2242,7 +2216,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['links'],
   data: function data() {
@@ -2260,10 +2233,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log('navbar mounted');
     },
     switchLanguageAndCloseExpand: function switchLanguageAndCloseExpand(language) {
+      this.changeLocale(language);
       this.expand = false;
     },
     isLogin: function isLogin(value) {
-      if (value == 'login' || value == 'logout') {
+      if (value == 'connect' || value == 'disconnect') {
         return true;
       } else {
         return false;
@@ -2283,7 +2257,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -37975,49 +37948,1896 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/***/ "./node_modules/vue-i18n/dist/vue-i18n.esm.js":
+/*!****************************************************!*\
+  !*** ./node_modules/vue-i18n/dist/vue-i18n.esm.js ***!
+  \****************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
+/*!
+ * vue-i18n v8.11.2 
+ * (c) 2019 kazuya kawaguchi
+ * Released under the MIT License.
+ */
+/*  */
 
+/**
+ * constants
+ */
+
+var numberFormatKeys = [
+  'style',
+  'currency',
+  'currencyDisplay',
+  'useGrouping',
+  'minimumIntegerDigits',
+  'minimumFractionDigits',
+  'maximumFractionDigits',
+  'minimumSignificantDigits',
+  'maximumSignificantDigits',
+  'localeMatcher',
+  'formatMatcher'
+];
+
+/**
+ * utilities
+ */
+
+function warn (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.warn('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.warn(err.stack);
+    }
+  }
+}
+
+function error (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.error('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.error(err.stack);
+    }
+  }
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+var toString = Object.prototype.toString;
+var OBJECT_STRING = '[object Object]';
+function isPlainObject (obj) {
+  return toString.call(obj) === OBJECT_STRING
+}
+
+function isNull (val) {
+  return val === null || val === undefined
+}
+
+function parseArgs () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var locale = null;
+  var params = null;
+  if (args.length === 1) {
+    if (isObject(args[0]) || Array.isArray(args[0])) {
+      params = args[0];
+    } else if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+    /* istanbul ignore if */
+    if (isObject(args[1]) || Array.isArray(args[1])) {
+      params = args[1];
+    }
+  }
+
+  return { locale: locale, params: params }
+}
+
+function looseClone (obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
+
+function remove (arr, item) {
+  if (arr.length) {
+    var index = arr.indexOf(item);
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn (obj, key) {
+  return hasOwnProperty.call(obj, key)
+}
+
+function merge (target) {
+  var arguments$1 = arguments;
+
+  var output = Object(target);
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments$1[i];
+    if (source !== undefined && source !== null) {
+      var key = (void 0);
+      for (key in source) {
+        if (hasOwn(source, key)) {
+          if (isObject(source[key])) {
+            output[key] = merge(output[key], source[key]);
+          } else {
+            output[key] = source[key];
+          }
+        }
+      }
+    }
+  }
+  return output
+}
+
+function looseEqual (a, b) {
+  if (a === b) { return true }
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = Array.isArray(a);
+      var isArrayB = Array.isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a);
+        var keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+/*  */
+
+function extend (Vue) {
+  if (!Vue.prototype.hasOwnProperty('$i18n')) {
+    // $FlowFixMe
+    Object.defineProperty(Vue.prototype, '$i18n', {
+      get: function get () { return this._i18n }
+    });
+  }
+
+  Vue.prototype.$t = function (key) {
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+
+    var i18n = this.$i18n;
+    return i18n._t.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this ].concat( values ))
+  };
+
+  Vue.prototype.$tc = function (key, choice) {
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+
+    var i18n = this.$i18n;
+    return i18n._tc.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this, choice ].concat( values ))
+  };
+
+  Vue.prototype.$te = function (key, locale) {
+    var i18n = this.$i18n;
+    return i18n._te(key, i18n.locale, i18n._getMessages(), locale)
+  };
+
+  Vue.prototype.$d = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).d.apply(ref, [ value ].concat( args ))
+  };
+
+  Vue.prototype.$n = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).n.apply(ref, [ value ].concat( args ))
+  };
+}
+
+/*  */
+
+var mixin = {
+  beforeCreate: function beforeCreate () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages = {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages = merge(localeMessages, JSON.parse(resource));
+            });
+            Object.keys(localeMessages).forEach(function (locale) {
+              options.i18n.mergeLocaleMessage(locale, localeMessages[locale]);
+            });
+          } catch (e) {
+            if (true) {
+              warn("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+        this._i18n = options.i18n;
+        this._i18nWatcher = this._i18n.watchI18nData();
+      } else if (isPlainObject(options.i18n)) {
+        // component local i18n
+        if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+          options.i18n.root = this.$root;
+          options.i18n.formatter = this.$root.$i18n.formatter;
+          options.i18n.fallbackLocale = this.$root.$i18n.fallbackLocale;
+          options.i18n.silentTranslationWarn = this.$root.$i18n.silentTranslationWarn;
+          options.i18n.silentFallbackWarn = this.$root.$i18n.silentFallbackWarn;
+          options.i18n.pluralizationRules = this.$root.$i18n.pluralizationRules;
+          options.i18n.preserveDirectiveContent = this.$root.$i18n.preserveDirectiveContent;
+        }
+
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages$1 = {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages$1 = merge(localeMessages$1, JSON.parse(resource));
+            });
+            options.i18n.messages = localeMessages$1;
+          } catch (e) {
+            if (true) {
+              warn("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+
+        this._i18n = new VueI18n(options.i18n);
+        this._i18nWatcher = this._i18n.watchI18nData();
+
+        if (options.i18n.sync === undefined || !!options.i18n.sync) {
+          this._localeWatcher = this.$i18n.watchLocale();
+        }
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      // root i18n
+      this._i18n = this.$root.$i18n;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      // parent i18n
+      this._i18n = options.parent.$i18n;
+    }
+  },
+
+  beforeMount: function beforeMount () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else if (isPlainObject(options.i18n)) {
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    }
+  },
+
+  beforeDestroy: function beforeDestroy () {
+    if (!this._i18n) { return }
+
+    var self = this;
+    this.$nextTick(function () {
+      if (self._subscribing) {
+        self._i18n.unsubscribeDataChanging(self);
+        delete self._subscribing;
+      }
+
+      if (self._i18nWatcher) {
+        self._i18nWatcher();
+        self._i18n.destroyVM();
+        delete self._i18nWatcher;
+      }
+
+      if (self._localeWatcher) {
+        self._localeWatcher();
+        delete self._localeWatcher;
+      }
+
+      self._i18n = null;
+    });
+  }
+};
+
+/*  */
+
+var interpolationComponent = {
+  name: 'i18n',
+  functional: true,
+  props: {
+    tag: {
+      type: String,
+      default: 'span'
+    },
+    path: {
+      type: String,
+      required: true
+    },
+    locale: {
+      type: String
+    },
+    places: {
+      type: [Array, Object]
+    }
+  },
+  render: function render (h, ref) {
+    var props = ref.props;
+    var data = ref.data;
+    var children = ref.children;
+    var parent = ref.parent;
+
+    var i18n = parent.$i18n;
+
+    children = (children || []).filter(function (child) {
+      return child.tag || (child.text = child.text.trim())
+    });
+
+    if (!i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return children
+    }
+
+    var path = props.path;
+    var locale = props.locale;
+
+    var params = {};
+    var places = props.places || {};
+
+    var hasPlaces = Array.isArray(places)
+      ? places.length > 0
+      : Object.keys(places).length > 0;
+
+    var everyPlace = children.every(function (child) {
+      if (child.data && child.data.attrs) {
+        var place = child.data.attrs.place;
+        return (typeof place !== 'undefined') && place !== ''
+      }
+    });
+
+    if ( true && hasPlaces && children.length > 0 && !everyPlace) {
+      warn('If places prop is set, all child elements must have place prop set.');
+    }
+
+    if (Array.isArray(places)) {
+      places.forEach(function (el, i) {
+        params[i] = el;
+      });
+    } else {
+      Object.keys(places).forEach(function (key) {
+        params[key] = places[key];
+      });
+    }
+
+    children.forEach(function (child, i) {
+      var key = everyPlace
+        ? ("" + (child.data.attrs.place))
+        : ("" + i);
+      params[key] = child;
+    });
+
+    return h(props.tag, data, i18n.i(path, locale, params))
+  }
+};
+
+/*  */
+
+var numberComponent = {
+  name: 'i18n-n',
+  functional: true,
+  props: {
+    tag: {
+      type: String,
+      default: 'span'
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    format: {
+      type: [String, Object]
+    },
+    locale: {
+      type: String
+    }
+  },
+  render: function render (h, ref) {
+    var props = ref.props;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    var i18n = parent.$i18n;
+
+    if (!i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return null
+    }
+
+    var key = null;
+    var options = null;
+
+    if (typeof props.format === 'string') {
+      key = props.format;
+    } else if (isObject(props.format)) {
+      if (props.format.key) {
+        key = props.format.key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(props.format).reduce(function (acc, prop) {
+        var obj;
+
+        if (numberFormatKeys.includes(prop)) {
+          return Object.assign({}, acc, ( obj = {}, obj[prop] = props.format[prop], obj ))
+        }
+        return acc
+      }, null);
+    }
+
+    var locale = props.locale || i18n.locale;
+    var parts = i18n._ntp(props.value, locale, key, options);
+
+    var values = parts.map(function (part, index) {
+      var obj;
+
+      var slot = data.scopedSlots && data.scopedSlots[part.type];
+      return slot ? slot(( obj = {}, obj[part.type] = part.value, obj.index = index, obj.parts = parts, obj )) : part.value
+    });
+
+    return h(props.tag, {
+      attrs: data.attrs,
+      'class': data['class'],
+      staticClass: data.staticClass
+    }, values)
+  }
+};
+
+/*  */
+
+function bind (el, binding, vnode) {
+  if (!assert(el, vnode)) { return }
+
+  t(el, binding, vnode);
+}
+
+function update (el, binding, vnode, oldVNode) {
+  if (!assert(el, vnode)) { return }
+
+  var i18n = vnode.context.$i18n;
+  if (localeEqual(el, vnode) &&
+    (looseEqual(binding.value, binding.oldValue) &&
+     looseEqual(el._localeMessage, i18n.getLocaleMessage(i18n.locale)))) { return }
+
+  t(el, binding, vnode);
+}
+
+function unbind (el, binding, vnode, oldVNode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return
+  }
+
+  var i18n = vnode.context.$i18n || {};
+  if (!binding.modifiers.preserve && !i18n.preserveDirectiveContent) {
+    el.textContent = '';
+  }
+  el._vt = undefined;
+  delete el['_vt'];
+  el._locale = undefined;
+  delete el['_locale'];
+  el._localeMessage = undefined;
+  delete el['_localeMessage'];
+}
+
+function assert (el, vnode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return false
+  }
+
+  if (!vm.$i18n) {
+    warn('VueI18n instance does not exists in Vue instance');
+    return false
+  }
+
+  return true
+}
+
+function localeEqual (el, vnode) {
+  var vm = vnode.context;
+  return el._locale === vm.$i18n.locale
+}
+
+function t (el, binding, vnode) {
+  var ref$1, ref$2;
+
+  var value = binding.value;
+
+  var ref = parseValue(value);
+  var path = ref.path;
+  var locale = ref.locale;
+  var args = ref.args;
+  var choice = ref.choice;
+  if (!path && !locale && !args) {
+    warn('value type not supported');
+    return
+  }
+
+  if (!path) {
+    warn('`path` is required in v-t directive');
+    return
+  }
+
+  var vm = vnode.context;
+  if (choice) {
+    el._vt = el.textContent = (ref$1 = vm.$i18n).tc.apply(ref$1, [ path, choice ].concat( makeParams(locale, args) ));
+  } else {
+    el._vt = el.textContent = (ref$2 = vm.$i18n).t.apply(ref$2, [ path ].concat( makeParams(locale, args) ));
+  }
+  el._locale = vm.$i18n.locale;
+  el._localeMessage = vm.$i18n.getLocaleMessage(vm.$i18n.locale);
+}
+
+function parseValue (value) {
+  var path;
+  var locale;
+  var args;
+  var choice;
+
+  if (typeof value === 'string') {
+    path = value;
+  } else if (isPlainObject(value)) {
+    path = value.path;
+    locale = value.locale;
+    args = value.args;
+    choice = value.choice;
+  }
+
+  return { path: path, locale: locale, args: args, choice: choice }
+}
+
+function makeParams (locale, args) {
+  var params = [];
+
+  locale && params.push(locale);
+  if (args && (Array.isArray(args) || isPlainObject(args))) {
+    params.push(args);
+  }
+
+  return params
+}
+
+var Vue;
+
+function install (_Vue) {
+  /* istanbul ignore if */
+  if ( true && install.installed && _Vue === Vue) {
+    warn('already installed.');
+    return
+  }
+  install.installed = true;
+
+  Vue = _Vue;
+
+  var version = (Vue.version && Number(Vue.version.split('.')[0])) || -1;
+  /* istanbul ignore if */
+  if ( true && version < 2) {
+    warn(("vue-i18n (" + (install.version) + ") need to use Vue 2.0 or later (Vue: " + (Vue.version) + ")."));
+    return
+  }
+
+  extend(Vue);
+  Vue.mixin(mixin);
+  Vue.directive('t', { bind: bind, update: update, unbind: unbind });
+  Vue.component(interpolationComponent.name, interpolationComponent);
+  Vue.component(numberComponent.name, numberComponent);
+
+  // use simple mergeStrategies to prevent i18n instance lose '__proto__'
+  var strats = Vue.config.optionMergeStrategies;
+  strats.i18n = function (parentVal, childVal) {
+    return childVal === undefined
+      ? parentVal
+      : childVal
+  };
+}
+
+/*  */
+
+var BaseFormatter = function BaseFormatter () {
+  this._caches = Object.create(null);
+};
+
+BaseFormatter.prototype.interpolate = function interpolate (message, values) {
+  if (!values) {
+    return [message]
+  }
+  var tokens = this._caches[message];
+  if (!tokens) {
+    tokens = parse(message);
+    this._caches[message] = tokens;
+  }
+  return compile(tokens, values)
+};
+
+
+
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+
+function parse (format) {
+  var tokens = [];
+  var position = 0;
+
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === '{') {
+      if (text) {
+        tokens.push({ type: 'text', value: text });
+      }
+
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== '}') {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === '}';
+
+      var type = RE_TOKEN_LIST_VALUE.test(sub)
+        ? 'list'
+        : isClosed && RE_TOKEN_NAMED_VALUE.test(sub)
+          ? 'named'
+          : 'unknown';
+      tokens.push({ value: sub, type: type });
+    } else if (char === '%') {
+      // when found rails i18n syntax, skip text capture
+      if (format[(position)] !== '{') {
+        text += char;
+      }
+    } else {
+      text += char;
+    }
+  }
+
+  text && tokens.push({ type: 'text', value: text });
+
+  return tokens
+}
+
+function compile (tokens, values) {
+  var compiled = [];
+  var index = 0;
+
+  var mode = Array.isArray(values)
+    ? 'list'
+    : isObject(values)
+      ? 'named'
+      : 'unknown';
+  if (mode === 'unknown') { return compiled }
+
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break
+      case 'named':
+        if (mode === 'named') {
+          compiled.push((values)[token.value]);
+        } else {
+          if (true) {
+            warn(("Type of token '" + (token.type) + "' and format of value '" + mode + "' don't match!"));
+          }
+        }
+        break
+      case 'unknown':
+        if (true) {
+          warn("Detect 'unknown' type of token!");
+        }
+        break
+    }
+    index++;
+  }
+
+  return compiled
+}
+
+/*  */
+
+/**
+ *  Path parser
+ *  - Inspired:
+ *    Vue.js Path parser
+ */
+
+// actions
+var APPEND = 0;
+var PUSH = 1;
+var INC_SUB_PATH_DEPTH = 2;
+var PUSH_SUB_PATH = 3;
+
+// states
+var BEFORE_PATH = 0;
+var IN_PATH = 1;
+var BEFORE_IDENT = 2;
+var IN_IDENT = 3;
+var IN_SUB_PATH = 4;
+var IN_SINGLE_QUOTE = 5;
+var IN_DOUBLE_QUOTE = 6;
+var AFTER_PATH = 7;
+var ERROR = 8;
+
+var pathStateMachine = [];
+
+pathStateMachine[BEFORE_PATH] = {
+  'ws': [BEFORE_PATH],
+  'ident': [IN_IDENT, APPEND],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[IN_PATH] = {
+  'ws': [IN_PATH],
+  '.': [BEFORE_IDENT],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[BEFORE_IDENT] = {
+  'ws': [BEFORE_IDENT],
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND]
+};
+
+pathStateMachine[IN_IDENT] = {
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND],
+  'ws': [IN_PATH, PUSH],
+  '.': [BEFORE_IDENT, PUSH],
+  '[': [IN_SUB_PATH, PUSH],
+  'eof': [AFTER_PATH, PUSH]
+};
+
+pathStateMachine[IN_SUB_PATH] = {
+  "'": [IN_SINGLE_QUOTE, APPEND],
+  '"': [IN_DOUBLE_QUOTE, APPEND],
+  '[': [IN_SUB_PATH, INC_SUB_PATH_DEPTH],
+  ']': [IN_PATH, PUSH_SUB_PATH],
+  'eof': ERROR,
+  'else': [IN_SUB_PATH, APPEND]
+};
+
+pathStateMachine[IN_SINGLE_QUOTE] = {
+  "'": [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_SINGLE_QUOTE, APPEND]
+};
+
+pathStateMachine[IN_DOUBLE_QUOTE] = {
+  '"': [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_DOUBLE_QUOTE, APPEND]
+};
+
+/**
+ * Check if an expression is a literal value.
+ */
+
+var literalValueRE = /^\s?(?:true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/;
+function isLiteral (exp) {
+  return literalValueRE.test(exp)
+}
+
+/**
+ * Strip quotes from a string
+ */
+
+function stripQuotes (str) {
+  var a = str.charCodeAt(0);
+  var b = str.charCodeAt(str.length - 1);
+  return a === b && (a === 0x22 || a === 0x27)
+    ? str.slice(1, -1)
+    : str
+}
+
+/**
+ * Determine the type of a character in a keypath.
+ */
+
+function getPathCharType (ch) {
+  if (ch === undefined || ch === null) { return 'eof' }
+
+  var code = ch.charCodeAt(0);
+
+  switch (code) {
+    case 0x5B: // [
+    case 0x5D: // ]
+    case 0x2E: // .
+    case 0x22: // "
+    case 0x27: // '
+      return ch
+
+    case 0x5F: // _
+    case 0x24: // $
+    case 0x2D: // -
+      return 'ident'
+
+    case 0x09: // Tab
+    case 0x0A: // Newline
+    case 0x0D: // Return
+    case 0xA0:  // No-break space
+    case 0xFEFF:  // Byte Order Mark
+    case 0x2028:  // Line Separator
+    case 0x2029:  // Paragraph Separator
+      return 'ws'
+  }
+
+  return 'ident'
+}
+
+/**
+ * Format a subPath, return its plain form if it is
+ * a literal string or number. Otherwise prepend the
+ * dynamic indicator (*).
+ */
+
+function formatSubPath (path) {
+  var trimmed = path.trim();
+  // invalid leading 0
+  if (path.charAt(0) === '0' && isNaN(path)) { return false }
+
+  return isLiteral(trimmed) ? stripQuotes(trimmed) : '*' + trimmed
+}
+
+/**
+ * Parse a string path into an array of segments
+ */
+
+function parse$1 (path) {
+  var keys = [];
+  var index = -1;
+  var mode = BEFORE_PATH;
+  var subPathDepth = 0;
+  var c;
+  var key;
+  var newChar;
+  var type;
+  var transition;
+  var action;
+  var typeMap;
+  var actions = [];
+
+  actions[PUSH] = function () {
+    if (key !== undefined) {
+      keys.push(key);
+      key = undefined;
+    }
+  };
+
+  actions[APPEND] = function () {
+    if (key === undefined) {
+      key = newChar;
+    } else {
+      key += newChar;
+    }
+  };
+
+  actions[INC_SUB_PATH_DEPTH] = function () {
+    actions[APPEND]();
+    subPathDepth++;
+  };
+
+  actions[PUSH_SUB_PATH] = function () {
+    if (subPathDepth > 0) {
+      subPathDepth--;
+      mode = IN_SUB_PATH;
+      actions[APPEND]();
+    } else {
+      subPathDepth = 0;
+      key = formatSubPath(key);
+      if (key === false) {
+        return false
+      } else {
+        actions[PUSH]();
+      }
+    }
+  };
+
+  function maybeUnescapeQuote () {
+    var nextChar = path[index + 1];
+    if ((mode === IN_SINGLE_QUOTE && nextChar === "'") ||
+      (mode === IN_DOUBLE_QUOTE && nextChar === '"')) {
+      index++;
+      newChar = '\\' + nextChar;
+      actions[APPEND]();
+      return true
+    }
+  }
+
+  while (mode !== null) {
+    index++;
+    c = path[index];
+
+    if (c === '\\' && maybeUnescapeQuote()) {
+      continue
+    }
+
+    type = getPathCharType(c);
+    typeMap = pathStateMachine[mode];
+    transition = typeMap[type] || typeMap['else'] || ERROR;
+
+    if (transition === ERROR) {
+      return // parse error
+    }
+
+    mode = transition[0];
+    action = actions[transition[1]];
+    if (action) {
+      newChar = transition[2];
+      newChar = newChar === undefined
+        ? c
+        : newChar;
+      if (action() === false) {
+        return
+      }
+    }
+
+    if (mode === AFTER_PATH) {
+      return keys
+    }
+  }
+}
+
+
+
+
+
+var I18nPath = function I18nPath () {
+  this._cache = Object.create(null);
+};
+
+/**
+ * External parse that check for a cache hit first
+ */
+I18nPath.prototype.parsePath = function parsePath (path) {
+  var hit = this._cache[path];
+  if (!hit) {
+    hit = parse$1(path);
+    if (hit) {
+      this._cache[path] = hit;
+    }
+  }
+  return hit || []
+};
+
+/**
+ * Get path value from path string
+ */
+I18nPath.prototype.getPathValue = function getPathValue (obj, path) {
+  if (!isObject(obj)) { return null }
+
+  var paths = this.parsePath(path);
+  if (paths.length === 0) {
+    return null
+  } else {
+    var length = paths.length;
+    var last = obj;
+    var i = 0;
+    while (i < length) {
+      var value = last[paths[i]];
+      if (value === undefined) {
+        return null
+      }
+      last = value;
+      i++;
+    }
+
+    return last
+  }
+};
+
+/*  */
+
+
+
+var htmlTagMatcher = /<\/?[\w\s="/.':;#-\/]+>/;
+var linkKeyMatcher = /(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))/g;
+var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
+var bracketsMatcher = /[()]/g;
+var formatters = {
+  'upper': function (str) { return str.toLocaleUpperCase(); },
+  'lower': function (str) { return str.toLocaleLowerCase(); }
+};
+
+var defaultFormatter = new BaseFormatter();
+
+var VueI18n = function VueI18n (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #290
+  /* istanbul ignore if */
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  var locale = options.locale || 'en-US';
+  var fallbackLocale = options.fallbackLocale || 'en-US';
+  var messages = options.messages || {};
+  var dateTimeFormats = options.dateTimeFormats || {};
+  var numberFormats = options.numberFormats || {};
+
+  this._vm = null;
+  this._formatter = options.formatter || defaultFormatter;
+  this._missing = options.missing || null;
+  this._root = options.root || null;
+  this._sync = options.sync === undefined ? true : !!options.sync;
+  this._fallbackRoot = options.fallbackRoot === undefined
+    ? true
+    : !!options.fallbackRoot;
+  this._silentTranslationWarn = options.silentTranslationWarn === undefined
+    ? false
+    : !!options.silentTranslationWarn;
+  this._silentFallbackWarn = options.silentFallbackWarn === undefined
+    ? false
+    : !!options.silentFallbackWarn;
+  this._dateTimeFormatters = {};
+  this._numberFormatters = {};
+  this._path = new I18nPath();
+  this._dataListeners = [];
+  this._preserveDirectiveContent = options.preserveDirectiveContent === undefined
+    ? false
+    : !!options.preserveDirectiveContent;
+  this.pluralizationRules = options.pluralizationRules || {};
+  this._warnHtmlInMessage = options.warnHtmlInMessage || 'off';
+
+  this._exist = function (message, key) {
+    if (!message || !key) { return false }
+    if (!isNull(this$1._path.getPathValue(message, key))) { return true }
+    // fallback for flat key
+    if (message[key]) { return true }
+    return false
+  };
+
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+
+  this._initVM({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    dateTimeFormats: dateTimeFormats,
+    numberFormats: numberFormats
+  });
+};
+
+var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },availableLocales: { configurable: true },locale: { configurable: true },fallbackLocale: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true },warnHtmlInMessage: { configurable: true } };
+
+VueI18n.prototype._checkLocaleMessage = function _checkLocaleMessage (locale, level, message) {
+  var paths = [];
+
+  var fn = function (level, locale, message, paths) {
+    if (isPlainObject(message)) {
+      Object.keys(message).forEach(function (key) {
+        var val = message[key];
+        if (isPlainObject(val)) {
+          paths.push(key);
+          paths.push('.');
+          fn(level, locale, val, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(key);
+          fn(level, locale, val, paths);
+          paths.pop();
+        }
+      });
+    } else if (Array.isArray(message)) {
+      message.forEach(function (item, index) {
+        if (isPlainObject(item)) {
+          paths.push(("[" + index + "]"));
+          paths.push('.');
+          fn(level, locale, item, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(("[" + index + "]"));
+          fn(level, locale, item, paths);
+          paths.pop();
+        }
+      });
+    } else if (typeof message === 'string') {
+      var ret = htmlTagMatcher.test(message);
+      if (ret) {
+        var msg = "Detected HTML in message '" + message + "' of keypath '" + (paths.join('')) + "' at '" + locale + "'. Consider component interpolation with '<i18n>' to avoid XSS. See https://bit.ly/2ZqJzkp";
+        if (level === 'warn') {
+          warn(msg);
+        } else if (level === 'error') {
+          error(msg);
+        }
+      }
+    }
+  };
+
+  fn(level, locale, message, paths);
+};
+
+VueI18n.prototype._initVM = function _initVM (data) {
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  this._vm = new Vue({ data: data });
+  Vue.config.silent = silent;
+};
+
+VueI18n.prototype.destroyVM = function destroyVM () {
+  this._vm.$destroy();
+};
+
+VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
+  this._dataListeners.push(vm);
+};
+
+VueI18n.prototype.unsubscribeDataChanging = function unsubscribeDataChanging (vm) {
+  remove(this._dataListeners, vm);
+};
+
+VueI18n.prototype.watchI18nData = function watchI18nData () {
+  var self = this;
+  return this._vm.$watch('$data', function () {
+    var i = self._dataListeners.length;
+    while (i--) {
+      Vue.nextTick(function () {
+        self._dataListeners[i] && self._dataListeners[i].$forceUpdate();
+      });
+    }
+  }, { deep: true })
+};
+
+VueI18n.prototype.watchLocale = function watchLocale () {
+  /* istanbul ignore if */
+  if (!this._sync || !this._root) { return null }
+  var target = this._vm;
+  return this._root.$i18n.vm.$watch('locale', function (val) {
+    target.$set(target, 'locale', val);
+    target.$forceUpdate();
+  }, { immediate: true })
+};
+
+prototypeAccessors.vm.get = function () { return this._vm };
+
+prototypeAccessors.messages.get = function () { return looseClone(this._getMessages()) };
+prototypeAccessors.dateTimeFormats.get = function () { return looseClone(this._getDateTimeFormats()) };
+prototypeAccessors.numberFormats.get = function () { return looseClone(this._getNumberFormats()) };
+prototypeAccessors.availableLocales.get = function () { return Object.keys(this.messages).sort() };
+
+prototypeAccessors.locale.get = function () { return this._vm.locale };
+prototypeAccessors.locale.set = function (locale) {
+  this._vm.$set(this._vm, 'locale', locale);
+};
+
+prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
+prototypeAccessors.fallbackLocale.set = function (locale) {
+  this._vm.$set(this._vm, 'fallbackLocale', locale);
+};
+
+prototypeAccessors.missing.get = function () { return this._missing };
+prototypeAccessors.missing.set = function (handler) { this._missing = handler; };
+
+prototypeAccessors.formatter.get = function () { return this._formatter };
+prototypeAccessors.formatter.set = function (formatter) { this._formatter = formatter; };
+
+prototypeAccessors.silentTranslationWarn.get = function () { return this._silentTranslationWarn };
+prototypeAccessors.silentTranslationWarn.set = function (silent) { this._silentTranslationWarn = silent; };
+
+prototypeAccessors.silentFallbackWarn.get = function () { return this._silentFallbackWarn };
+prototypeAccessors.silentFallbackWarn.set = function (silent) { this._silentFallbackWarn = silent; };
+
+prototypeAccessors.preserveDirectiveContent.get = function () { return this._preserveDirectiveContent };
+prototypeAccessors.preserveDirectiveContent.set = function (preserve) { this._preserveDirectiveContent = preserve; };
+
+prototypeAccessors.warnHtmlInMessage.get = function () { return this._warnHtmlInMessage };
+prototypeAccessors.warnHtmlInMessage.set = function (level) {
+    var this$1 = this;
+
+  var orgLevel = this._warnHtmlInMessage;
+  this._warnHtmlInMessage = level;
+  if (orgLevel !== level && (level === 'warn' || level === 'error')) {
+    var messages = this._getMessages();
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+};
+
+VueI18n.prototype._getMessages = function _getMessages () { return this._vm.messages };
+VueI18n.prototype._getDateTimeFormats = function _getDateTimeFormats () { return this._vm.dateTimeFormats };
+VueI18n.prototype._getNumberFormats = function _getNumberFormats () { return this._vm.numberFormats };
+
+VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values) {
+  if (!isNull(result)) { return result }
+  if (this._missing) {
+    var missingRet = this._missing.apply(null, [locale, key, vm, values]);
+    if (typeof missingRet === 'string') {
+      return missingRet
+    }
+  } else {
+    if ( true && !this._silentTranslationWarn) {
+      warn(
+        "Cannot translate the value of keypath '" + key + "'. " +
+        'Use the value of keypath as default.'
+      );
+    }
+  }
+  return key
+};
+
+VueI18n.prototype._isFallbackRoot = function _isFallbackRoot (val) {
+  return !val && !isNull(this._root) && this._fallbackRoot
+};
+
+VueI18n.prototype._isSilentFallback = function _isSilentFallback (locale) {
+  return this._silentFallbackWarn && (this._isFallbackRoot() || locale !== this.fallbackLocale)
+};
+
+VueI18n.prototype._interpolate = function _interpolate (
+  locale,
+  message,
+  key,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  if (!message) { return null }
+
+  var pathRet = this._path.getPathValue(message, key);
+  if (Array.isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
+
+  var ret;
+  if (isNull(pathRet)) {
+    /* istanbul ignore else */
+    if (isPlainObject(message)) {
+      ret = message[key];
+      if (typeof ret !== 'string') {
+        if ( true && !this._silentTranslationWarn && !this._isSilentFallback(locale)) {
+          warn(("Value of key '" + key + "' is not a string!"));
+        }
+        return null
+      }
+    } else {
+      return null
+    }
+  } else {
+    /* istanbul ignore else */
+    if (typeof pathRet === 'string') {
+      ret = pathRet;
+    } else {
+      if ( true && !this._silentTranslationWarn && !this._isSilentFallback(locale)) {
+        warn(("Value of key '" + key + "' is not a string!"));
+      }
+      return null
+    }
+  }
+
+  // Check for the existence of links within the translated string
+  if (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0) {
+    ret = this._link(locale, message, ret, host, 'raw', values, visitedLinkStack);
+  }
+
+  return this._render(ret, interpolateMode, values, key)
+};
+
+VueI18n.prototype._link = function _link (
+  locale,
+  message,
+  str,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  var ret = str;
+
+  // Match all the links within the local
+  // We are going to replace each of
+  // them with its translation
+  var matches = ret.match(linkKeyMatcher);
+  for (var idx in matches) {
+    // ie compatible: filter custom array
+    // prototype method
+    if (!matches.hasOwnProperty(idx)) {
+      continue
+    }
+    var link = matches[idx];
+    var linkKeyPrefixMatches = link.match(linkKeyPrefixMatcher);
+    var linkPrefix = linkKeyPrefixMatches[0];
+      var formatterName = linkKeyPrefixMatches[1];
+
+    // Remove the leading @:, @.case: and the brackets
+    var linkPlaceholder = link.replace(linkPrefix, '').replace(bracketsMatcher, '');
+
+    if (visitedLinkStack.includes(linkPlaceholder)) {
+      if (true) {
+        warn(("Circular reference found. \"" + link + "\" is already visited in the chain of " + (visitedLinkStack.reverse().join(' <- '))));
+      }
+      return ret
+    }
+    visitedLinkStack.push(linkPlaceholder);
+
+    // Translate the link
+    var translated = this._interpolate(
+      locale, message, linkPlaceholder, host,
+      interpolateMode === 'raw' ? 'string' : interpolateMode,
+      interpolateMode === 'raw' ? undefined : values,
+      visitedLinkStack
+    );
+
+    if (this._isFallbackRoot(translated)) {
+      if ( true && !this._silentTranslationWarn) {
+        warn(("Fall back to translate the link placeholder '" + linkPlaceholder + "' with root locale."));
+      }
+      /* istanbul ignore if */
+      if (!this._root) { throw Error('unexpected error') }
+      var root = this._root.$i18n;
+      translated = root._translate(
+        root._getMessages(), root.locale, root.fallbackLocale,
+        linkPlaceholder, host, interpolateMode, values
+      );
+    }
+    translated = this._warnDefault(
+      locale, linkPlaceholder, translated, host,
+      Array.isArray(values) ? values : [values]
+    );
+    if (formatters.hasOwnProperty(formatterName)) {
+      translated = formatters[formatterName](translated);
+    }
+
+    visitedLinkStack.pop();
+
+    // Replace the link with the translated
+    ret = !translated ? ret : ret.replace(link, translated);
+  }
+
+  return ret
+};
+
+VueI18n.prototype._render = function _render (message, interpolateMode, values, path) {
+  var ret = this._formatter.interpolate(message, values, path);
+
+  // If the custom formatter refuses to work - apply the default one
+  if (!ret) {
+    ret = defaultFormatter.interpolate(message, values, path);
+  }
+
+  // if interpolateMode is **not** 'string' ('row'),
+  // return the compiled data (e.g. ['foo', VNode, 'bar']) with formatter
+  return interpolateMode === 'string' ? ret.join('') : ret
+};
+
+VueI18n.prototype._translate = function _translate (
+  messages,
+  locale,
+  fallback,
+  key,
+  host,
+  interpolateMode,
+  args
+) {
+  var res =
+    this._interpolate(locale, messages[locale], key, host, interpolateMode, args, [key]);
+  if (!isNull(res)) { return res }
+
+  res = this._interpolate(fallback, messages[fallback], key, host, interpolateMode, args, [key]);
+  if (!isNull(res)) {
+    if ( true && !this._silentTranslationWarn && !this._silentFallbackWarn) {
+      warn(("Fall back to translate the keypath '" + key + "' with '" + fallback + "' locale."));
+    }
+    return res
+  } else {
+    return null
+  }
+};
+
+VueI18n.prototype._t = function _t (key, _locale, messages, host) {
+    var ref;
+
+    var values = [], len = arguments.length - 4;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 4 ];
+  if (!key) { return '' }
+
+  var parsedArgs = parseArgs.apply(void 0, values);
+  var locale = parsedArgs.locale || _locale;
+
+  var ret = this._translate(
+    messages, locale, this.fallbackLocale, key,
+    host, 'string', parsedArgs.params
+  );
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._silentTranslationWarn && !this._silentFallbackWarn) {
+      warn(("Fall back to translate the keypath '" + key + "' with root locale."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return (ref = this._root).$t.apply(ref, [ key ].concat( values ))
+  } else {
+    return this._warnDefault(locale, key, ret, host, values)
+  }
+};
+
+VueI18n.prototype.t = function t (key) {
+    var ref;
+
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+  return (ref = this)._t.apply(ref, [ key, this.locale, this._getMessages(), null ].concat( values ))
+};
+
+VueI18n.prototype._i = function _i (key, locale, messages, host, values) {
+  var ret =
+    this._translate(messages, locale, this.fallbackLocale, key, host, 'raw', values);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to interpolate the keypath '" + key + "' with root locale."));
+    }
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.i(key, locale, values)
+  } else {
+    return this._warnDefault(locale, key, ret, host, [values])
+  }
+};
+
+VueI18n.prototype.i = function i (key, locale, values) {
+  /* istanbul ignore if */
+  if (!key) { return '' }
+
+  if (typeof locale !== 'string') {
+    locale = this.locale;
+  }
+
+  return this._i(key, locale, this._getMessages(), null, values)
+};
+
+VueI18n.prototype._tc = function _tc (
+  key,
+  _locale,
+  messages,
+  host,
+  choice
+) {
+    var ref;
+
+    var values = [], len = arguments.length - 5;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 5 ];
+  if (!key) { return '' }
+  if (choice === undefined) {
+    choice = 1;
+  }
+
+  var predefined = { 'count': choice, 'n': choice };
+  var parsedArgs = parseArgs.apply(void 0, values);
+  parsedArgs.params = Object.assign(predefined, parsedArgs.params);
+  values = parsedArgs.locale === null ? [parsedArgs.params] : [parsedArgs.locale, parsedArgs.params];
+  return this.fetchChoice((ref = this)._t.apply(ref, [ key, _locale, messages, host ].concat( values )), choice)
+};
+
+VueI18n.prototype.fetchChoice = function fetchChoice (message, choice) {
+  /* istanbul ignore if */
+  if (!message && typeof message !== 'string') { return null }
+  var choices = message.split('|');
+
+  choice = this.getChoiceIndex(choice, choices.length);
+  if (!choices[choice]) { return message }
+  return choices[choice].trim()
+};
+
+/**
+ * @param choice {number} a choice index given by the input to $tc: `$tc('path.to.rule', choiceIndex)`
+ * @param choicesLength {number} an overall amount of available choices
+ * @returns a final choice index
+*/
+VueI18n.prototype.getChoiceIndex = function getChoiceIndex (choice, choicesLength) {
+  // Default (old) getChoiceIndex implementation - english-compatible
+  var defaultImpl = function (_choice, _choicesLength) {
+    _choice = Math.abs(_choice);
+
+    if (_choicesLength === 2) {
+      return _choice
+        ? _choice > 1
+          ? 1
+          : 0
+        : 1
+    }
+
+    return _choice ? Math.min(_choice, 2) : 0
+  };
+
+  if (this.locale in this.pluralizationRules) {
+    return this.pluralizationRules[this.locale].apply(this, [choice, choicesLength])
+  } else {
+    return defaultImpl(choice, choicesLength)
+  }
+};
+
+VueI18n.prototype.tc = function tc (key, choice) {
+    var ref;
+
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+  return (ref = this)._tc.apply(ref, [ key, this.locale, this._getMessages(), null, choice ].concat( values ))
+};
+
+VueI18n.prototype._te = function _te (key, locale, messages) {
+    var args = [], len = arguments.length - 3;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 3 ];
+
+  var _locale = parseArgs.apply(void 0, args).locale || locale;
+  return this._exist(messages[_locale], key)
+};
+
+VueI18n.prototype.te = function te (key, locale) {
+  return this._te(key, this.locale, this._getMessages(), locale)
+};
+
+VueI18n.prototype.getLocaleMessage = function getLocaleMessage (locale) {
+  return looseClone(this._vm.messages[locale] || {})
+};
+
+VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+    if (this._warnHtmlInMessage === 'error') { return }
+  }
+  this._vm.$set(this._vm.messages, locale, message);
+};
+
+VueI18n.prototype.mergeLocaleMessage = function mergeLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+    if (this._warnHtmlInMessage === 'error') { return }
+  }
+  this._vm.$set(this._vm.messages, locale, merge(this._vm.messages[locale] || {}, message));
+};
+
+VueI18n.prototype.getDateTimeFormat = function getDateTimeFormat (locale) {
+  return looseClone(this._vm.dateTimeFormats[locale] || {})
+};
+
+VueI18n.prototype.setDateTimeFormat = function setDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, format);
+};
+
+VueI18n.prototype.mergeDateTimeFormat = function mergeDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, merge(this._vm.dateTimeFormats[locale] || {}, format));
+};
+
+VueI18n.prototype._localizeDateTime = function _localizeDateTime (
+  value,
+  locale,
+  fallback,
+  dateTimeFormats,
+  key
+) {
+  var _locale = locale;
+  var formats = dateTimeFormats[_locale];
+
+  // fallback locale
+  if (isNull(formats) || isNull(formats[key])) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to '" + fallback + "' datetime formats from '" + locale + " datetime formats."));
+    }
+    _locale = fallback;
+    formats = dateTimeFormats[_locale];
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+    var id = _locale + "__" + key;
+    var formatter = this._dateTimeFormatters[id];
+    if (!formatter) {
+      formatter = this._dateTimeFormatters[id] = new Intl.DateTimeFormat(_locale, format);
+    }
+    return formatter.format(value)
+  }
+};
+
+VueI18n.prototype._d = function _d (value, locale, key) {
+  /* istanbul ignore if */
+  if ( true && !VueI18n.availabilities.dateTimeFormat) {
+    warn('Cannot format a Date value due to not supported Intl.DateTimeFormat.');
+    return ''
+  }
+
+  if (!key) {
+    return new Intl.DateTimeFormat(locale).format(value)
+  }
+
+  var ret =
+    this._localizeDateTime(value, locale, this.fallbackLocale, this._getDateTimeFormats(), key);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to datetime localization of root: key '" + key + "' ."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.d(value, key, locale)
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.d = function d (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+
+  if (args.length === 1) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    }
+    if (typeof args[1] === 'string') {
+      locale = args[1];
+    }
+  }
+
+  return this._d(value, locale, key)
+};
+
+VueI18n.prototype.getNumberFormat = function getNumberFormat (locale) {
+  return looseClone(this._vm.numberFormats[locale] || {})
+};
+
+VueI18n.prototype.setNumberFormat = function setNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, format);
+};
+
+VueI18n.prototype.mergeNumberFormat = function mergeNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, merge(this._vm.numberFormats[locale] || {}, format));
+};
+
+VueI18n.prototype._getNumberFormatter = function _getNumberFormatter (
+  value,
+  locale,
+  fallback,
+  numberFormats,
+  key,
+  options
+) {
+  var _locale = locale;
+  var formats = numberFormats[_locale];
+
+  // fallback locale
+  if (isNull(formats) || isNull(formats[key])) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to '" + fallback + "' number formats from '" + locale + " number formats."));
+    }
+    _locale = fallback;
+    formats = numberFormats[_locale];
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+
+    var formatter;
+    if (options) {
+      // If options specified - create one time number formatter
+      formatter = new Intl.NumberFormat(_locale, Object.assign({}, format, options));
+    } else {
+      var id = _locale + "__" + key;
+      formatter = this._numberFormatters[id];
+      if (!formatter) {
+        formatter = this._numberFormatters[id] = new Intl.NumberFormat(_locale, format);
+      }
+    }
+    return formatter
+  }
+};
+
+VueI18n.prototype._n = function _n (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format a Number value due to not supported Intl.NumberFormat.');
+    }
+    return ''
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.format(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.format(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to number localization of root: key '" + key + "' ."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.n(value, Object.assign({}, { key: key, locale: locale }, options))
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.n = function n (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+  var options = null;
+
+  if (args.length === 1) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(args[0]).reduce(function (acc, key) {
+          var obj;
+
+        if (numberFormatKeys.includes(key)) {
+          return Object.assign({}, acc, ( obj = {}, obj[key] = args[0][key], obj ))
+        }
+        return acc
+      }, null);
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    }
+    if (typeof args[1] === 'string') {
+      locale = args[1];
+    }
+  }
+
+  return this._n(value, locale, key, options)
+};
+
+VueI18n.prototype._ntp = function _ntp (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format to parts a Number value due to not supported Intl.NumberFormat.');
+    }
+    return []
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.formatToParts(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.formatToParts(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._silentTranslationWarn) {
+      warn(("Fall back to format number to parts of root: key '" + key + "' ."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n._ntp(value, locale, key, options)
+  } else {
+    return ret || []
+  }
+};
+
+Object.defineProperties( VueI18n.prototype, prototypeAccessors );
+
+var availabilities;
+// $FlowFixMe
+Object.defineProperty(VueI18n, 'availabilities', {
+  get: function get () {
+    if (!availabilities) {
+      var intlDefined = typeof Intl !== 'undefined';
+      availabilities = {
+        dateTimeFormat: intlDefined && typeof Intl.DateTimeFormat !== 'undefined',
+        numberFormat: intlDefined && typeof Intl.NumberFormat !== 'undefined'
+      };
+    }
+
+    return availabilities
+  }
+});
+
+VueI18n.install = install;
+VueI18n.version = '8.11.2';
+
+/* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
 
 /***/ }),
@@ -38131,13 +39951,11 @@ var render = function() {
     { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
     [
       _c("v-card-title", { staticClass: "pb-2" }, [
-        _c("h2", [_vm._v("Formulaire de contact")])
+        _c("h2", [_vm._v(_vm._s(_vm.$t("general.titles.contact")))])
       ]),
       _vm._v(" "),
       _c("v-card-text", [
-        _vm._v(
-          "Pour toute·s question·s (après avoir lu attentivement la foire aux questions) et/ou suggestion·s, vous pouvez contacter rapidement l'équipe par ici.\n    "
-        )
+        _vm._v(_vm._s(_vm.$t("general.texts.contact")) + "\n    ")
       ]),
       _vm._v(" "),
       _c(
@@ -38172,7 +39990,7 @@ var render = function() {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Prenom",
+                              label: _vm.$t("contacts.placeholders.first_name"),
                               required: "",
                               rules: [
                                 function(v) {
@@ -38198,7 +40016,7 @@ var render = function() {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Nom",
+                              label: _vm.$t("contacts.placeholders.last_name"),
                               required: "",
                               rules: [
                                 function(v) {
@@ -38224,7 +40042,7 @@ var render = function() {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Email",
+                              label: _vm.$t("contacts.placeholders.email"),
                               required: "",
                               rules: _vm.emailRules
                             },
@@ -38259,7 +40077,13 @@ var render = function() {
                                   return [
                                     _c("div", [
                                       _vm._v(
-                                        "\n                                  Message\n                              "
+                                        "\n                                  " +
+                                          _vm._s(
+                                            _vm.$t(
+                                              "contacts.placeholders.message"
+                                            )
+                                          ) +
+                                          "\n                              "
                                       )
                                     ])
                                   ]
@@ -38304,7 +40128,7 @@ var render = function() {
             },
             [
               _c("v-icon", { attrs: { left: "", dark: "" } }, [_vm._v("send")]),
-              _vm._v("Envoyer le message")
+              _vm._v(_vm._s(_vm.$t("general.buttons.submit.send")))
             ],
             1
           )
@@ -38342,12 +40166,12 @@ var render = function() {
     { staticClass: "ma-4" },
     [
       _c("v-card-title", { staticClass: "pb-2" }, [
-        _c("h2", [_vm._v("Foire aux questions")])
+        _c("h2", [_vm._v(_vm._s(_vm.$t("general.titles.faq")))])
       ]),
       _vm._v(" "),
       _c("v-card-text", [
         _vm._v(
-          "\r\n        Après de nombreuses années de services, l'équipe de Myjob a soigneusement répertorié ici les questions les plus posées.\r\n    "
+          "\r\n        " + _vm._s(_vm.$t("general.texts.faq")) + "\r\n    "
         )
       ]),
       _vm._v(" "),
@@ -38364,7 +40188,13 @@ var render = function() {
                   {
                     key: "header",
                     fn: function() {
-                      return [_c("div", [_vm._v(_vm._s(item.question_fr))])]
+                      return [
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(_vm.getQuestion(item, _vm.$i18n.locale))
+                          )
+                        ])
+                      ]
                     },
                     proxy: true
                   }
@@ -38379,7 +40209,9 @@ var render = function() {
                 "v-card",
                 [
                   _c("v-card-text", {
-                    domProps: { innerHTML: _vm._s(item.answer_fr) }
+                    domProps: {
+                      innerHTML: _vm._s(_vm.getAnswer(item, _vm.$i18n.locale))
+                    }
                   })
                 ],
                 1
@@ -38579,16 +40411,18 @@ var render = function() {
                       _c("v-card-text", { attrs: { "primary-title": "" } }, [
                         _c("h1", [
                           _vm._v(
-                            "\r\n                            Adopte un étudiant EPFL\r\n                        "
+                            "\r\n                            " +
+                              _vm._s(_vm.$t("general.titles.adopt")) +
+                              "\r\n                        "
                           )
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("v-card-text", [
-                        _vm._v(
-                          "\r\n                        L'Association Générale des Etudiants de l'Ecole Polytechnique Fédérale de Lausanne met gratuitement cette plateforme à disposition pour mettre en relation étudiants et employeurs. Le but est de permettre aux étudiants de\r\n                        trouver\r\n                        facilement un job/emploi durant leurs études, et en même temps d'offrir aux employeurs des profils variés et qualifiés.\r\n                    "
-                        )
-                      ]),
+                      _c("v-card-text", {
+                        domProps: {
+                          innerHTML: _vm._s(_vm.$t("general.texts.description"))
+                        }
+                      }),
                       _vm._v(" "),
                       _c(
                         "v-container",
@@ -38623,7 +40457,13 @@ var render = function() {
                                       _c(
                                         "v-card-actions",
                                         { staticClass: "justify-center " },
-                                        [_vm._v("Etudiants")]
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.$t("general.titles.students")
+                                            )
+                                          )
+                                        ]
                                       )
                                     ],
                                     1
@@ -38657,7 +40497,15 @@ var render = function() {
                                       _c(
                                         "v-card-actions",
                                         { staticClass: "justify-center " },
-                                        [_vm._v("Employeurs")]
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.$t(
+                                                "general.titles.publishers"
+                                              )
+                                            )
+                                          )
+                                        ]
                                       )
                                     ],
                                     1
@@ -38734,7 +40582,11 @@ var render = function() {
                             { attrs: { flat: "" } },
                             [
                               _c("v-card-text", [
-                                _c("h1", [_vm._v("Employeur")])
+                                _c("h1", [
+                                  _vm._v(
+                                    _vm._s(_vm.$t("general.titles.publishers"))
+                                  )
+                                ])
                               ]),
                               _vm._v(" "),
                               _c(
@@ -38755,20 +40607,41 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Je recherche un étudiant")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.$t("general.buttons.offer"))
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
-                              _c("v-card-text", { staticClass: "pb-0" }, [
-                                _vm._v("Aucune inscription, gestion par email.")
-                              ]),
+                              _c("v-card-text", {
+                                staticClass: "pb-0",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$t("general.texts.noinscription")
+                                  )
+                                }
+                              }),
                               _vm._v(" "),
                               _c("v-card-text", { staticClass: "pt-0" }, [
-                                _c("a", [
-                                  _vm._v("Retrouver une ancienne annonce.")
-                                ])
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.redirect("forgotten-link")
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.$t("general.texts.oldad"))
+                                    )
+                                  ]
+                                )
                               ])
                             ],
                             1
@@ -38839,7 +40712,11 @@ var render = function() {
                             { attrs: { flat: "" } },
                             [
                               _c("v-card-text", [
-                                _c("h1", [_vm._v("Students")])
+                                _c("h1", [
+                                  _vm._v(
+                                    _vm._s(_vm.$t("general.titles.students"))
+                                  )
+                                ])
                               ]),
                               _vm._v(" "),
                               _c(
@@ -38850,22 +40727,52 @@ var render = function() {
                                     "v-btn",
                                     {
                                       staticClass: "epfl-bg-color",
-                                      attrs: { "text-color": "white", dark: "" }
+                                      attrs: {
+                                        "text-color": "white",
+                                        dark: ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.redirect("/jobs")
+                                        }
+                                      }
                                     },
-                                    [_vm._v("Je recherche un job")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.$t("general.buttons.seek"))
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
-                              _c("v-card-text", { staticClass: "pb-0" }, [
-                                _vm._v("Accès Tequila requis.")
-                              ]),
+                              _c("v-card-text", {
+                                staticClass: "pb-0",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$t("general.texts.tequila")
+                                  )
+                                }
+                              }),
                               _vm._v(" "),
                               _c("v-card-text", { staticClass: "pt-0" }, [
-                                _c("a", [
-                                  _vm._v("Recevoir un nouveau mot de passe.")
-                                ])
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "https://gaspar.epfl.ch/cgi-bin/gaspar-web/lostpwd"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.$t("general.texts.newpassword")
+                                      )
+                                    )
+                                  ]
+                                )
                               ])
                             ],
                             1
@@ -38932,22 +40839,6 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("v-spacer"),
-          _vm._v(" "),
-          _c("v-text-field", {
-            staticClass: "search-text-field",
-            attrs: {
-              "append-icon": "search",
-              outline: "",
-              height: "48px",
-              label: "Recherche",
-              type: "text"
-            },
-            on: {
-              "click:append": function($event) {
-                _vm.marker = !_vm.marker
-              }
-            }
-          }),
           _vm._v(" "),
           _c(
             "v-toolbar-items",
@@ -39067,7 +40958,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(title))]
+                                [_vm._v(_vm._s(_vm.$t("general.nav." + title)))]
                               )
                             : _vm._e()
                         }),
@@ -39092,7 +40983,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(title))]
+                                [_vm._v(_vm._s(_vm.$t("general.nav." + title)))]
                               )
                             : _vm._e()
                         }),
@@ -39177,7 +41068,7 @@ var render = function() {
                     [
                       _c("v-card-text", [
                         _c("h4", { staticStyle: { color: "white" } }, [
-                          _vm._v("INFORMATIONS GÉNÉRALES")
+                          _vm._v(_vm._s(_vm.$t("ads.sections.general")))
                         ])
                       ])
                     ],
@@ -39197,7 +41088,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Titre",
+                                  label: _vm.$t("ads.labels.title"),
                                   required: "",
                                   rules: _vm.titleRules
                                 },
@@ -39225,7 +41116,7 @@ var render = function() {
                                       return !!v || "Item is required"
                                     }
                                   ],
-                                  label: "Categorie",
+                                  label: _vm.$t("ads.labels.category_id"),
                                   required: ""
                                 },
                                 model: {
@@ -39246,7 +41137,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Lieu de travail",
+                                  label: _vm.$t("ads.labels.place"),
                                   required: "",
                                   rules: _vm.baseRules
                                 },
@@ -39287,7 +41178,7 @@ var render = function() {
                     [
                       _c("v-card-text", [
                         _c("h4", { staticStyle: { color: "white" } }, [
-                          _vm._v("DÉTAILS DU JOB")
+                          _vm._v(_vm._s(_vm.$t("ads.sections.details")))
                         ])
                       ])
                     ],
@@ -39328,7 +41219,9 @@ var render = function() {
                                             _vm._g(
                                               {
                                                 attrs: {
-                                                  label: "Date de début",
+                                                  label: _vm.$t(
+                                                    "ads.labels.starts_at"
+                                                  ),
                                                   "prepend-icon": "event",
                                                   readonly: "",
                                                   required: "",
@@ -39419,7 +41312,9 @@ var render = function() {
                                             _vm._g(
                                               {
                                                 attrs: {
-                                                  label: "Date de fin",
+                                                  label: _vm.$t(
+                                                    "ads.labels.ends_at"
+                                                  ),
                                                   "prepend-icon": "event",
                                                   readonly: ""
                                                 },
@@ -39481,7 +41376,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeDuree,
-                                  label: "Durée indicative",
+                                  label: _vm.$t("ads.labels.duration"),
                                   rules: [
                                     function(v) {
                                       return !!v || "Item is required"
@@ -39507,7 +41402,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Rémuneration",
+                                  label: _vm.$t("ads.labels.salary"),
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -39529,7 +41424,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Compétences",
+                                  label: _vm.$t("ads.labels.skills"),
                                   rules: _vm.skillRules
                                 },
                                 model: {
@@ -39550,7 +41445,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Langues",
+                                  label: _vm.$t("ads.labels.languages"),
                                   rules: _vm.languageRules
                                 },
                                 model: {
@@ -39572,7 +41467,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeSections,
-                                  label: "Sections",
+                                  label: _vm.$t("ads.labels.section_ids"),
                                   multiple: ""
                                 },
                                 scopedSlots: _vm._u([
@@ -39727,7 +41622,7 @@ var render = function() {
                     [
                       _c("v-card-text", [
                         _c("h4", { staticStyle: { color: "white" } }, [
-                          _vm._v("CORPS DE L'ANNONCE")
+                          _vm._v(_vm._s(_vm.$t("ads.sections.main")))
                         ])
                       ])
                     ],
@@ -39759,7 +41654,11 @@ var render = function() {
                                       return [
                                         _c("div", [
                                           _vm._v(
-                                            "\r\n                                        Description\r\n                                    "
+                                            "\r\n                                        " +
+                                              _vm._s(
+                                                _vm.$t("ads.labels.description")
+                                              ) +
+                                              "\r\n                                    "
                                           )
                                         ])
                                       ]
@@ -39804,7 +41703,7 @@ var render = function() {
                     [
                       _c("v-card-text", [
                         _c("h4", { staticStyle: { color: "white" } }, [
-                          _vm._v("PERSONNE DE CONTACT")
+                          _vm._v(_vm._s(_vm.$t("ads.sections.publisher")))
                         ])
                       ])
                     ],
@@ -39824,7 +41723,9 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Prenom",
+                                  label: _vm.$t(
+                                    "ads.labels.contact_first_name"
+                                  ),
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -39850,7 +41751,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Nom",
+                                  label: _vm.$t("ads.labels.contact_last_name"),
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -39872,7 +41773,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Email",
+                                  label: _vm.$t("ads.labels.contact_email"),
                                   rules: _vm.emailRules,
                                   required: ""
                                 },
@@ -39894,7 +41795,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Telephone",
+                                  label: _vm.$t("ads.labels.contact_phone"),
                                   rules: _vm.phoneRules
                                 },
                                 model: {
@@ -39925,7 +41826,8 @@ var render = function() {
                   _c("v-checkbox", {
                     attrs: {
                       color: "#7595af",
-                      label: "Lancer le projet avec la junior entreprise"
+                      label:
+                        "Je veux que ma demande soit gérée par un gestionnaire de la Junior Entreprise Epfl"
                     },
                     model: {
                       value: _vm.form.projetJe,
@@ -39946,7 +41848,7 @@ var render = function() {
                   attrs: { disabled: !_vm.valid },
                   on: { click: _vm.validate }
                 },
-                [_vm._v("Enregistrer la nouvelle annonce")]
+                [_vm._v(_vm._s(_vm.$t("general.buttons.submit.new")))]
               )
             ],
             1
@@ -39964,14 +41866,14 @@ var render = function() {
             { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
             [
               _c("v-card-title", { staticClass: "pb-2" }, [
-                _c("h2", [_vm._v("Gestion de l'annonce")])
+                _c("h2", [_vm._v(_vm._s(_vm.$t("general.titles.managing")))])
               ]),
               _vm._v(" "),
-              _c("v-card-text", [
-                _vm._v(
-                  "Il existe deux façons de gérer l'annonce. Pour les collaborateurs et les étudiants de l'EPFL, il est possible de se connecter au moyen de Tequila, puis d'aller dans la rubrique \"mes annonces\". Pour les autres, il suffit de\r\n                cliquer sur le lien envoyé par email à la création de l'annonce ou d'en redemander un. Dans tous les cas, l'annonce est visible durant 15 jours, durée après laquelle il faut la renouveler.\r\n            "
-                )
-              ]),
+              _c("v-card-text", {
+                domProps: {
+                  innerHTML: _vm._s(_vm.$t("general.texts.rules.visibility"))
+                }
+              }),
               _vm._v(" "),
               _c(
                 "v-card-actions",
@@ -39980,13 +41882,21 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "epfl-bg-color",
-                      attrs: { "text-color": "white", dark: "" }
+                      attrs: { "text-color": "white", dark: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.redirect("forgotten-link")
+                        }
+                      }
                     },
                     [
                       _c("v-icon", { attrs: { left: "", dark: "" } }, [
                         _vm._v("restore")
                       ]),
-                      _vm._v("Récuperer une annonce\r\n                ")
+                      _vm._v(
+                        _vm._s(_vm.$t("general.buttons.recover")) +
+                          "\r\n                "
+                      )
                     ],
                     1
                   )
@@ -40002,30 +41912,42 @@ var render = function() {
             { staticClass: "text-xs-left ma-4 align-center text-xs-left" },
             [
               _c("v-card-title", { staticClass: "pb-2" }, [
-                _c("h2", [_vm._v("Conditions d'acceptation")])
+                _c("h2", [_vm._v(_vm._s(_vm.$t("general.titles.conditions")))])
               ]),
               _vm._v(" "),
               _c("v-card-text", [
                 _c("p", [
                   _vm._v(
-                    "\r\n                    L'annonce doit respecter les critères suivants pour être validée:\r\n                "
+                    "\r\n                    " +
+                      _vm._s(_vm.$t("general.texts.rules.respect")) +
+                      "\r\n                "
                   )
                 ]),
                 _vm._v(" "),
                 _c("ol", [
-                  _c("li", [
-                    _vm._v("cible un étudiant durant ses études à l'EPFL")
-                  ]),
+                  _c("li", {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.$t("general.texts.rules.rule1"))
+                    }
+                  }),
                   _vm._v(" "),
-                  _c("li", [_vm._v("respect du tarif minimum : CHF 24.—/h")]),
+                  _c("li", {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.$t("general.texts.rules.rule2"))
+                    }
+                  }),
                   _vm._v(" "),
-                  _c("li", [_vm._v("pas de lien de postulation extérieure")]),
+                  _c("li", {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.$t("general.texts.rules.rule3"))
+                    }
+                  }),
                   _vm._v(" "),
-                  _c("li", [
-                    _vm._v(
-                      "les annonces doivent être rédigées en français ou anglais"
-                    )
-                  ])
+                  _c("li", {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.$t("general.texts.rules.rule4"))
+                    }
+                  })
                 ])
               ]),
               _vm._v(" "),
@@ -40036,13 +41958,21 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "epfl-bg-color",
-                      attrs: { "text-color": "white", dark: "" }
+                      attrs: { "text-color": "white", dark: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.redirect("help")
+                        }
+                      }
                     },
                     [
                       _c("v-icon", { attrs: { left: "", dark: "" } }, [
                         _vm._v("contact_support")
                       ]),
-                      _vm._v("Poser une question\r\n                ")
+                      _vm._v(
+                        _vm._s(_vm.$t("general.buttons.ask")) +
+                          "\r\n                "
+                      )
                     ],
                     1
                   )
@@ -40097,7 +42027,9 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "pb-2" }, [
-                _c("h2", [_vm._v("Options")])
+                _c("h2", [
+                  _vm._v(_vm._s(_vm.$t("general.titles.notifications")))
+                ])
               ]),
               _vm._v(" "),
               _c(
@@ -40105,8 +42037,7 @@ var render = function() {
                 [
                   _c("v-switch", {
                     attrs: {
-                      label:
-                        "Notification instantanée (dès la modération de l'annonce)"
+                      label: _vm.$t("options.labels.notifications_instant")
                     },
                     on: {
                       change: function($event) {
@@ -40124,8 +42055,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-switch", {
                     attrs: {
-                      label:
-                        "Notification journalière (nouvelles annonces du jour)"
+                      label: _vm.$t("options.labels.notifications_day")
                     },
                     on: {
                       change: function($event) {
@@ -40143,8 +42073,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-switch", {
                     attrs: {
-                      label:
-                        "Notification hebdomadaire (nouvelles annonces de la semaine)"
+                      label: _vm.$t("options.labels.notifications_week")
                     },
                     on: {
                       change: function($event) {
@@ -40182,7 +42111,13 @@ var render = function() {
             expression: "showAlert"
           }
         },
-        [_vm._v("\r\n        Options updated\r\n    ")]
+        [
+          _vm._v(
+            "\r\n        " +
+              _vm._s(_vm.$t("options.labels.options_updated")) +
+              "\r\n    "
+          )
+        ]
       )
     ],
     1
@@ -78310,13 +80245,571 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/vue-i18n-locales.generated.js":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/vue-i18n-locales.generated.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "en": {
+    "ads": {
+      "sections": {
+        "general": "General informations",
+        "details": "Job details",
+        "main": "Body of the ad",
+        "publisher": "Contact person"
+      },
+      "labels": {
+        "title": "Title",
+        "category_id": "Category",
+        "place": "Workplace",
+        "description": "Description",
+        "starts_at": "Start date",
+        "ends_at": "End date",
+        "duration": "Indicative duration",
+        "salary": "Salary",
+        "skills": "Skills",
+        "languages": "Language·s",
+        "contact_first_name": "First name",
+        "contact_last_name": "Last name",
+        "contact_email": "Email",
+        "contact_phone": "Phone number",
+        "section_ids": "Section"
+      },
+      "placeholders": {
+        "title": "Pizza delivery, Neuroscience experiment",
+        "category_id": "",
+        "place": "St-Sulpice, remotely",
+        "description": "What kind of work is it? Are there any particular dispositions (schedule, team, prerequisite)?",
+        "starts_at": "",
+        "ends_at": "",
+        "duration": "10h a week, 120h in total",
+        "salary": "to discuss, 24.—/h",
+        "skills": "3D modeling, Scala",
+        "languages": "English, good french level is a plus",
+        "section": "Sections",
+        "contact_first_name": "Anne",
+        "contact_last_name": "Onymous",
+        "contact_email": "anne.onyme@epfl.ch",
+        "contact_phone": "+41 21 69 XX XX"
+      }
+    },
+    "contacts": {
+      "sections": [],
+      "labels": [],
+      "placeholders": {
+        "first_name": "First name",
+        "last_name": "Name",
+        "email": "Email",
+        "message": "Message"
+      }
+    },
+    "general": {
+      "nav": {
+        "home": "Home",
+        "jobs": "All jobs",
+        "myjobs": "My jobs",
+        "job": "Job",
+        "search": "Search",
+        "newjob": "New job",
+        "editjob": "Edit a job",
+        "deletejob": "Delete a job",
+        "enablejob": "Renew a job",
+        "disablejob": "Disable a job",
+        "acceptjob": "Accept a job",
+        "refusejob": "Refuse a job",
+        "moderation": "Moderation",
+        "options": "Options",
+        "help": "Help",
+        "connect": "Connect",
+        "disconnect": "Disconnect"
+      },
+      "buttons": {
+        "submit": {
+          "new": "Save new ad",
+          "edit": "Apply modifications",
+          "update": "Apply changes",
+          "send": "Send the message",
+          "send-short": "Send"
+        },
+        "edit": "Edit",
+        "renew": "Renew",
+        "disable": "Disable",
+        "delete": "Delete",
+        "accept": "Accept",
+        "refuse": "Refuse",
+        "recover": "Recover an ad",
+        "ask": "Ask a question",
+        "apply": "Apply",
+        "offer": "I'm looking for a student",
+        "seek": "I'm looking for a job",
+        "feedback": "Feedback"
+      },
+      "optional": "if applicable",
+      "undefined": "Unspecified",
+      "nothingleft": "No content available.",
+      "back": "Back",
+      "disabled": "Disabled",
+      "notyetvalidated": "not yet validated",
+      "startingtoday": "starting today",
+      "dates": "Date·s",
+      "todate": "until",
+      "successes": {
+        "options": "Options have been updated.",
+        "sent": "The message has been sent.",
+        "adcreated": "The ad was created with success!"
+      },
+      "titles": {
+        "managing": "Manage the ad",
+        "conditions": "Approval conditions",
+        "contact": "Contact form",
+        "faq": "Frequently asked questions",
+        "confirmdelete": "Delete a job?",
+        "notifications": "Notifications",
+        "publishers": "Employers",
+        "students": "Students",
+        "adopt": "Hire an EPFL student",
+        "news": "A new Myjob !",
+        "apply": "Apply",
+        "forgotten-link": "Forgotten link",
+        "process": "Process",
+        "error": "An error occured"
+      },
+      "placeholders": {
+        "forgotten-link-mail": "The email address that was used when creating the ads."
+      },
+      "texts": {
+        "delete": {
+          "confirm": "Disable an ad temporarily makes it invisible. You can enable it again later.",
+          "definitive": "On the opposite, deletion is definitive.",
+          "disabled": "The ad is already disabled."
+        },
+        "rules": {
+          "respect": "The ad must repect following criteria to be accepted:",
+          "visibility": "There are two ways of creating an ad. EPFL collaborators and students, you can connect through Tequila, then navigate into the \"My Ads\" section. For others, you need to use the link that was sent to you by email after the ad creation, or ask for a new one just below. In any case, <strong>the ad is visible during 15 days</strong>, then it disables and you need to renew it.",
+          "rule1": "aims at a student <strong>during</strong> his studies at EPFL",
+          "rule2": "respect of the minimum rate : <strong>CHF 24.—/h</strong>",
+          "rule3": "<strong>no external job platform links</strong>",
+          "rule4": "ads must be written in <strong>french</strong> or <strong>english</strong>"
+        },
+        "contact": "For any questions (after having closely read the FAQ) and/or suggestions, you can quickly contact the team here.",
+        "faq": "After many years of activity, the Myjob team listed the most frequently asked questions here",
+        "notifications": "Despite the number of ads, jobs are scarce. It is possible to set up frequent email notifications in order not to miss any opportunity.",
+        "description": "The \"<strong>Association Générale des Etudiants</strong>\"of the \"<strong>Ecole Polytechnique Fédérale de Lausanne</strong>\" provides this platform for free, in order to connect student and employers. The goal is to allow students to find easily a job <strong>during their studies</strong>, and in the same time offer employers various and highly qualified profiles.",
+        "noinscription": "No subscription needed, management link is sent by <strong>email</strong>.",
+        "tequila": "<strong><em>Tequila</em></strong> access necessary.",
+        "oldad": "Find an old ad back.",
+        "newpassword": "\"Gaspar\" password lost.",
+        "apply": "To apply, please contact the ad owner directly.",
+        "news": "Welcome on the new version of Myjob! Help us impoving this big update by reporting everything that looks abnormal or unpractical. Feedback is very appreciated!",
+        "forgotten-link": "We'll send you an email containing a new management link. Your former link will be disabled.",
+        "forgotten-link-success": "An email containing the new management link has been sent.",
+        "forgotten-link-error": "No-one published an ad with email {email}.",
+        "forgotten-link-advices": "If you already created an ad on Myjob, you should have recieved an email containing your management link. If this link was lost or does not work, please ask a new one by providing your email address. Please verify that it is the email address that was used to create the ads.",
+        "error": "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"http://localhost/help\">contact us</a>."
+      }
+    },
+    "mails": {
+      "notifications": {
+        "newjobs": "New jobs on Myjob",
+        "newads": "New ads",
+        "gotomyjob": "Go to Myjob",
+        "hi": "Hi",
+        "newjobjustappeared": "New ads are available on Myjob.",
+        "seeads": "See the ads",
+        "teammyjob": "See you soon, the Myjob team.",
+        "options": "Options"
+      },
+      "publishers": {
+        "link": "Management link",
+        "hello": "Hello",
+        "thanks": "Thank you for using Myjob! Here is your private link allowing you to manage your ads. Do not share this link with anyone.",
+        "teammyjob": "See you soon, the Myjob team.",
+        "manage": "Manage my ads"
+      }
+    },
+    "options": {
+      "sections": [],
+      "labels": {
+        "notifications_instant": "Instant notifications (as soon as the ad is validated)",
+        "notifications_day": "Daily notifications (new ads of the day)",
+        "notifications_week": "Weekly notifications (new ads of the week)",
+        "options_updated": "Options updated !"
+      },
+      "placeholders": []
+    },
+    "validation": {
+      "accepted": "The {attribute} must be accepted.",
+      "active_url": "The {attribute} is not a valid URL.",
+      "after": "The {attribute} must be a date after {date}.",
+      "alpha": "The {attribute} may only contain letters.",
+      "alpha_dash": "The {attribute} may only contain letters, numbers, and dashes.",
+      "alpha_num": "The {attribute} may only contain letters and numbers.",
+      "array": "The {attribute} must be an array.",
+      "before": "The {attribute} must be a date before {date}.",
+      "between": {
+        "numeric": "The {attribute} must be between {min} and {max}.",
+        "file": "The {attribute} must be between {min} and {max} kilobytes.",
+        "string": "The {attribute} must be between {min} and {max} characters.",
+        "array": "The {attribute} must have between {min} and {max} items."
+      },
+      "boolean": "The {attribute} field must be true or false.",
+      "confirmed": "The {attribute} confirmation does not match.",
+      "date": "The {attribute} is not a valid date.",
+      "date_format": "The {attribute} does not match the format {format}.",
+      "different": "The {attribute} and {other} must be different.",
+      "digits": "The {attribute} must be {digits} digits.",
+      "digits_between": "The {attribute} must be between {min} and {max} digits.",
+      "email": "The {attribute} must be a valid email address.",
+      "filled": "The {attribute} field is required.",
+      "exists": "The selected {attribute} is invalid.",
+      "image": "The {attribute} must be an image.",
+      "in": "The selected {attribute} is invalid.",
+      "integer": "The {attribute} must be an integer.",
+      "ip": "The {attribute} must be a valid IP address.",
+      "max": {
+        "numeric": "The {attribute} may not be greater than {max}.",
+        "file": "The {attribute} may not be greater than {max} kilobytes.",
+        "string": "The {attribute} may not be greater than {max} characters.",
+        "array": "The {attribute} may not have more than {max} items."
+      },
+      "mimes": "The {attribute} must be a file of type: {values}.",
+      "min": {
+        "numeric": "The {attribute} must be at least {min}.",
+        "file": "The {attribute} must be at least {min} kilobytes.",
+        "string": "The {attribute} must be at least {min} characters.",
+        "array": "The {attribute} must have at least {min} items."
+      },
+      "not_in": "The selected {attribute} is invalid.",
+      "numeric": "The {attribute} must be a number.",
+      "regex": "The {attribute} format is invalid.",
+      "required": "The {attribute} field is required.",
+      "required_if": "The {attribute} field is required when {other} is {value}.",
+      "required_with": "The {attribute} field is required when {values} is present.",
+      "required_with_all": "The {attribute} field is required when {values} is present.",
+      "required_without": "The {attribute} field is required when {values} is not present.",
+      "required_without_all": "The {attribute} field is required when none of {values} are present.",
+      "same": "The {attribute} and {other} must match.",
+      "size": {
+        "numeric": "The {attribute} must be {size}.",
+        "file": "The {attribute} must be {size} kilobytes.",
+        "string": "The {attribute} must be {size} characters.",
+        "array": "The {attribute} must contain {size} items."
+      },
+      "string": "The {attribute} must be a string.",
+      "timezone": "The {attribute} must be a valid zone.",
+      "unique": "The {attribute} has already been taken.",
+      "url": "The {attribute} format is invalid.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "attributes": []
+    }
+  },
+  "fr": {
+    "ads": {
+      "sections": {
+        "general": "Informations générales",
+        "details": "Détails du job",
+        "main": "Corps de l'annonce",
+        "publisher": "Personne de contact"
+      },
+      "labels": {
+        "title": "Titre",
+        "category_id": "Catégorie",
+        "place": "Lieu de travail",
+        "description": "Description",
+        "starts_at": "Date de début",
+        "ends_at": "Date de fin",
+        "duration": "Durée indicative",
+        "salary": "Rémunération",
+        "skills": "Compétence·s",
+        "languages": "Langue·s",
+        "contact_first_name": "Prénom",
+        "contact_last_name": "Nom",
+        "contact_email": "Email",
+        "contact_phone": "Téléphone",
+        "section_ids": "Sections"
+      },
+      "placeholders": {
+        "title": "Livreur de pizza, Expérience neurologique",
+        "category_id": "",
+        "place": "St-Sulpice, à distance",
+        "description": "En quoi consiste le job ? Existe-t-il des dispositions particulières (horaire, équipe, pré-requis) ?",
+        "starts_at": "",
+        "ends_at": "",
+        "duration": "10h par semaine, 120h en tout",
+        "salary": "à discuter, 24.—/h",
+        "skills": "Modélisation 3D, Scala",
+        "languages": "Français, bon niveau anglais requis",
+        "contact_first_name": "Anne",
+        "contact_last_name": "Onyme",
+        "contact_email": "anne.onyme@epfl.ch",
+        "contact_phone": "+41 21 69 XX XX"
+      }
+    },
+    "contacts": {
+      "sections": [],
+      "labels": [],
+      "placeholders": {
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "email": "Email",
+        "message": "Message"
+      }
+    },
+    "general": {
+      "nav": {
+        "home": "Accueil",
+        "jobs": "Tous les jobs",
+        "myjobs": "Mes jobs",
+        "job": "Job",
+        "search": "Recherche",
+        "newjob": "Créer un job",
+        "editjob": "Editer un job",
+        "deletejob": "Supprimer un job",
+        "enablejob": "Renouveller un job",
+        "disablejob": "Désactiver un job",
+        "acceptjob": "Accepter un job",
+        "refusejob": "Refuser un job",
+        "moderation": "Modération",
+        "options": "Options",
+        "help": "Aide",
+        "connect": "Se connecter",
+        "disconnect": "Déconnexion"
+      },
+      "buttons": {
+        "submit": {
+          "new": "Enregistrer la nouvelle annonce",
+          "edit": "Appliquer les modifications",
+          "update": "Appliquer changements",
+          "send": "Envoyer le message",
+          "send-short": "Envoyer"
+        },
+        "edit": "Editer",
+        "renew": "Renouveller",
+        "disable": "Désactiver",
+        "delete": "Supprimer",
+        "accept": "Accepter",
+        "refuse": "Refuser",
+        "recover": "Récupérer une annonce",
+        "ask": "Poser une question",
+        "apply": "Postuler",
+        "offer": "Je recherche un étudiant",
+        "seek": "Je recherche un job",
+        "feedback": "Feedback"
+      },
+      "optional": "si applicable",
+      "undefined": "Non spécifié",
+      "nothingleft": "Pas de contenu disponible.",
+      "back": "Retour",
+      "disabled": "désactivé",
+      "notyetvalidated": "pas encore validé",
+      "startingtoday": "dès aujourd'hui",
+      "dates": "Date·s",
+      "todate": "jusqu'au",
+      "successes": {
+        "options": "Options mises à jour.",
+        "sent": "Message envoyé.",
+        "adcreated": "L'annonce a été créée avec succès !"
+      },
+      "titles": {
+        "managing": "Gestion de l'annonce",
+        "conditions": "Conditions d'acceptation",
+        "contact": "Formulaire de contact",
+        "faq": "Foire aux questions",
+        "confirmdelete": "Supprimer un job ?",
+        "notifications": "Notifications",
+        "publishers": "Employeurs",
+        "students": "Etudiants",
+        "adopt": "Adopte un étudiant EPFL",
+        "news": "Un nouveau Myjob !",
+        "apply": "Postuler",
+        "forgotten-link": "Lien perdu",
+        "process": "Processus",
+        "error": "Une erreur s'est produite"
+      },
+      "placeholders": {
+        "forgotten-link-mail": "L'adresse email utilisée lors de la création des annonces"
+      },
+      "texts": {
+        "delete": {
+          "confirm": "Désactiver l'annonce permet de la rendre invisible et de la réactiver plus tard.",
+          "definitive": "Au contraire, la suppression est définitive.",
+          "disabled": "L'annonce est déjà désactivée."
+        },
+        "rules": {
+          "respect": "L'annonce doit respecter les critères suivants pour être validée:",
+          "visibility": "Il existe deux façons de gérer l'annonce. Pour les collaborateurs et les étudiants de l'EPFL, il est possible de se connecter au moyen de Tequila, puis d'aller dans la rubrique \"mes annonces\". Pour les autres, il suffit de cliquer sur le lien envoyé par email à la création de l'annonce ou d'en redemander un. Dans tous les cas, <strong>l'annonce est visible durant 15 jours</strong>, durée après laquelle il faut la renouveler.",
+          "rule1": "cible un étudiant <strong>durant</strong> ses études à l'EPFL",
+          "rule2": "respect du tarif minimum : <strong>CHF 24.—/h</strong>",
+          "rule3": "<strong>pas de lien de postulation extérieure</strong>",
+          "rule4": "les annonces doivent être rédigées en <strong>français</strong> ou <strong>anglais</strong>"
+        },
+        "contact": "Pour toute·s question·s (après avoir lu attentivement la foire aux questions) et/ou suggestion·s, vous pouvez contacter rapidement l'équipe par ici.",
+        "faq": "Après de nombreuses années de services, l'équipe de Myjob a soigneusement répertorié ici les questions les plus posées.",
+        "notifications": "Malgré le nombre d'annonces, les places se font rares. Il est donc possible de paramétrer des alertes emails fréquentes pour ne pas rater les nouvelles annonces.",
+        "description": "L'<strong>Association Générale des Etudiants</strong> de l'<strong>Ecole Polytechnique Fédérale de Lausanne</strong> met gratuitement cette plateforme à disposition pour mettre en relation étudiants et employeurs. Le but est de permettre aux étudiants de trouver facilement un job/emploi <strong>durant leurs études</strong>, et en même temps d'offrir aux employeurs des profils variés et qualifiés.",
+        "noinscription": "Aucune inscription, gestion par <strong>email</strong>.",
+        "tequila": "Accès <strong><em>Tequila</em></strong> requis.",
+        "oldad": "Retrouver une ancienne annonce.",
+        "newpassword": "Mot de passe \"Gaspar\" perdu.",
+        "apply": "Pour postuler, veuillez contacter directement l'auteur de l'annonce.",
+        "news": "Bienvenue sur la nouvelle version ! Aide-nous à améliorer cette grande mise à jour en signalant tout ce qui te parait anormal ou peu pratique. On attend avec impatience tes remarques et suggestions !",
+        "forgotten-link": "Nous vous enverrons un email contenant un nouveau lien secret de connexion. Votre lien précédent sera invalidé.",
+        "forgotten-link-success": "Un email contenant le nouveau lien secret de connexion vous a été envoyé.",
+        "forgotten-link-error": "Personne n'a publié d'annonce avec l'email {email}.",
+        "forgotten-link-advices": "Si vous avez déjà créé une annonce sur Myjob, vous devriez avoir reçu un email contenant votre lien de connexion. Si ce lien a été perdu ou ne fonctionne pas, veuillez en redemander un nouveau en indiquant votre adresse email. Merci de vérifier qu'il s'agisse bien de l'adresse email utilisée lors de la création d'une annonce.",
+        "error": "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"http://localhost/help\">contactez-nous</a>."
+      }
+    },
+    "mails": {
+      "notifications": {
+        "newjobs": "Nouveaux jobs sur Myjob",
+        "newads": "Nouvelles annonces",
+        "gotomyjob": "Aller sur Myjob",
+        "hi": "Salut",
+        "newjobjustappeared": "Des nouvelles annonces sont disponibles sur Myjob.",
+        "seeads": "Consulter les annonces",
+        "teammyjob": "A bientôt, l\\'équipe de Myjob.",
+        "options": "Options"
+      },
+      "publishers": {
+        "link": "Lien d\\'administration",
+        "hello": "Bonjour",
+        "thanks": "Merci d\\'utiliser Myjob ! Voici votre lien privé permettant d\\'administrer vos annonces. Ne partagez ce lien avec personne.",
+        "teammyjob": "A bientôt, l\\'équipe de Myjob.",
+        "manage": "Administrer mes annonces"
+      }
+    },
+    "options": {
+      "sections": [],
+      "labels": {
+        "notifications_instant": "Notification instantanée (dès la modération de l'annonce)",
+        "notifications_day": "Notification journalière (nouvelles annonces du jour)",
+        "notifications_week": "Notification hebdomadaire (nouvelles annonces de la semaine)",
+        "options_updated": "Options mises à jour !"
+      },
+      "placeholders": []
+    },
+    "validation": {
+      "accepted": "Le champ {attribute} doit être accepté.",
+      "active_url": "Le champ {attribute} n'est pas une URL valide.",
+      "after": "Le champ {attribute} doit être une date postérieure au {date}.",
+      "alpha": "Le champ {attribute} doit seulement contenir des lettres.",
+      "alpha_dash": "Le champ {attribute} doit seulement contenir des lettres, des chiffres et des tirets.",
+      "alpha_num": "Le champ {attribute} doit seulement contenir des chiffres et des lettres.",
+      "array": "Le champ {attribute} doit être un tableau.",
+      "before": "Le champ {attribute} doit être une date antérieure au {date}.",
+      "between": {
+        "numeric": "La valeur de {attribute} doit être comprise entre {min} et {max}.",
+        "file": "Le fichier {attribute} doit avoir une taille entre {min} et {max} kilobytes.",
+        "string": "Le texte {attribute} doit avoir entre {min} et {max} caractères.",
+        "array": "Le champ {attribute} doit avoir entre {min} et {max} éléments."
+      },
+      "confirmed": "Le champ de confirmation {attribute} ne correspond pas.",
+      "date": "Le champ {attribute} n'est pas une date valide.",
+      "date_format": "Le champ {attribute} ne correspond pas au format {format}.",
+      "different": "Les champs {attribute} et {other} doivent être différents.",
+      "digits": "Le champ {attribute} doit avoir {digits} chiffres.",
+      "digits_between": "Le champ {attribute} doit avoir entre {min} and {max} chiffres.",
+      "email": "Le champ {attribute} doit être une adresse email valide.",
+      "exists": "Le champ {attribute} sélectionné est invalide.",
+      "image": "Le champ {attribute} doit être une image.",
+      "in": "Le champ {attribute} est invalide.",
+      "integer": "Le champ {attribute} doit être un entier.",
+      "ip": "Le champ {attribute} doit être une adresse IP valide.",
+      "max": {
+        "numeric": "La valeur de {attribute} ne peut être supérieure à {max}.",
+        "file": "Le fichier {attribute} ne peut être plus gros que {max} kilobytes.",
+        "string": "Le texte de {attribute} ne peut contenir plus de {max} caractères.",
+        "array": "Le champ {attribute} ne peut avoir plus de {max} éléments."
+      },
+      "mimes": "Le champ {attribute} doit être un fichier de type : {values}.",
+      "min": {
+        "numeric": "La valeur de {attribute} doit être supérieure à {min}.",
+        "file": "Le fichier {attribute} doit être plus que gros que {min} kilobytes.",
+        "string": "Le texte {attribute} doit contenir au moins {min} caractères.",
+        "array": "Le champ {attribute} doit avoir au moins {min} éléments."
+      },
+      "not_in": "Le champ {attribute} sélectionné n'est pas valide.",
+      "numeric": "Le champ {attribute} doit contenir un nombre.",
+      "regex": "Le format du champ {attribute} est invalide.",
+      "required": "Le champ {attribute} est obligatoire.",
+      "required_if": "Le champ {attribute} est obligatoire quand la valeur de {other} est {value}.",
+      "required_with": "Le champ {attribute} est obligatoire quand {values} est présent.",
+      "required_with_all": "Le champ {attribute} est obligatoire quand {values} est présent.",
+      "required_without": "Le champ {attribute} est obligatoire quand {values} n'est pas présent.",
+      "required_without_all": "Le champ {attribute} est requis quand aucun de {values} n'est présent.",
+      "same": "Les champs {attribute} et {other} doivent être identiques.",
+      "size": {
+        "numeric": "La valeur de {attribute} doit être {size}.",
+        "file": "La taille du fichier de {attribute} doit être de {size} kilobytes.",
+        "string": "Le texte de {attribute} doit contenir {size} caractères.",
+        "array": "Le champ {attribute} doit contenir {size} éléments."
+      },
+      "unique": "La valeur du champ {attribute} est déjà utilisée.",
+      "url": "Le format de l'URL de {attribute} n'est pas valide.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "attributes": {
+        "name": "Nom",
+        "username": "Pseudo",
+        "email": "E-mail",
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "password": "Mot de passe",
+        "password_confirmation": "Confirmation du mot de passe",
+        "city": "Ville",
+        "country": "Pays",
+        "address": "Adresse",
+        "phone": "Téléphone",
+        "mobile": "Portable",
+        "age": "Age",
+        "sex": "Sexe",
+        "gender": "Genre",
+        "day": "Jour",
+        "month": "Mois",
+        "year": "Année",
+        "hour": "Heure",
+        "minute": "Minute",
+        "second": "Seconde",
+        "title": "Titre",
+        "content": "Contenu",
+        "description": "Description",
+        "excerpt": "Extrait",
+        "date": "Date",
+        "time": "Heure",
+        "available": "Disponible",
+        "size": "Taille"
+      }
+    }
+  },
+  "javascripts": []
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var _assets_js_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/js/vue-i18n-locales.generated */ "./resources/assets/js/vue-i18n-locales.generated.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -78326,6 +80819,17 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.Vuetify = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
+
+
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  locale: 'fr',
+  // set locale
+  fallbackLocale: 'en',
+  // set fallback locale
+  messages: _assets_js_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__["default"] // set locale messages
+
+});
 Vue.use(Vuetify);
 /**
  * The following block of code may be used to automatically register your
@@ -78345,7 +80849,6 @@ Vue.component('myjob-footer', __webpack_require__(/*! ./components/MyjobFooter.v
 Vue.component('myjob-ad-index', __webpack_require__(/*! ./components/MyjobAdIndex.vue */ "./resources/js/components/MyjobAdIndex.vue")["default"]);
 Vue.component('myjob-new-ad', __webpack_require__(/*! ./components/MyjobNewAd.vue */ "./resources/js/components/MyjobNewAd.vue")["default"]);
 Vue.component('myjob-options', __webpack_require__(/*! ./components/MyjobOptions.vue */ "./resources/js/components/MyjobOptions.vue")["default"]);
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -78356,11 +80859,15 @@ Vue.mixin({
   methods: {
     redirect: function redirect(value) {
       window.location.href = value;
+    },
+    changeLocale: function changeLocale(language) {
+      this.$i18n.locale = language;
     }
   }
 });
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  i18n: i18n
 });
 
 /***/ }),
@@ -78420,75 +80927,6 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

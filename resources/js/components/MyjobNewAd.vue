@@ -5,19 +5,19 @@
             <v-card class="text-xs-left ma-4 align-center" align-center>
                 <div class="agep-bg-color" style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">INFORMATIONS GÉNÉRALES</h4>
+                        <h4 style="color:white;">{{ $t('ads.sections.general') }}</h4>
                     </v-card-text>
                 </div>
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-text-field v-model="form.title" label="Titre" required :rules="titleRules"></v-text-field>
+                            <v-text-field v-model="form.title" :label="$t('ads.labels.title')" required :rules="titleRules"></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" label="Categorie" required></v-select>
+                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" :label="$t('ads.labels.category_id')" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.place" label="Lieu de travail" required :rules="baseRules"></v-text-field>
+                            <v-text-field v-model="form.place" :label="$t('ads.labels.place')" required :rules="baseRules"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -25,7 +25,7 @@
             <v-card class="text-xs-left ma-4 align-center" align-center>
                 <div class="agep-bg-color" style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">DÉTAILS DU JOB</h4>
+                        <h4 style="color:white;">{{ $t('ads.sections.details') }}</h4>
                     </v-card-text>
                 </div>
                 <v-container>
@@ -33,7 +33,7 @@
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.starts_at" label="Date de début" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                                    <v-text-field v-model="form.starts_at" :label="$t('ads.labels.starts_at')" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || 'Item is required']"></v-text-field>
                                 </template>
                                 <v-date-picker v-model="form.starts_at" @input="menuDateDebut = false" :min="date"></v-date-picker>
                             </v-menu>
@@ -41,25 +41,25 @@
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateFin" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.ends_at" label="Date de fin" prepend-icon="event" readonly v-on="on"></v-text-field>
+                                    <v-text-field v-model="form.ends_at" :label="$t('ads.labels.ends_at')" prepend-icon="event" readonly v-on="on"></v-text-field>
                                 </template>
                                 <v-date-picker v-model="form.ends_at" @input="menuDateFin = false" :min="form.starts_at"></v-date-picker>
                             </v-menu>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-select :items="listeDuree" label="Durée indicative" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
+                            <v-select :items="listeDuree" :label="$t('ads.labels.duration')" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.salary" label="Rémuneration" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.skills" label="Compétences" :rules="skillRules"></v-text-field>
+                            <v-text-field v-model="form.skills" :label="$t('ads.labels.skills')" :rules="skillRules"></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.languages" label="Langues" :rules="languageRules"></v-text-field>
+                            <v-text-field v-model="form.languages" :label="$t('ads.labels.languages')" :rules="languageRules"></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
-                            <v-select v-model="form.section_ids" :items="listeSections" label="Sections" multiple>
+                            <v-select v-model="form.section_ids" :items="listeSections" :label="$t('ads.labels.section_ids')" multiple>
                                 <template v-slot:prepend-item>
                                     <v-list-tile ripple @click="selectAllSections">
                                         <v-list-tile-action>
@@ -85,7 +85,7 @@
             <v-card class="text-xs-left ma-4 align-center" align-center>
                 <div class="agep-bg-color" style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">CORPS DE L'ANNONCE</h4>
+                        <h4 style="color:white;">{{ $t('ads.sections.main') }}</h4>
                     </v-card-text>
                 </div>
                 <v-container>
@@ -94,7 +94,7 @@
                             <v-textarea v-model="form.description" color="teal" auto-grow :rules="descriptionRules" :counter="500">
                                 <template v-slot:label>
                                     <div>
-                                        Description
+                                        {{ $t('ads.labels.description')}}
                                     </div>
                                 </template>
                             </v-textarea>
@@ -106,66 +106,65 @@
             <v-card class="text-xs-left ma-4 align-center" align-center>
                 <div class="agep-bg-color" style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">PERSONNE DE CONTACT</h4>
+                        <h4 style="color:white;">{{ $t('ads.sections.publisher') }}</h4>
                     </v-card-text>
                 </div>
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_first_name" label="Prenom" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_last_name" label="Nom" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_email" label="Email" :rules="emailRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_email" :label="$t('ads.labels.contact_email')" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs6 class="px-1">
-                            <v-text-field v-model="form.contact_phone" label="Telephone" :rules="phoneRules"></v-text-field>
+                            <v-text-field v-model="form.contact_phone" :label="$t('ads.labels.contact_phone')" :rules="phoneRules"></v-text-field>
                         </v-flex>
+
                     </v-layout>
                 </v-container>
             </v-card>
             <v-container class="mx-4 mt-4 pa-0">
-                <v-checkbox color="#7595af" v-model="form.projetJe" label="Lancer le projet avec la junior entreprise"></v-checkbox>
+                <v-checkbox color="#7595af" v-model="form.projetJe" label="Je veux que ma demande soit gérée par un gestionnaire de la Junior Entreprise Epfl"></v-checkbox>
             </v-container>
 
-            <v-btn :disabled="!valid" @click="validate" :class="buttonColor">Enregistrer la nouvelle annonce</v-btn>
+            <v-btn :disabled="!valid" @click="validate" :class="buttonColor">{{ $t('general.buttons.submit.new') }}</v-btn>
 
         </v-form>
     </v-flex>
     <v-flex xs12 md4>
         <v-card class="text-xs-left ma-4 align-center text-xs-left">
             <v-card-title class="pb-2">
-                <h2>Gestion de l'annonce</h2>
+                <h2>{{ $t('general.titles.managing') }}</h2>
             </v-card-title>
-            <v-card-text>Il existe deux façons de gérer l'annonce. Pour les collaborateurs et les étudiants de l'EPFL, il est possible de se connecter au moyen de Tequila, puis d'aller dans la rubrique "mes annonces". Pour les autres, il suffit de
-                cliquer sur le lien envoyé par email à la création de l'annonce ou d'en redemander un. Dans tous les cas, l'annonce est visible durant 15 jours, durée après laquelle il faut la renouveler.
-            </v-card-text>
+            <v-card-text v-html="$t('general.texts.rules.visibility')"></v-card-text>
             <v-card-actions>
-                <v-btn class="epfl-bg-color" text-color="white" dark>
-                    <v-icon left dark>restore</v-icon>Récuperer une annonce
+                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('forgotten-link')">
+                    <v-icon left dark>restore</v-icon>{{ $t('general.buttons.recover') }}
                 </v-btn>
             </v-card-actions>
         </v-card>
         <v-card class="text-xs-left ma-4 align-center text-xs-left">
             <v-card-title class="pb-2">
-                <h2>Conditions d'acceptation</h2>
+                <h2>{{ $t('general.titles.conditions') }}</h2>
             </v-card-title>
             <v-card-text>
                 <p>
-                    L'annonce doit respecter les critères suivants pour être validée:
+                    {{ $t('general.texts.rules.respect') }}
                 </p>
                 <ol>
-                    <li>cible un étudiant durant ses études à l'EPFL</li>
-                    <li>respect du tarif minimum : CHF 24.—/h</li>
-                    <li>pas de lien de postulation extérieure</li>
-                    <li>les annonces doivent être rédigées en français ou anglais</li>
+                    <li v-html="$t('general.texts.rules.rule1')"></li>
+                    <li v-html="$t('general.texts.rules.rule2')"></li>
+                    <li v-html="$t('general.texts.rules.rule3')"></li>
+                    <li v-html="$t('general.texts.rules.rule4')"></li>
                 </ol>
             </v-card-text>
             <v-card-actions>
-                <v-btn class="epfl-bg-color" text-color="white" dark>
-                    <v-icon left dark>contact_support</v-icon>Poser une question
+                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('help')">
+                    <v-icon left dark>contact_support</v-icon>{{ $t('general.buttons.ask') }}
                 </v-btn>
             </v-card-actions>
         </v-card>

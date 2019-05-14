@@ -41,6 +41,7 @@ return [
 		'salary'             => "to discuss, 24.—/h",
 		'skills'             => "3D modeling, Scala",
 		'languages'          => "English, good french level is a plus",
+		'section'						=>"Sections",
 
 		'contact_first_name' => "Anne",
 		'contact_last_name'  => "Onymous",
