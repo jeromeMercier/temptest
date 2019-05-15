@@ -17,7 +17,7 @@ return [
 
 		'starts_at'          => "Date de début",
 		'ends_at'            => "Date de fin",
-		'duration'           => "Durée indicative",
+		'duration'           => "Disponibilité demandée",
 		'salary'             => "Rémunération",
 		'skills'             => "Compétence·s",
 		'languages'          => "Langue·s",
@@ -27,6 +27,8 @@ return [
 		'contact_email'      => "Email",
 		'contact_phone'      => "Téléphone",
 		'section_ids'						=>"Sections",
+
+		'ask_je'							=>'Je veux que ma demande soit gérée par un gestionnaire de projet de la Junior Entreprise Epfl.'
 	],
 
 	'placeholders' => [
@@ -46,6 +48,7 @@ return [
 		'contact_last_name'  => "Onyme",
 		'contact_email'      => "anne.onyme@epfl.ch",
 		'contact_phone'      => "+41 21 69 XX XX",
+
 	],
 
 ];

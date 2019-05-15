@@ -88,7 +88,11 @@ class AdController extends ProjectController {
 	 */
 	public function create() {
 		$categories = Category::get_id_name_mapping();
-		return view('ads.new', ['categories' => $categories, 'ad' => null]);
+		$contact = [];
+		if(Auth::user()){
+			$contact = Auth::user();
+		}
+		return view('ads.new', ['categories' => $categories, 'ad' => null, 'contact' => $contact]);
 	}
 
 	/**

@@ -2433,23 +2433,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['students', 'publishers'],
-  components: {
-    SheetFooter: {
-      functional: true,
-      render: function render(h, _ref) {
-        var children = _ref.children;
-        return h('v-sheet', {
-          staticClass: 'mt-auto align-center justify-center d-flex',
-          props: {
-            color: 'rgba(0, 0, 0, .36)',
-            dark: true,
-            height: 50
-          }
-        }, children);
-      }
-    }
-  },
+  props: ['contact'],
   data: function data() {
     return {
       form: {
@@ -2471,6 +2455,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       menuDateDebut: false,
       menuDateFin: false,
+      arrayContact: JSON.parse(this.contact),
       valid: true,
       errore: {},
       phoneRules: [function (v) {
@@ -2530,7 +2515,13 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().toISOString().substr(0, 10)
     };
   },
-  created: function created() {},
+  created: function created() {
+    if (!(this.arrayContact.length === null)) {
+      this.form.contact_first_name = this.arrayContact.first_name;
+      this.form.contact_last_name = this.arrayContact.last_name;
+      this.form.contact_email = this.arrayContact.email;
+    }
+  },
   computed: {
     icon: function icon() {
       if (this.form.section_ids.length === this.listeSections.length) return 'cancel';
@@ -40555,17 +40546,15 @@ var render = function() {
                             "v-card",
                             { attrs: { flat: "" } },
                             [
-                              _c(
-                                "v-card-text",
-                                [
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { size: "130", color: "black" } },
-                                    [_vm._v("work_outline")]
-                                  )
-                                ],
-                                1
-                              )
+                              _c("v-card-text", [
+                                _c("img", {
+                                  attrs: {
+                                    src: "/contents/images/employer.svg",
+                                    alt: "Boss",
+                                    width: "130"
+                                  }
+                                })
+                              ])
                             ],
                             1
                           )
@@ -41826,8 +41815,7 @@ var render = function() {
                   _c("v-checkbox", {
                     attrs: {
                       color: "#7595af",
-                      label:
-                        "Je veux que ma demande soit gérée par un gestionnaire de la Junior Entreprise Epfl"
+                      label: _vm.$t("ads.labels.ask_je")
                     },
                     model: {
                       value: _vm.form.projetJe,
@@ -80270,7 +80258,7 @@ __webpack_require__.r(__webpack_exports__);
         "description": "Description",
         "starts_at": "Start date",
         "ends_at": "End date",
-        "duration": "Indicative duration",
+        "duration": "Availability required",
         "salary": "Salary",
         "skills": "Skills",
         "languages": "Language·s",
@@ -80278,7 +80266,8 @@ __webpack_require__.r(__webpack_exports__);
         "contact_last_name": "Last name",
         "contact_email": "Email",
         "contact_phone": "Phone number",
-        "section_ids": "Section"
+        "section_ids": "Section",
+        "ask_je": "I want my request to be handled by the Junior Entreprise EPFL."
       },
       "placeholders": {
         "title": "Pizza delivery, Neuroscience experiment",
@@ -80315,7 +80304,7 @@ __webpack_require__.r(__webpack_exports__);
         "myjobs": "My jobs",
         "job": "Job",
         "search": "Search",
-        "newjob": "New job",
+        "newjob": "Create a job",
         "editjob": "Edit a job",
         "deletejob": "Delete a job",
         "enablejob": "Renew a job",
@@ -80527,7 +80516,7 @@ __webpack_require__.r(__webpack_exports__);
         "description": "Description",
         "starts_at": "Date de début",
         "ends_at": "Date de fin",
-        "duration": "Durée indicative",
+        "duration": "Disponibilité demandée",
         "salary": "Rémunération",
         "skills": "Compétence·s",
         "languages": "Langue·s",
@@ -80535,7 +80524,8 @@ __webpack_require__.r(__webpack_exports__);
         "contact_last_name": "Nom",
         "contact_email": "Email",
         "contact_phone": "Téléphone",
-        "section_ids": "Sections"
+        "section_ids": "Sections",
+        "ask_je": "Je veux que ma demande soit gérée par un gestionnaire de projet de la Junior Entreprise Epfl."
       },
       "placeholders": {
         "title": "Livreur de pizza, Expérience neurologique",
@@ -80628,7 +80618,7 @@ __webpack_require__.r(__webpack_exports__);
         "notifications": "Notifications",
         "publishers": "Employeurs",
         "students": "Etudiants",
-        "adopt": "Adopte un étudiant EPFL",
+        "adopt": "Embochez un étudiant EPFL",
         "news": "Un nouveau Myjob !",
         "apply": "Postuler",
         "forgotten-link": "Lien perdu",

@@ -12,8 +12,11 @@ class HelpController extends ProjectController {
 
     public function index() {
         $faq_items_array = FAQ::all();
-
-        return view('help.index', ['faq_items_array' => $faq_items_array]);
+        $contact = [];
+        if(Auth::user()){
+          $contact = Auth::user();
+        }
+        return view('help.index', ['faq_items_array' => $faq_items_array, 'contact' => $contact]);
     }
 
     public function send() {

@@ -14,7 +14,7 @@ export default {
                 "description": "Description",
                 "starts_at": "Start date",
                 "ends_at": "End date",
-                "duration": "Indicative duration",
+                "duration": "Availability required",
                 "salary": "Salary",
                 "skills": "Skills",
                 "languages": "Language·s",
@@ -22,7 +22,8 @@ export default {
                 "contact_last_name": "Last name",
                 "contact_email": "Email",
                 "contact_phone": "Phone number",
-                "section_ids": "Section"
+                "section_ids": "Section",
+                "ask_je": "I want my request to be handled by the Junior Entreprise EPFL."
             },
             "placeholders": {
                 "title": "Pizza delivery, Neuroscience experiment",
@@ -59,7 +60,7 @@ export default {
                 "myjobs": "My jobs",
                 "job": "Job",
                 "search": "Search",
-                "newjob": "New job",
+                "newjob": "Create a job",
                 "editjob": "Edit a job",
                 "deletejob": "Delete a job",
                 "enablejob": "Renew a job",
@@ -271,7 +272,7 @@ export default {
                 "description": "Description",
                 "starts_at": "Date de début",
                 "ends_at": "Date de fin",
-                "duration": "Durée indicative",
+                "duration": "Disponibilité demandée",
                 "salary": "Rémunération",
                 "skills": "Compétence·s",
                 "languages": "Langue·s",
@@ -279,7 +280,8 @@ export default {
                 "contact_last_name": "Nom",
                 "contact_email": "Email",
                 "contact_phone": "Téléphone",
-                "section_ids": "Sections"
+                "section_ids": "Sections",
+                "ask_je": "Je veux que ma demande soit gérée par un gestionnaire de projet de la Junior Entreprise Epfl."
             },
             "placeholders": {
                 "title": "Livreur de pizza, Expérience neurologique",
@@ -372,7 +374,7 @@ export default {
                 "notifications": "Notifications",
                 "publishers": "Employeurs",
                 "students": "Etudiants",
-                "adopt": "Adopte un étudiant EPFL",
+                "adopt": "Embochez un étudiant EPFL",
                 "news": "Un nouveau Myjob !",
                 "apply": "Postuler",
                 "forgotten-link": "Lien perdu",

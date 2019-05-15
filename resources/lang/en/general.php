@@ -8,7 +8,7 @@ return [
 		'myjobs'        =>	"My jobs",
 		'job'           =>	"Job",
 		'search'        =>	"Search",
-		'newjob'        =>	"New job",
+		'newjob'        =>	"Create a job",
 		'editjob'       =>	"Edit a job",
 		'deletejob'     =>	"Delete a job",
 		'enablejob'     =>	"Renew a job",

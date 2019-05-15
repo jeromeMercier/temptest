@@ -71,7 +71,7 @@ return [
 		'notifications' => "Notifications",
 		'publishers'    => "Employeurs",
 		'students'      => "Etudiants",
-		'adopt'         => "Adopte un étudiant EPFL",
+		'adopt'         => "Embochez un étudiant EPFL",
 		'news'          => "Un nouveau Myjob !",
 		'apply'			=> "Postuler",
 		'forgotten-link'=> "Lien perdu",

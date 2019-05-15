@@ -128,7 +128,7 @@
                 </v-container>
             </v-card>
             <v-container class="mx-4 mt-4 pa-0">
-                <v-checkbox color="#7595af" v-model="form.projetJe" label="Je veux que ma demande soit gérée par un gestionnaire de la Junior Entreprise Epfl"></v-checkbox>
+                <v-checkbox color="#7595af" v-model="form.projetJe" :label="$t('ads.labels.ask_je')"></v-checkbox>
             </v-container>
 
             <v-btn :disabled="!valid" @click="validate" :class="buttonColor">{{ $t('general.buttons.submit.new') }}</v-btn>
@@ -175,24 +175,7 @@
 
 <script>
 export default {
-    props: ['students', 'publishers'],
-    components: {
-        SheetFooter: {
-            functional: true,
-            render(h, {
-                children
-            }) {
-                return h('v-sheet', {
-                    staticClass: 'mt-auto align-center justify-center d-flex',
-                    props: {
-                        color: 'rgba(0, 0, 0, .36)',
-                        dark: true,
-                        height: 50
-                    }
-                }, children)
-            }
-        }
-    },
+    props: ['contact'],
     data() {
         return {
             form: {
@@ -215,6 +198,7 @@ export default {
             menuDateDebut: false,
             menuDateFin: false,
 
+            arrayContact: JSON.parse(this.contact),
             valid: true,
             errore: {},
             phoneRules: [
@@ -285,7 +269,11 @@ export default {
         };
     },
     created() {
-
+      if(!(this.arrayContact.length===null)){
+        this.form.contact_first_name = this.arrayContact.first_name;
+        this.form.contact_last_name = this.arrayContact.last_name;
+        this.form.contact_email = this.arrayContact.email;
+      }
 
     },
     computed: {

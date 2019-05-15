@@ -17,7 +17,7 @@ return [
 
 		'starts_at'          => "Start date",
 		'ends_at'            => "End date",
-		'duration'           => "Indicative duration",
+		'duration'           => "Availability required",
 		'salary'             => "Salary",
 		'skills'             => "Skills",
 		'languages'          => "Language·s",
@@ -27,6 +27,8 @@ return [
 		'contact_email'      => "Email",
 		'contact_phone'      => "Phone number",
 		'section_ids' 	=> "Section",
+
+		'ask_je'							=>'I want my request to be handled by the Junior Entreprise EPFL.'
 	],
 
 	'placeholders' => [

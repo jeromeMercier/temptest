@@ -45,7 +45,7 @@
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <v-icon size="130" color="black">work_outline</v-icon>
+                                <img :src="'/contents/images/employer.svg'" alt="Boss" width="130">
                             </v-card-text>
                         </v-card>
                     </v-flex>
