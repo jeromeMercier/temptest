@@ -39,8 +39,6 @@ return [
 		],
 		'duration'           => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
 		],
 		'salary'             => [
 			'required' => true,
@@ -76,6 +74,8 @@ return [
 			'min' => 5,
 			'max' => 50,
 		],
+		'section_ids'  						=> [
+		]
 	],
 
 	'contact' => [

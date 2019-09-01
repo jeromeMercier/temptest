@@ -8,7 +8,6 @@
 
         <v-spacer></v-spacer>
 
-        <v-text-field class="search-text-field" append-icon="search" outline height="48px" label="Recherche" type="text" @click:append="marker = !marker"></v-text-field>
 
         <v-toolbar-items class="hidden-sm-and-down">
             <v-btn icon @click="expand = !expand">
@@ -35,11 +34,11 @@
             <v-card class="card--flex-toolbar" flat>
                 <v-toolbar card prominent class="epfl-bg-color" dark>
                     <v-toolbar-items class="hidden-sm-and-down">
-                        <v-btn v-for="(link, title) in array" v-if="!isLogin(title)" flat @click="redirect(link)" :key="title">{{title}}</v-btn>
+                        <v-btn v-for="(link, title) in array" v-if="!isLogin(title)" flat @click="redirect(link)" :key="title">{{$t('general.nav.' + title)}}</v-btn>
                     </v-toolbar-items>
                     <v-spacer></v-spacer>
                     <v-toolbar-items class="hidden-sm-and-down">
-                        <v-btn v-for="(link, title) in array" v-if="isLogin(title)" flat @click="redirect(link)" :key="title">{{title}}</v-btn>
+                        <v-btn v-for="(link, title) in array" v-if="isLogin(title)" flat @click="redirect(link)" :key="title">{{$t('general.nav.' + title)}}</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
             </v-card>
@@ -66,10 +65,12 @@ export default {
             console.log('navbar mounted');
         },
         switchLanguageAndCloseExpand(language) {
+          this.changeLocale(language);
             this.expand = false;
+
         },
         isLogin(value) {
-            if (value == 'login' || value == 'logout') {
+            if (value == 'connect' || value == 'disconnect') {
                 return true;
             } else {
                 return false;

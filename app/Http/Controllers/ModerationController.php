@@ -6,7 +6,7 @@ use Log;
 use App\Models\Ad;
 use App\Models\Category;
 
-class ModerationController extends Controller {
+class ModerationController extends ProjectController {
 
 	/**
 	 * Display the moderation panel, with the Ads to be moderated

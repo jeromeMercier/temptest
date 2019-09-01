@@ -6,22 +6,21 @@
                 <v-flex xs12>
                     <v-card-text primary-title>
                         <h1>
-                            Adopte un étudiant EPFL
+                            {{ $t('general.titles.adopt') }}
                         </h1>
-                    </v-card-text>
-                    <v-card-text>
-                        L'Association Générale des Etudiants de l'Ecole Polytechnique Fédérale de Lausanne met gratuitement cette plateforme à disposition pour mettre en relation étudiants et employeurs. Le but est de permettre aux étudiants de
-                        trouver
-                        facilement un job/emploi durant leurs études, et en même temps d'offrir aux employeurs des profils variés et qualifiés.
+                    </v-card-text >
+
+                    <v-card-text v-html="$t('general.texts.description')">
+
                     </v-card-text>
                     <v-container class="pt-0">
                         <v-layout row wrap>
                             <v-flex sm6>
                                 <v-card flat>
                                     <v-card-text width="150" height="150">
-                                        <h1 class="epfl-txt-color">{{students}}</h1>
+                                        <h1 class="epfl-txt-color">{{ students }}</h1>
                                     </v-card-text>
-                                    <v-card-actions class="justify-center ">Etudiants</v-card-actions>
+                                    <v-card-actions class="justify-center ">{{ $t('general.titles.students') }}</v-card-actions>
                                 </v-card>
 
                             </v-flex>
@@ -30,7 +29,7 @@
                                     <v-card-text width="150" height="150">
                                         <h1 class="epfl-txt-color">{{publishers}}</h1>
                                     </v-card-text>
-                                    <v-card-actions class="justify-center ">Employeurs</v-card-actions>
+                                    <v-card-actions class="justify-center ">{{ $t('general.titles.publishers') }}</v-card-actions>
                                 </v-card>
                             </v-flex>
                         </v-layout>
@@ -46,20 +45,20 @@
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <v-icon size="130" color="black">work_outline</v-icon>
+                                <img :src="'/contents/images/employer.svg'" alt="Boss" width="130">
                             </v-card-text>
                         </v-card>
                     </v-flex>
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <h1>Employeur</h1>
+                                <h1>{{ $t('general.titles.publishers') }}</h1>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/new-job')">Je recherche un étudiant</v-btn>
+                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/new-job')">{{ $t('general.buttons.offer') }}</v-btn>
                             </v-card-actions>
-                            <v-card-text class="pb-0">Aucune inscription, gestion par email.</v-card-text>
-                            <v-card-text class="pt-0"><a>Retrouver une ancienne annonce.</a></v-card-text>
+                            <v-card-text class="pb-0" v-html="$t('general.texts.noinscription')"></v-card-text>
+                            <v-card-text class="pt-0"><a @click="redirect('forgotten-link')">{{ $t('general.texts.oldad') }}</a></v-card-text>
                         </v-card>
                     </v-flex>
                 </v-layout>
@@ -80,13 +79,13 @@
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <h1>Students</h1>
+                                <h1>{{ $t('general.titles.students') }}</h1>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <v-btn class="epfl-bg-color" text-color="white" dark>Je recherche un job</v-btn>
+                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/jobs')">{{ $t('general.buttons.seek') }}</v-btn>
                             </v-card-actions>
-                            <v-card-text class="pb-0">Accès Tequila requis.</v-card-text>
-                            <v-card-text class="pt-0"><a>Recevoir un nouveau mot de passe.</a></v-card-text>
+                            <v-card-text class="pb-0" v-html="$t('general.texts.tequila')"></v-card-text>
+                            <v-card-text class="pt-0"><a href="https://gaspar.epfl.ch/cgi-bin/gaspar-web/lostpwd">{{ $t('general.texts.newpassword') }}</a></v-card-text>
                         </v-card>
                     </v-flex>
                 </v-layout>

@@ -15,7 +15,7 @@ use Request;
 use Mail;
 use Log;
 
-class AdController extends Controller {
+class AdController extends ProjectController {
 
 	/**
 	 * Display a listing of the resource.
@@ -88,7 +88,11 @@ class AdController extends Controller {
 	 */
 	public function create() {
 		$categories = Category::get_id_name_mapping();
-		return view('ads.new', ['categories' => $categories, 'ad' => null]);
+		$contact = [];
+		if(Auth::user()){
+			$contact = Auth::user();
+		}
+		return view('ads.new', ['categories' => $categories, 'ad' => null, 'contact' => $contact]);
 	}
 
 	/**
@@ -102,7 +106,7 @@ class AdController extends Controller {
 		$validator->setAttributeNames(array_map('strtolower', trans('ads.labels')));
 
 		if ($validator->fails()) {
-            return back()->withInput()->withErrors($validator);
+            return $validator->failed();
         }
 
 		/* If this is the first ad with that email,

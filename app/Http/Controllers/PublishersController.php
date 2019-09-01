@@ -10,7 +10,7 @@ use Validator;
 use Mail;
 use Log;
 
-class PublishersController extends Controller {
+class PublishersController extends ProjectController {
 
     public function getForgottenLink() {
         return view("publishers.link");

@@ -1,10 +1,5 @@
 @extends('layout')
 
-@section('title')
-New Ad
-
-@endsection
-
 @section('content')
-<myjob-new-ad></myjob-new-ad>
+<myjob-new-ad contact='{!!json_encode($contact)!!}'></myjob-new-ad>
 @endsection

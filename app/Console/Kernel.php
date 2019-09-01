@@ -12,9 +12,10 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+     protected $commands = [
+   		\App\Console\Commands\SendNotificationMails::class,
+   		\App\Console\Commands\SyncLDAPStudents::class,
+   	];
 
     /**
      * Define the application's command schedule.

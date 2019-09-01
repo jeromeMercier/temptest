@@ -64,7 +64,7 @@ class CreateAllTables extends Migration
 
 			$table->date('starts_at');
 			$table->date('ends_at')->nullable();
-			$table->string('duration', config('data.ad.duration.max'));
+			$table->json('duration');
 			$table->string('salary', config('data.ad.salary.max'));
 			$table->string('skills', config('data.ad.skills.max'))->nullable();
 			$table->string('languages', config('data.ad.languages.max'))->nullable();
@@ -73,6 +73,8 @@ class CreateAllTables extends Migration
 			$table->string('contact_last_name', config('data.ad.contact_last_name.max'));
 			$table->string('contact_email', config('data.ad.contact_email.max'));
 			$table->string('contact_phone', config('data.ad.contact_phone.max'))->nullable();
+
+      $table->json('section_ids')->nullable();
 
 			$table->boolean('validated')->nullable();
 			$table->dateTime('validated_at')->nullable();

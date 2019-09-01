@@ -13,11 +13,15 @@ class Ad extends Model {
 
 	use SoftDeletes;
 
+	protected $casts = [
+	        'section_ids' => 'array',
+					'duration' => 'array'
+	    ];
 	protected $primaryKey = 'url';
 	protected $fillable = [
 		'title', 'category_id', 'place', 'description',
 		'starts_at', 'ends_at', 'duration', 'salary', 'skills', 'languages',
-		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone',
+		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone', 'section_ids'
 	];
 
 	const WEEK = 7 * 24 * 3600;

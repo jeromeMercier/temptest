@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('title')
-Help
-
-@endsection
 
 @section('content')
 <v-layout row wrap>
