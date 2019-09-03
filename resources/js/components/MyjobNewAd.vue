@@ -129,8 +129,9 @@
             </v-card>
             <v-container class="mx-4 mt-4 pa-0">
                 <v-checkbox color="#7595af" v-model="form.projetJe" :label="$t('ads.labels.ask_je')"></v-checkbox>
+                <vue-recaptcha sitekey="6LfBm6MUAAAAAAdx9OqOmWNXN4bMgJlGChyVLB2X" @verify="tetet"></vue-recaptcha>
             </v-container>
-
+            
             <v-btn :disabled="!valid" @click="validate" :class="buttonColor">{{ $t('general.buttons.submit.new') }}</v-btn>
 
         </v-form>
@@ -174,7 +175,9 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
 export default {
+    components: { VueRecaptcha },
     props: ['contact'],
     data() {
         return {
@@ -288,6 +291,9 @@ export default {
         }
     },
     methods: {
+        tetet(response) {
+            alert(response);
+        },
         fetchData() {
             console.log(' mounted');
         },
