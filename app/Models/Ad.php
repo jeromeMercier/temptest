@@ -84,10 +84,11 @@ class Ad extends Model {
 	}
 
 	public static function acceptedAd($fields) {
-		return Ad::withCategoriesVisitors()->select($fields)
-			->whereNotNull('validated_at')
-			->where('expires_at', '>', date('Y-m-d H:i:s'))
-			->where('validated', '=', true);
+		return Ad::withCategoriesVisitors()->select($fields);
+			//->whereNotNull('validated_at')
+			//->where('expires_at', '>', date('Y-m-d H:i:s'))
+			//->where('validated', '=', true);
+			//TODO: show only validated ads
 	}
 
 	public function getDates() {

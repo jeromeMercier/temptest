@@ -1,5 +1,5 @@
 <template>
-<v-card class="text-xs-left ma-4 align-center text-xs-left">
+<v-card class="text-xs-left ma-4 align-center text-xs-left epfl-card" flat tile>
 
     <v-card-title class="pb-2">
         <h2>{{ $t('general.titles.contact')}}</h2>
@@ -43,7 +43,7 @@
         </v-card-text>
     </v-form>
     <v-card-actions class="justify-center">
-      <v-btn :disabled="!valid" @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>{{ $t('general.buttons.submit.send') }}</v-btn>
+      <v-btn :disabled="!valid" flat @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>{{ $t('general.buttons.submit.send') }}</v-btn>
 
     </v-card-actions>
 
@@ -76,7 +76,7 @@ export default {
     computed: {
         buttonColor(){
           if(this.validate){
-            return"epfl-bg-color white-text";
+            return"btn-epfl white-text";
           }
         }
     },

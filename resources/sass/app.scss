@@ -17,3 +17,57 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+body{
+    font-family: "SuisseIntl",Arial,sans-serif !important;
+}
+.btn-epfl{
+    background-color:red!important;
+    border-radius:2px!important;
+}
+
+.secondary-btn-epfl{
+    background-color:white!important;
+    border-radius:2px!important;
+    border: 1px solid #c1c1c1!important;
+
+}
+
+.epfl-card{
+    border: 1px solid #d5d5d5!important;
+   border-top-color: rgb(213, 213, 213);
+   border-top-style: solid;
+   border-top-width: 1px;
+   border-right-color: rgb(213, 213, 213);
+   border-right-style: solid;
+   border-right-width: 1px;
+   border-bottom-color: rgb(213, 213, 213);
+   border-bottom-style: solid;
+   border-bottom-width: 1px;
+   border-left-color: rgb(213, 213, 213);
+   border-left-style: solid;
+   border-left-width: 1px;
+   border-image-source: initial;
+   border-image-slice: initial;
+   border-image-width: initial;
+   border-image-outset: initial;
+   border-image-repeat: initial;   
+   border-radius:2px!important;
+}
+.v-toolbar__content{
+    padding-left:32px;
+    padding-right:32px;
+}
+.v-expansion-panel{
+    box-shadow:none!important;
+    padding-bottom:0px;
+}
+.v-expansion-panel__header{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.v-expansion-panel__body{
+    padding-left:0px;
+    padding-right:0px;
+}

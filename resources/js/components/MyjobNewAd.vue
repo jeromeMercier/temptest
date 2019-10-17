@@ -1,14 +1,14 @@
 <template>
 <v-layout row wrap>
     <v-flex xs12 md8 align-center class="align-center text-xs-center">
-        <v-form ref="form" v-model="valid" lazy-validation>
-            <v-card class="text-xs-left ma-4 align-center" align-center>
-                <div class="agep-bg-color" style="width:100%; height:53px;">
+        <v-form ref="form" v-model="valid" lazy-validation> <!--  -->
+            <v-card class="text-xs-left ma-4 align-center epfl-card" align-center flat tile >
+                <div  style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">{{ $t('ads.sections.general') }}</h4>
+                        <h4>{{ $t('ads.sections.general').toUpperCase() }}</h4>
                     </v-card-text>
                 </div>
-                <v-container>
+                <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
                             <v-text-field v-model="form.title" :label="$t('ads.labels.title')" required :rules="titleRules"></v-text-field>
@@ -22,13 +22,13 @@
                     </v-layout>
                 </v-container>
             </v-card>
-            <v-card class="text-xs-left ma-4 align-center" align-center>
-                <div class="agep-bg-color" style="width:100%; height:53px;">
+            <v-card class="text-xs-left ma-4 align-center epfl-card" flat tile align-center>
+                <div  style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">{{ $t('ads.sections.details') }}</h4>
+                        <h4>{{ $t('ads.sections.details').toUpperCase() }}</h4>
                     </v-card-text>
                 </div>
-                <v-container>
+                <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs6 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
@@ -82,13 +82,13 @@
                     </v-layout>
                 </v-container>
             </v-card>
-            <v-card class="text-xs-left ma-4 align-center" align-center>
-                <div class="agep-bg-color" style="width:100%; height:53px;">
+            <v-card class="text-xs-left ma-4  epfl-card" flat tile >
+                <div  style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">{{ $t('ads.sections.main') }}</h4>
+                        <h4 >{{ $t('ads.sections.main').toUpperCase() }}</h4>
                     </v-card-text>
                 </div>
-                <v-container>
+                <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
                             <v-textarea v-model="form.description" color="teal" auto-grow :rules="descriptionRules" :counter="500">
@@ -103,13 +103,13 @@
                     </v-layout>
                 </v-container>
             </v-card>
-            <v-card class="text-xs-left ma-4 align-center" align-center>
-                <div class="agep-bg-color" style="width:100%; height:53px;">
+            <v-card class="text-xs-left ma-4 align-center epfl-card" flat tile align-center>
+                <div  style="width:100%; height:53px;">
                     <v-card-text>
-                        <h4 style="color:white;">{{ $t('ads.sections.publisher') }}</h4>
+                        <h4 >{{ $t('ads.sections.publisher').toUpperCase() }}</h4>
                     </v-card-text>
                 </div>
-                <v-container>
+                <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs6 class="px-1">
                             <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')" :rules="baseRules" required></v-text-field>
@@ -129,26 +129,27 @@
             </v-card>
             <v-container class="mx-4 mt-4 pa-0">
                 <v-checkbox color="#7595af" v-model="form.projetJe" :label="$t('ads.labels.ask_je')"></v-checkbox>
-                <vue-recaptcha sitekey="6LfBm6MUAAAAAAdx9OqOmWNXN4bMgJlGChyVLB2X" @verify="tetet"></vue-recaptcha>
+                <vue-recaptcha sitekey="6LfBm6MUAAAAAAdx9OqOmWNXN4bMgJlGChyVLB2X" @expired="emptyRecaptcha" @verify="setRecaptcha"></vue-recaptcha>
+                <span v-if="captchaAlert">fill captcha</span>
             </v-container>
             
-            <v-btn :disabled="!valid" @click="validate" :class="buttonColor">{{ $t('general.buttons.submit.new') }}</v-btn>
+            <v-btn :disabled="!valid" @click="validate" :class="buttonColor" flat>{{ $t('general.buttons.submit.new') }}</v-btn>
 
         </v-form>
     </v-flex>
     <v-flex xs12 md4>
-        <v-card class="text-xs-left ma-4 align-center text-xs-left">
+        <v-card class="text-xs-left ma-4 align-center text-xs-left epfl-card" flat tile >
             <v-card-title class="pb-2">
                 <h2>{{ $t('general.titles.managing') }}</h2>
             </v-card-title>
             <v-card-text v-html="$t('general.texts.rules.visibility')"></v-card-text>
             <v-card-actions>
-                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('forgotten-link')">
+                <v-btn class="secondary-btn-epfl" flat @click="redirect('forgotten-link')">
                     <v-icon left dark>restore</v-icon>{{ $t('general.buttons.recover') }}
                 </v-btn>
             </v-card-actions>
         </v-card>
-        <v-card class="text-xs-left ma-4 align-center text-xs-left">
+        <v-card class="text-xs-left ma-4 align-center text-xs-left epfl-card" flat tile>
             <v-card-title class="pb-2">
                 <h2>{{ $t('general.titles.conditions') }}</h2>
             </v-card-title>
@@ -164,7 +165,7 @@
                 </ol>
             </v-card-text>
             <v-card-actions>
-                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('help')">
+                <v-btn class="secondary-btn-epfl" flat  @click="redirect('help')">
                     <v-icon left dark>contact_support</v-icon>{{ $t('general.buttons.ask') }}
                 </v-btn>
             </v-card-actions>
@@ -197,7 +198,10 @@ export default {
                 contact_last_name: '',
                 contact_email: '',
                 contact_phone: '',
+                g_recaptcha_response: ''
             },
+
+            captchaAlert:false,
             menuDateDebut: false,
             menuDateFin: false,
 
@@ -272,11 +276,11 @@ export default {
         };
     },
     created() {
-      if(!(this.arrayContact.length===null)){
+    if(!(this.arrayContact.length===null)){
         this.form.contact_first_name = this.arrayContact.first_name;
         this.form.contact_last_name = this.arrayContact.last_name;
         this.form.contact_email = this.arrayContact.email;
-      }
+    }
 
     },
     computed: {
@@ -286,13 +290,17 @@ export default {
         },
         buttonColor() {
             if (this.validate) {
-                return "epfl-bg-color white-text";
+                return "btn-epfl white-text";
             }
         }
     },
     methods: {
-        tetet(response) {
-            alert(response);
+        emptyRecaptcha(){
+            this.form.g_recaptcha_response = '';
+        },
+        setRecaptcha(response) {
+            this.form.g_recaptcha_response=response;
+            this.captchaAlert=false;
         },
         fetchData() {
             console.log(' mounted');
@@ -307,9 +315,12 @@ export default {
             })
         },
         validate() {
-            if (this.$refs.form.validate()) {
+            if (this.$refs.form.validate() && this.form.g_recaptcha_response != '') {
                 this.snackbar = true
                 this.submit();
+            }
+            else if(this.form.g_recaptcha_response == ''){
+                this.captchaAlert=true;
             }
         },
         submit() {

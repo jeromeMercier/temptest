@@ -1,7 +1,7 @@
 <template>
 <v-layout row wrap>
     <v-flex xs12  md4>
-        <v-card class="text-xs-center ma-4 align-center adopte-etudiant-card">
+        <v-card class="text-xs-center ma-4 align-center adopte-etudiant-card epfl-card" flat tile>
             <v-layout align-center fill-height>
                 <v-flex xs12>
                     <v-card-text primary-title>
@@ -18,7 +18,7 @@
                             <v-flex sm6>
                                 <v-card flat>
                                     <v-card-text width="150" height="150">
-                                        <h1 class="epfl-txt-color">{{ students }}</h1>
+                                        <h1> {{ students }}</h1>
                                     </v-card-text>
                                     <v-card-actions class="justify-center ">{{ $t('general.titles.students') }}</v-card-actions>
                                 </v-card>
@@ -27,7 +27,7 @@
                             <v-flex sm6>
                                 <v-card flat>
                                     <v-card-text width="150" height="150">
-                                        <h1 class="epfl-txt-color">{{publishers}}</h1>
+                                        <h1 >{{publishers}}</h1>
                                     </v-card-text>
                                     <v-card-actions class="justify-center ">{{ $t('general.titles.publishers') }}</v-card-actions>
                                 </v-card>
@@ -39,7 +39,7 @@
         </v-card>
     </v-flex>
     <v-flex xs12 md4>
-        <v-card class="text-xs-center ma-4">
+        <v-card class="text-xs-center ma-4 epfl-card" flat tile>
             <v-container>
                 <v-layout row wrap>
                     <v-flex xs12>
@@ -55,7 +55,7 @@
                                 <h1>{{ $t('general.titles.publishers') }}</h1>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/new-job')">{{ $t('general.buttons.offer') }}</v-btn>
+                                <v-btn flat tile class="btn-epfl" text-color="white" dark @click="redirect('/new-job')">{{ $t('general.buttons.offer') }}</v-btn>
                             </v-card-actions>
                             <v-card-text class="pb-0" v-html="$t('general.texts.noinscription')"></v-card-text>
                             <v-card-text class="pt-0"><a @click="redirect('forgotten-link')">{{ $t('general.texts.oldad') }}</a></v-card-text>
@@ -66,7 +66,7 @@
         </v-card>
     </v-flex>
     <v-flex xs12 md4>
-        <v-card class="text-xs-center ma-4">
+        <v-card class="text-xs-center ma-4 epfl-card" flat tile>
             <v-container>
                 <v-layout row wrap>
                     <v-flex xs12>
@@ -82,7 +82,7 @@
                                 <h1>{{ $t('general.titles.students') }}</h1>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <v-btn class="epfl-bg-color" text-color="white" dark @click="redirect('/jobs')">{{ $t('general.buttons.seek') }}</v-btn>
+                                <v-btn flat tile class="btn-epfl" text-color="white" dark @click="redirect('/jobs')">{{ $t('general.buttons.seek') }}</v-btn>
                             </v-card-actions>
                             <v-card-text class="pb-0" v-html="$t('general.texts.tequila')"></v-card-text>
                             <v-card-text class="pt-0"><a href="https://gaspar.epfl.ch/cgi-bin/gaspar-web/lostpwd">{{ $t('general.texts.newpassword') }}</a></v-card-text>
@@ -130,3 +130,5 @@ export default {
     }
 }
 </script>
+<style>
+</style>

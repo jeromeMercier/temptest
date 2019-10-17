@@ -8,6 +8,8 @@ use Input;
 use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Publisher;
+use GuzzleHttp\Client;
+use App\Rules\GoogleRecaptcha;
 use Redirect;
 use Session;
 use Validator;
@@ -101,6 +103,17 @@ class AdController extends ProjectController {
 	 * @return Response
 	 */
 	public function store() {
+		// check if reCaptcha has been validated by Google      
+		$secret = env('GOOGLE_RECAPTCHA_SECRET');
+		$captchaId = Input::get('g_recaptcha_response');
+		
+		//sends post request to the URL and tranforms response to JSON
+		$responseCaptcha = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$captchaId));
+		
+	
+		if(!$responseCaptcha->success == true){
+			return 'bad-captcha';
+		}
 		$categories = Category::get_id_name_mapping();
 		$validator = Validator::make(Input::all(), $this->adValidation());
 		$validator->setAttributeNames(array_map('strtolower', trans('ads.labels')));
@@ -146,7 +159,6 @@ class AdController extends ProjectController {
 	 * @return Response
 	 */
 	public function show($url) {
-
 		$fields = ['url',
 			'title', 'name_' . App::getLocale() . ' AS category', 'place', 'description',
 			'starts_at', 'ends_at', 'duration', 'salary', 'skills', 'languages',
@@ -276,7 +288,6 @@ class AdController extends ProjectController {
 	protected function adValidation() {
 
 		$filters = parent::validation('ad');
-
 		$filters['contact_email'][] = 'email';
 		$filters['category_id'][] = 'in:' . implode(',', Category::get_id_name_mapping()->keys()->all());
 		$filters['starts_at'][] = 'after: -1 day';

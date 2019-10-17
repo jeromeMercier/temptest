@@ -50,7 +50,7 @@
     </v-app>
     <script type="text/javascript" src="/js/app.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
-
+    <style></style>
 </body>
 
 </html>
