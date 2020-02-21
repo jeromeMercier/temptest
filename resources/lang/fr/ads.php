@@ -28,7 +28,7 @@ return [
 		'contact_phone'      => "Téléphone",
 		'section_ids'						=>"Sections",
 
-		'ask_je'							=>'Je veux que ma demande soit gérée par un gestionnaire de projet de la Junior Entreprise Epfl.'
+		'ask_je'							=>'Je souhaite que ma demande soit suivie par un gestionnaire de projet de la Junior Entreprise Epfl.'
 	],
 
 	'placeholders' => [

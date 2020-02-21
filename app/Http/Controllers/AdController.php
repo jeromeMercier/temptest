@@ -31,8 +31,8 @@ class AdController extends ProjectController {
 			'place',
 			'ads.updated_at'];
 
-		$ads = Ad::acceptedAd($fields)->simplePaginate(config('App.ads.numberDisplay'));
-		return view('ads.index', ['ads' => $ads]);
+		$ads = Ad::where('validated', '=', 1)->simplePaginate(config('App.ads.numberDisplay'));
+		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => false]);
 	}
 
 	/**
@@ -43,11 +43,12 @@ class AdController extends ProjectController {
 			'title', 'name_' . App::getLocale() . ' AS category',
 			'description',
 			'place',
-			'ads.updated_at'];
+			'ads.updated_at',
+		'validated'];
 
 		$publisher = Auth::check() ? Auth::user()->email: Session::get('connected_visitor');
 		$ads = Ad::withCategories()->where('contact_email', '=', $publisher)->select($fields)->simplePaginate(config('App.ads.numberDisplay'));
-		return view('ads.index', ['ads' => $ads]);
+		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => true]);
 	}
 
 	/** Each App 1.0 job creation request redirects its data here. */
@@ -110,10 +111,10 @@ class AdController extends ProjectController {
 		//sends post request to the URL and tranforms response to JSON
 		$responseCaptcha = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$captchaId));
 		
-	
-		if(!$responseCaptcha->success == true){
-			return 'bad-captcha';
-		}
+		// TODO: remove next comments to activate recaptcha
+		//if(!$responseCaptcha->success == true){
+		//	return 'bad-captcha';
+		//}
 		$categories = Category::get_id_name_mapping();
 		$validator = Validator::make(Input::all(), $this->adValidation());
 		$validator->setAttributeNames(array_map('strtolower', trans('ads.labels')));
@@ -159,15 +160,15 @@ class AdController extends ProjectController {
 	 * @return Response
 	 */
 	public function show($url) {
+			
 		$fields = ['url',
 			'title', 'name_' . App::getLocale() . ' AS category', 'place', 'description',
 			'starts_at', 'ends_at', 'duration', 'salary', 'skills', 'languages',
 			'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone',
-			'validated', 'expires_at', 'ads.updated_at'];
+			'validated', 'expires_at', 'ads.updated_at', 'section_ids'];
 
-		$ad = Ad::withCategoriesVisitors()->select($fields)->findOrFail($url);
-
-		return view('ads.show', ['ad' => $ad]);
+		$ad = Ad::withCategoriesVisitors()->select($fields)->where('url', '=', $url)->where('validated', '=', 1)->first();;
+		return view('ads.show', ['ad' => json_encode($ad)]);
 	}
 
 	/**
@@ -239,7 +240,7 @@ class AdController extends ProjectController {
 	 * the @param $email email
 	 */
 	public function manage_ads_with_email($email, $secret) {
-		if (Publisher::is_valid($secret, $email)) {
+		if (Publisher::is_valid($secret, Auth::user()->email)) {
 			/* Disconnect previous sessions */
 			Controller::disconnect();
 

@@ -13,10 +13,10 @@
                         <v-flex xs12 class="px-1">
                             <v-text-field v-model="form.title" :label="$t('ads.labels.title')" required :rules="titleRules"></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex xs12 sm6 class="px-1">
                             <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" :label="$t('ads.labels.category_id')" required></v-select>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.place" :label="$t('ads.labels.place')" required :rules="baseRules"></v-text-field>
                         </v-flex>
                     </v-layout>
@@ -30,7 +30,7 @@
                 </div>
                 <v-container class="pa-3">
                     <v-layout row wrap>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
                                     <v-text-field v-model="form.starts_at" :label="$t('ads.labels.starts_at')" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || 'Item is required']"></v-text-field>
@@ -38,7 +38,7 @@
                                 <v-date-picker v-model="form.starts_at" @input="menuDateDebut = false" :min="date"></v-date-picker>
                             </v-menu>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-menu v-model="menuDateFin" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
                                     <v-text-field v-model="form.ends_at" :label="$t('ads.labels.ends_at')" prepend-icon="event" readonly v-on="on"></v-text-field>
@@ -46,16 +46,16 @@
                                 <v-date-picker v-model="form.ends_at" @input="menuDateFin = false" :min="form.starts_at"></v-date-picker>
                             </v-menu>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-select :items="listeDuree" :label="$t('ads.labels.duration')" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')" :rules="baseRules" required></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.skills" :label="$t('ads.labels.skills')" :rules="skillRules"></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.languages" :label="$t('ads.labels.languages')" :rules="languageRules"></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
@@ -91,7 +91,7 @@
                 <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-textarea v-model="form.description" color="teal" auto-grow :rules="descriptionRules" :counter="500">
+                            <v-textarea v-model="form.description"  auto-grow :rules="descriptionRules" :counter="500">
                                 <template v-slot:label>
                                     <div>
                                         {{ $t('ads.labels.description')}}
@@ -111,29 +111,42 @@
                 </div>
                 <v-container class="pa-3">
                     <v-layout row wrap>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')" :rules="baseRules" required></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')" :rules="baseRules" required></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_email" :label="$t('ads.labels.contact_email')" :rules="emailRules" required></v-text-field>
                         </v-flex>
-                        <v-flex xs6 class="px-1">
+                        <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_phone" :label="$t('ads.labels.contact_phone')" :rules="phoneRules"></v-text-field>
                         </v-flex>
 
                     </v-layout>
                 </v-container>
             </v-card>
-            <v-container class="mx-4 mt-4 pa-0">
-                <v-checkbox color="#7595af" v-model="form.projetJe" :label="$t('ads.labels.ask_je')"></v-checkbox>
-                <vue-recaptcha sitekey="6LfBm6MUAAAAAAdx9OqOmWNXN4bMgJlGChyVLB2X" @expired="emptyRecaptcha" @verify="setRecaptcha"></vue-recaptcha>
-                <span v-if="captchaAlert">fill captcha</span>
+            <v-container class="mx-4 mt-4 pa-0" align="left" text-xs-left>
+                <v-checkbox color="#7595af" v-model="form.managed_by_je" :label="$t('ads.labels.ask_je')"></v-checkbox>
+                <div>
+                    <vue-recaptcha sitekey="6LfBm6MUAAAAAAdx9OqOmWNXN4bMgJlGChyVLB2X" @expired="emptyRecaptcha" @verify="setRecaptcha" ref="recaptcha"></vue-recaptcha>
+                <div class="v-text-field__details" style="margin-top:8px;">
+                  <div class="v-messages theme--light error--text" role="alert">
+                    <div class="v-messages__wrapper">
+                      <div
+                        class="v-messages__message"
+                        v-show="captchaAlert"
+                      >Captcha is required</div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                
+                
             </v-container>
             
-            <v-btn :disabled="!valid" @click="validate" :class="buttonColor" flat>{{ $t('general.buttons.submit.new') }}</v-btn>
+            <v-btn :disabled="!valid" @click="validate" color="secondary" depressed class="white-text">{{ $t('general.buttons.submit.new') }}</v-btn>
 
         </v-form>
     </v-flex>
@@ -170,6 +183,9 @@
                 </v-btn>
             </v-card-actions>
         </v-card>
+            <v-alert v-model="showAlert" :type="alertType"  dismissible class="myjob-alert elevation-24">
+        {{alertMessage}}
+    </v-alert>
     </v-flex>
 
 </v-layout>
@@ -182,6 +198,9 @@ export default {
     props: ['contact'],
     data() {
         return {
+            showAlert:false,
+            alertType: 'success',
+            alertMessage:'Yeeee',
             form: {
                 title: '',
                 section_ids: [],
@@ -198,7 +217,8 @@ export default {
                 contact_last_name: '',
                 contact_email: '',
                 contact_phone: '',
-                g_recaptcha_response: ''
+                g_recaptcha_response: '',
+                managed_by_je: false,
             },
 
             captchaAlert:false,
@@ -302,9 +322,6 @@ export default {
             this.form.g_recaptcha_response=response;
             this.captchaAlert=false;
         },
-        fetchData() {
-            console.log(' mounted');
-        },
         selectAllSections() {
             this.$nextTick(() => {
                 if (this.form.section_ids.length === this.listeSections.length) {
@@ -315,16 +332,16 @@ export default {
             })
         },
         validate() {
-            if (this.$refs.form.validate() && this.form.g_recaptcha_response != '') {
+            if (this.$refs.form.validate() /*&& this.form.g_recaptcha_response != ''*/) {
                 this.snackbar = true
                 this.submit();
             }
+            /* Uncomment for recaptcha activation
             else if(this.form.g_recaptcha_response == ''){
                 this.captchaAlert=true;
-            }
+            }*/
         },
         submit() {
-            console.log("submit");
             this.errors = {};
             var sendableForm = {};
             for (var key in this.form) {
@@ -345,12 +362,23 @@ export default {
 
                 }
             }
-            console.log(sendableForm)
             axios.post('/new-job', sendableForm).then(response => {
-                console.log(response)
-                alert('Message sent!');
+                if(response.data == 'bad-captcha'){
+                    this.alertType = 'error';
+                    this.alertMessage = 'Bad captcha, it might have expired.';
+                    this.showAlert;
+                    this.$refs.recaptcha.reset();
+
+                } else {
+                    this.alertType = 'success';
+                    this.alertMessage = 'Your ad has been submitted.';
+                    this.showAlert;
+                }
+                this.showAlert = true;
             }).catch(error => {
-                console.log(error);
+                this.alertType = 'error';
+                    this.alertMessage = error;
+                    this.showAlert;
             });
         },
     }

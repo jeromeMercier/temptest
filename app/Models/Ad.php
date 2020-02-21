@@ -17,11 +17,10 @@ class Ad extends Model {
 	        'section_ids' => 'array',
 					'duration' => 'array'
 	    ];
-	protected $primaryKey = 'url';
 	protected $fillable = [
 		'title', 'category_id', 'place', 'description',
 		'starts_at', 'ends_at', 'duration', 'salary', 'skills', 'languages',
-		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone', 'section_ids'
+		'contact_first_name', 'contact_last_name', 'contact_email', 'contact_phone', 'section_ids', 'managed_by_je'
 	];
 
 	const WEEK = 7 * 24 * 3600;

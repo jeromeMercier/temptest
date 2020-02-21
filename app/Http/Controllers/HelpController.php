@@ -28,10 +28,10 @@ class HelpController extends ProjectController {
             return back()->withInput()->withErrors($validator);
         }
 
-        $first_name = e(Inputs::get('first_name'));
-        $last_name = e(Inputs::get('last_name'));
-        $email = e(Inputs::get('email'));
-        $message = e(Inputs::get('message'));
+        $first_name = e(Input::get('first_name'));
+        $last_name = e(Input::get('last_name'));
+        $email = e(Input::get('email'));
+        $message = e(Input::get('message'));
 
         Mail::raw($message, function ($message) use (&$first_name, &$last_name, &$email) {
             $message->from($email, $first_name . ' ' . $last_name);

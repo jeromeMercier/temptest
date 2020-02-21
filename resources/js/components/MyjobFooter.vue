@@ -4,7 +4,7 @@
         <v-container grid-list-md text-xs-center  style="background-color:#E6E6E6;">
             <v-layout row wrap align-center>
                 <v-flex md4 class="hidden-sm-and-down">
-                    <img class="" :src="'/contents/images/agepinfo.svg'" alt="AGEPOLY" height="120"></v-toolbar-items>
+                    <!--<img class="" :src="'/contents/images/agepinfo.svg'" alt="AGEPOLY" height="120"></v-toolbar-items>-->
                 </v-flex>
                 <v-flex md4 xs8 offset-xs2 offset-md0>
                     <v-card-text>
@@ -27,7 +27,7 @@
 <script>
 export default {
     mounted() {
-        console.log('Component mounted.')
+        
     }
 }
 </script>

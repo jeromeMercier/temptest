@@ -53,7 +53,7 @@ class CreateAllTables extends Migration
 
 		Schema::create('ads', function (Blueprint $table) {
 
-			$table->increments('ad_id');
+			$table->increments('id');
 			$table->string('url', config('data.ad.title.max') + 10)->unique();
 			$table->string('random_secret', 32);
 
@@ -73,6 +73,8 @@ class CreateAllTables extends Migration
 			$table->string('contact_last_name', config('data.ad.contact_last_name.max'));
 			$table->string('contact_email', config('data.ad.contact_email.max'));
 			$table->string('contact_phone', config('data.ad.contact_phone.max'))->nullable();
+
+			$table->boolean('managed_by_je')->nullable();
 
       $table->json('section_ids')->nullable();
 

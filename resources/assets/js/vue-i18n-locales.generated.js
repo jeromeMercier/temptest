@@ -1,58 +1,5 @@
 export default {
     "en": {
-        "ads": {
-            "sections": {
-                "general": "General informations",
-                "details": "Job details",
-                "main": "Body of the ad",
-                "publisher": "Contact person"
-            },
-            "labels": {
-                "title": "Title",
-                "category_id": "Category",
-                "place": "Workplace",
-                "description": "Description",
-                "starts_at": "Start date",
-                "ends_at": "End date",
-                "duration": "Availability required",
-                "salary": "Salary",
-                "skills": "Skills",
-                "languages": "Language·s",
-                "contact_first_name": "First name",
-                "contact_last_name": "Last name",
-                "contact_email": "Email",
-                "contact_phone": "Phone number",
-                "section_ids": "Section",
-                "ask_je": "I want my request to be handled by the Junior Entreprise EPFL."
-            },
-            "placeholders": {
-                "title": "Pizza delivery, Neuroscience experiment",
-                "category_id": "",
-                "place": "St-Sulpice, remotely",
-                "description": "What kind of work is it? Are there any particular dispositions (schedule, team, prerequisite)?",
-                "starts_at": "",
-                "ends_at": "",
-                "duration": "10h a week, 120h in total",
-                "salary": "to discuss, 24.—/h",
-                "skills": "3D modeling, Scala",
-                "languages": "English, good french level is a plus",
-                "section": "Sections",
-                "contact_first_name": "Anne",
-                "contact_last_name": "Onymous",
-                "contact_email": "anne.onyme@epfl.ch",
-                "contact_phone": "+41 21 69 XX XX"
-            }
-        },
-        "contacts": {
-            "sections": [],
-            "labels": [],
-            "placeholders": {
-                "first_name": "First name",
-                "last_name": "Name",
-                "email": "Email",
-                "message": "Message"
-            }
-        },
         "general": {
             "nav": {
                 "home": "Home",
@@ -158,6 +105,16 @@ export default {
                 "error": "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"http://localhost/help\">contact us</a>."
             }
         },
+        "options": {
+            "sections": [],
+            "labels": {
+                "notifications_instant": "Instant notifications (as soon as the ad is validated)",
+                "notifications_day": "Daily notifications (new ads of the day)",
+                "notifications_week": "Weekly notifications (new ads of the week)",
+                "options_updated": "Options updated !"
+            },
+            "placeholders": []
+        },
         "mails": {
             "notifications": {
                 "newjobs": "New jobs on Myjob",
@@ -177,15 +134,48 @@ export default {
                 "manage": "Manage my ads"
             }
         },
-        "options": {
-            "sections": [],
-            "labels": {
-                "notifications_instant": "Instant notifications (as soon as the ad is validated)",
-                "notifications_day": "Daily notifications (new ads of the day)",
-                "notifications_week": "Weekly notifications (new ads of the week)",
-                "options_updated": "Options updated !"
+        "ads": {
+            "sections": {
+                "general": "General informations",
+                "details": "Job details",
+                "main": "Body of the ad",
+                "publisher": "Contact person"
             },
-            "placeholders": []
+            "labels": {
+                "title": "Title",
+                "category_id": "Category",
+                "place": "Workplace",
+                "description": "Description",
+                "starts_at": "Start date",
+                "ends_at": "End date",
+                "duration": "Availability required",
+                "salary": "Salary",
+                "skills": "Skills",
+                "languages": "Language·s",
+                "contact_first_name": "First name",
+                "contact_last_name": "Last name",
+                "contact_email": "Email",
+                "contact_phone": "Phone number",
+                "section_ids": "Section",
+                "ask_je": "I want my request to be handled by the Junior Entreprise EPFL."
+            },
+            "placeholders": {
+                "title": "Pizza delivery, Neuroscience experiment",
+                "category_id": "",
+                "place": "St-Sulpice, remotely",
+                "description": "What kind of work is it? Are there any particular dispositions (schedule, team, prerequisite)?",
+                "starts_at": "",
+                "ends_at": "",
+                "duration": "10h a week, 120h in total",
+                "salary": "to discuss, 24.—/h",
+                "skills": "3D modeling, Scala",
+                "languages": "English, good french level is a plus",
+                "section": "Sections",
+                "contact_first_name": "Anne",
+                "contact_last_name": "Onymous",
+                "contact_email": "anne.onyme@epfl.ch",
+                "contact_phone": "+41 21 69 XX XX"
+            }
         },
         "validation": {
             "accepted": "The {attribute} must be accepted.",
@@ -255,61 +245,19 @@ export default {
                 }
             },
             "attributes": []
-        }
-    },
-    "fr": {
-        "ads": {
-            "sections": {
-                "general": "Informations générales",
-                "details": "Détails du job",
-                "main": "Corps de l'annonce",
-                "publisher": "Personne de contact"
-            },
-            "labels": {
-                "title": "Titre",
-                "category_id": "Catégorie",
-                "place": "Lieu de travail",
-                "description": "Description",
-                "starts_at": "Date de début",
-                "ends_at": "Date de fin",
-                "duration": "Disponibilité demandée",
-                "salary": "Rémunération",
-                "skills": "Compétence·s",
-                "languages": "Langue·s",
-                "contact_first_name": "Prénom",
-                "contact_last_name": "Nom",
-                "contact_email": "Email",
-                "contact_phone": "Téléphone",
-                "section_ids": "Sections",
-                "ask_je": "Je veux que ma demande soit gérée par un gestionnaire de projet de la Junior Entreprise Epfl."
-            },
-            "placeholders": {
-                "title": "Livreur de pizza, Expérience neurologique",
-                "category_id": "",
-                "place": "St-Sulpice, à distance",
-                "description": "En quoi consiste le job ? Existe-t-il des dispositions particulières (horaire, équipe, pré-requis) ?",
-                "starts_at": "",
-                "ends_at": "",
-                "duration": "10h par semaine, 120h en tout",
-                "salary": "à discuter, 24.—/h",
-                "skills": "Modélisation 3D, Scala",
-                "languages": "Français, bon niveau anglais requis",
-                "contact_first_name": "Anne",
-                "contact_last_name": "Onyme",
-                "contact_email": "anne.onyme@epfl.ch",
-                "contact_phone": "+41 21 69 XX XX"
-            }
         },
         "contacts": {
             "sections": [],
             "labels": [],
             "placeholders": {
-                "first_name": "Prénom",
-                "last_name": "Nom",
+                "first_name": "First name",
+                "last_name": "Name",
                 "email": "Email",
                 "message": "Message"
             }
-        },
+        }
+    },
+    "fr": {
         "general": {
             "nav": {
                 "home": "Accueil",
@@ -415,6 +363,16 @@ export default {
                 "error": "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"http://localhost/help\">contactez-nous</a>."
             }
         },
+        "options": {
+            "sections": [],
+            "labels": {
+                "notifications_instant": "Notification instantanée (dès la modération de l'annonce)",
+                "notifications_day": "Notification journalière (nouvelles annonces du jour)",
+                "notifications_week": "Notification hebdomadaire (nouvelles annonces de la semaine)",
+                "options_updated": "Options mises à jour !"
+            },
+            "placeholders": []
+        },
         "mails": {
             "notifications": {
                 "newjobs": "Nouveaux jobs sur Myjob",
@@ -434,15 +392,47 @@ export default {
                 "manage": "Administrer mes annonces"
             }
         },
-        "options": {
-            "sections": [],
-            "labels": {
-                "notifications_instant": "Notification instantanée (dès la modération de l'annonce)",
-                "notifications_day": "Notification journalière (nouvelles annonces du jour)",
-                "notifications_week": "Notification hebdomadaire (nouvelles annonces de la semaine)",
-                "options_updated": "Options mises à jour !"
+        "ads": {
+            "sections": {
+                "general": "Informations générales",
+                "details": "Détails du job",
+                "main": "Corps de l'annonce",
+                "publisher": "Personne de contact"
             },
-            "placeholders": []
+            "labels": {
+                "title": "Titre",
+                "category_id": "Catégorie",
+                "place": "Lieu de travail",
+                "description": "Description",
+                "starts_at": "Date de début",
+                "ends_at": "Date de fin",
+                "duration": "Disponibilité demandée",
+                "salary": "Rémunération",
+                "skills": "Compétence·s",
+                "languages": "Langue·s",
+                "contact_first_name": "Prénom",
+                "contact_last_name": "Nom",
+                "contact_email": "Email",
+                "contact_phone": "Téléphone",
+                "section_ids": "Sections",
+                "ask_je": "Je souhaite que ma demande soit suivie par un gestionnaire de projet de la Junior Entreprise Epfl."
+            },
+            "placeholders": {
+                "title": "Livreur de pizza, Expérience neurologique",
+                "category_id": "",
+                "place": "St-Sulpice, à distance",
+                "description": "En quoi consiste le job ? Existe-t-il des dispositions particulières (horaire, équipe, pré-requis) ?",
+                "starts_at": "",
+                "ends_at": "",
+                "duration": "10h par semaine, 120h en tout",
+                "salary": "à discuter, 24.—/h",
+                "skills": "Modélisation 3D, Scala",
+                "languages": "Français, bon niveau anglais requis",
+                "contact_first_name": "Anne",
+                "contact_last_name": "Onyme",
+                "contact_email": "anne.onyme@epfl.ch",
+                "contact_phone": "+41 21 69 XX XX"
+            }
         },
         "validation": {
             "accepted": "Le champ {attribute} doit être accepté.",
@@ -537,6 +527,16 @@ export default {
                 "time": "Heure",
                 "available": "Disponible",
                 "size": "Taille"
+            }
+        },
+        "contacts": {
+            "sections": [],
+            "labels": [],
+            "placeholders": {
+                "first_name": "Prénom",
+                "last_name": "Nom",
+                "email": "Email",
+                "message": "Message"
             }
         }
     },

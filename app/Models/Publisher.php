@@ -49,7 +49,7 @@ class Publisher extends Model {
 	}
 
 	public static function get_valid_secret($email) {
-		$model = self::where('contact_email', '=', $email)->first();
+		$model = self::where('contact_email', $email)->first();
 
 		return $model->random_secret;
 	}

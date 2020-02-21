@@ -14,7 +14,7 @@
 ini_set('display_errors',true);
 
 // Bridge between App 2.0 and 1.0
-
+Route::get('job/{ad}', 'AdController@show');
 Route::post('bridge', 'AdController@bridge');
 
 // Important: real pages (i.e. no-redirect) should have the reverse bind in config/App.php
@@ -70,6 +70,8 @@ Route::group(['middleware' => 'locales'], function () {
 		Route::get('moderation', 'ModerationController@adsToModerate');
 		Route::get('accept-job/{ad}', 'ModerationController@accept');
 		Route::get('refuse-job/{ad}', 'ModerationController@refuse');
+		Route::post('update-job/{ad}/{decision}', 'ModerationController@updateAd');
+		
 
 	});
 

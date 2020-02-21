@@ -93,10 +93,8 @@ export default {
           }
       },
       submit() {
-        console.log("submit");
           this.errors = {};
           axios.post('/help', this.form).then(response => {
-            console.log(response)
               alert('Message sent!');
           }).catch(error => {
               console.log(error);

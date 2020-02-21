@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Log;
 use App\Models\Ad;
 use App\Models\Category;
+use Input;
 
 class ModerationController extends ProjectController {
 
@@ -15,6 +16,23 @@ class ModerationController extends ProjectController {
 		$ads_to_moderate = Ad::whereNull('validated_at')->get();
 
 		return view('moderation.list', ['ads_to_moderate' => $ads_to_moderate, 'category_names' => Category::get_id_name_mapping()]);
+	}
+
+	public function updateAd($url, $decision){
+		$ad = Ad::where('url', '=', $url)->where('deleted_at', '=', NULL)->first();
+		$adv2 = Input::all();
+		$ad->title = $adv2["title"];
+		$ad->description = $adv2["description"];
+		$ad->place = $adv2["place"];
+		if($decision == 1){
+			$ad->validated = true;
+		}
+		else {
+			$ad->validated = false;
+		}
+		$ad->validated_at = formatDate();
+		$ad->save();
+		return 'saved';
 	}
 
 	public function accept($url) {
@@ -51,4 +69,6 @@ class ModerationController extends ProjectController {
 		$ad->save();
 		return redirect()->action('AdController@show', $url);
 	}
+
+
 }

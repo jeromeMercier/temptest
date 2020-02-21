@@ -35,7 +35,6 @@ export default {
         };
     },
     created() {
-        console.log(this.arrayOptions);
 
     },
     methods: {

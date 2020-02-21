@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue'
 window.Vuetify = require('vuetify');
 
 import VueInternationalization from 'vue-i18n';
@@ -21,8 +21,12 @@ const i18n = new VueInternationalization({
 });
 
 
-
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+    theme: {
+      secondary: '#ff0000',
+      error: '#ff0000'
+    }
+  })
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -42,6 +46,8 @@ Vue.component('myjob-footer', require('./components/MyjobFooter.vue').default);
 Vue.component('myjob-ad-index', require('./components/MyjobAdIndex.vue').default);
 Vue.component('myjob-new-ad', require('./components/MyjobNewAd.vue').default);
 Vue.component('myjob-options', require('./components/MyjobOptions.vue').default);
+Vue.component('myjob-moderation', require('./components/MyjobModeration.vue').default);
+Vue.component('myjob-ad', require('./components/MyjobAd.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
