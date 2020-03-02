@@ -44,7 +44,7 @@
 
     <v-card flat>
       <v-toolbar flat color="white" height="128" class="align-left">
-        <img :src="'/contents/images/epfl.svg'" style="padding-left:16px;" alt="EPFL" width="160" />
+        <img :src="'/contents/images/myjob.svg'" style="padding-left:16px;" alt="EPFL" width="240" />
 
         <v-spacer></v-spacer>
 

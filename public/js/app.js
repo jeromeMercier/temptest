@@ -1919,6 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["ads", "myjobs"],
   data: function data() {
@@ -1938,7 +1939,44 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     console.log(JSON.parse(this.ads));
   },
-  methods: {}
+  methods: {
+    adsStyle: function adsStyle(key) {
+      if (this.myjobs) {
+        if (key == 0) {
+          return 'border-bottom:0px!important;';
+        } else if (key == this.adsArray.data.length - 1) {
+          return '';
+        }
+
+        return 'border-bottom:1px!important;';
+      } else {
+        if (key == 0) {
+          return 'border-bottom:0px!important;';
+        } else if (key == this.adsArrayValidated.length - 1) {
+          return '';
+        }
+
+        return ' border-bottom:1px!important;';
+      }
+    }
+  },
+  computed: {
+    adsArrayValidated: function adsArrayValidated() {
+      if (this.myjobs) {
+        return this.adsArray.data;
+      }
+
+      var newArray = [];
+
+      for (var i = 0; i < this.adsArray.data.length; i++) {
+        if (this.adsArray.data[i].validated == 1) {
+          newArray.push(this.adsArray.data[i]);
+        }
+      }
+
+      return newArray;
+    }
+  }
 });
 
 /***/ }),
@@ -2359,12 +2397,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["ads"],
   data: function data() {
     return {
       adsArray: JSON.parse(this.ads),
-      currentIndex: 0
+      currentIndex: 0,
+      listeDuree: ["Temps plein", "A côté des études", "Weekends", "Vacances", "Autre"],
+      listeSections: ["Architecture", "Chimie et génie chimique", "Cours de mathématiques spéciales", "EME (EPFL Middle East)", "Génie civil", "Génie mecanique", "Génie électrique et electronique", "Humanités digitales", "Informatique", "Ingénierie des sciences du vivant", "Ingénierie financière", "Management de la technologie", "Mathématiques", "Microtechnique", "Physique", "Science et génie des materiaux", "Science et ingénierie de l'environnement", "section FCUE", "Système de communication"]
     };
   },
   filters: {
@@ -2378,6 +2475,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.fetchData();
+    console.log(JSON.parse(this.ads)[0]);
   },
   methods: {
     fetchData: function fetchData() {},
@@ -41301,254 +41399,283 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-layout",
-    { attrs: { row: "", wrap: "" } },
-    _vm._l(_vm.adsArray.data, function(item) {
-      return _c(
+    { staticStyle: { "max-width": "900px" }, attrs: { row: "", wrap: "" } },
+    [
+      _c(
         "v-flex",
-        { key: item.url, staticClass: "pa-1", attrs: { xs12: "", md4: "" } },
-        [
-          item.validated == "1"
-            ? _c(
-                "v-hover",
-                { staticClass: "link-trapeze-horizontal" },
-                [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass:
-                        "cursor-pointer job-card link-trapeze-horizontal epfl-card",
-                      attrs: { flat: "", tile: "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.redirect("job/" + item.url)
-                        }
-                      }
-                    },
+        { attrs: { xs12: "" } },
+        _vm._l(_vm.adsArrayValidated, function(item, key) {
+          return _c(
+            "div",
+            { key: key },
+            [
+              item.validated == "1"
+                ? _c(
+                    "v-hover",
+                    { staticClass: "link-trapeze-horizontal" },
                     [
-                      _vm.myjobs
+                      item.validated == "1"
                         ? _c(
-                            "v-tooltip",
+                            "v-card",
                             {
-                              attrs: { bottom: "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      return [
-                                        _c(
-                                          "v-icon",
-                                          _vm._g(
-                                            {
-                                              staticStyle: {
-                                                position: "absolute",
-                                                top: "4px",
-                                                right: "4px"
-                                              },
-                                              attrs: { color: "green" }
-                                            },
-                                            on
-                                          ),
-                                          [_vm._v("mdi-check-circle")]
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
+                              staticClass:
+                                "cursor-pointer job-card link-trapeze-horizontal epfl-card",
+                              style: _vm.adsStyle(key),
+                              attrs: { flat: "", tile: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.redirect("job/" + item.url)
+                                }
+                              }
                             },
                             [
-                              _vm._v(" "),
-                              _c("span", [
-                                _vm._v("Votre annonce a été publiée.")
-                              ])
-                            ]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticStyle: { width: "100%", height: "53px" } },
-                        [
-                          _c("v-card-title", [
-                            _c("div", [
-                              _c("div", [
-                                _c("h4", { staticStyle: { color: "black" } }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(item.title) +
-                                      "\n                                "
+                              _vm.myjobs
+                                ? _c(
+                                    "v-tooltip",
+                                    {
+                                      attrs: { bottom: "" },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "activator",
+                                            fn: function(ref) {
+                                              var on = ref.on
+                                              return [
+                                                _c(
+                                                  "v-icon",
+                                                  _vm._g(
+                                                    {
+                                                      staticStyle: {
+                                                        position: "absolute",
+                                                        top: "4px",
+                                                        right: "4px"
+                                                      },
+                                                      attrs: { color: "green" }
+                                                    },
+                                                    on
+                                                  ),
+                                                  [_vm._v("mdi-check-circle")]
+                                                )
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _c("span", [
+                                        _vm._v("Votre annonce a été publiée.")
+                                      ])
+                                    ]
                                   )
-                                ])
-                              ]),
+                                : _vm._e(),
                               _vm._v(" "),
-                              _c("span", { staticClass: "grey--text" }, [
-                                _vm._v(_vm._s(item.place))
-                              ])
-                            ])
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-card-text", [
-                        _vm._v(
-                          _vm._s(
-                            _vm._f("truncate")(item.description, 60, "...")
-                          ) +
-                            "\n                    " +
-                            _vm._s(item.place)
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            : _c(
-                "div",
-                [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: " job-card  epfl-card",
-                      attrs: { flat: "", tile: "" }
-                    },
-                    [
-                      item.validated == null
-                        ? _c(
-                            "v-tooltip",
-                            {
-                              attrs: { bottom: "" },
-                              scopedSlots: _vm._u(
+                              _c(
+                                "div",
+                                {
+                                  staticStyle: { width: "100%", height: "53px" }
+                                },
                                 [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      return [
+                                  _c("v-card-title", [
+                                    _c("div", [
+                                      _c("div", [
                                         _c(
-                                          "v-icon",
-                                          _vm._g(
-                                            {
-                                              staticStyle: {
-                                                position: "absolute",
-                                                top: "4px",
-                                                right: "4px"
-                                              },
-                                              attrs: { color: "orange" }
-                                            },
-                                            on
-                                          ),
-                                          [_vm._v("mdi-circle-slice-3")]
+                                          "h4",
+                                          { staticStyle: { color: "black" } },
+                                          [
+                                            _vm._v(
+                                              "\n                                        " +
+                                                _vm._s(item.title) +
+                                                "\n                                    "
+                                            )
+                                          ]
                                         )
-                                      ]
-                                    }
-                                  }
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "grey--text" },
+                                        [_vm._v(_vm._s(item.place))]
+                                      )
+                                    ])
+                                  ])
                                 ],
-                                null,
-                                true
-                              )
-                            },
-                            [
+                                1
+                              ),
                               _vm._v(" "),
-                              _c("span", [
+                              _c("v-card-text", [
                                 _vm._v(
-                                  "Votre annonce est en cour de modération."
+                                  _vm._s(
+                                    _vm._f("truncate")(
+                                      item.description,
+                                      200,
+                                      "..."
+                                    )
+                                  ) + " \n                        "
+                                ),
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-style": "italic" } },
+                                  [_vm._v(_vm._s(item.place))]
                                 )
                               ])
-                            ]
+                            ],
+                            1
                           )
-                        : _c(
-                            "v-tooltip",
-                            {
-                              attrs: { bottom: "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      return [
-                                        _c(
-                                          "v-icon",
-                                          _vm._g(
-                                            {
-                                              staticStyle: {
-                                                position: "absolute",
-                                                top: "4px",
-                                                right: "4px"
-                                              },
-                                              attrs: { color: "red" }
-                                            },
-                                            on
-                                          ),
-                                          [_vm._v("mdi-close-circle")]
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
-                            },
-                            [
-                              _vm._v(" "),
-                              _c("span", [
-                                _vm._v("Votre annonce a été refusée")
-                              ])
-                            ]
-                          ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticStyle: { width: "100%", height: "53px" } },
-                        [
-                          _c("v-card-title", [
-                            _c("div", [
-                              _c("div", [
-                                _c("h4", { staticStyle: { color: "black" } }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(item.title) +
-                                      "\n                                "
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "grey--text" }, [
-                                _vm._v(_vm._s(item.place))
-                              ])
-                            ])
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-card-text", [
-                        _vm._v(
-                          _vm._s(
-                            _vm._f("truncate")(item.description, 60, "...")
-                          ) +
-                            "\n                    " +
-                            _vm._s(item.place)
-                        )
-                      ])
+                        : _vm._e()
                     ],
                     1
                   )
-                ],
-                1
-              )
-        ],
-        1
+                : _c(
+                    "div",
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: " job-card  epfl-card",
+                          attrs: { flat: "", tile: "" }
+                        },
+                        [
+                          item.validated == null
+                            ? _c(
+                                "v-tooltip",
+                                {
+                                  attrs: { bottom: "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var on = ref.on
+                                          return [
+                                            _c(
+                                              "v-icon",
+                                              _vm._g(
+                                                {
+                                                  staticStyle: {
+                                                    position: "absolute",
+                                                    top: "4px",
+                                                    right: "4px"
+                                                  },
+                                                  attrs: { color: "orange" }
+                                                },
+                                                on
+                                              ),
+                                              [_vm._v("mdi-circle-slice-3")]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    true
+                                  )
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      "Votre annonce est en cour de modération."
+                                    )
+                                  ])
+                                ]
+                              )
+                            : _c(
+                                "v-tooltip",
+                                {
+                                  attrs: { bottom: "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var on = ref.on
+                                          return [
+                                            _c(
+                                              "v-icon",
+                                              _vm._g(
+                                                {
+                                                  staticStyle: {
+                                                    position: "absolute",
+                                                    top: "4px",
+                                                    right: "4px"
+                                                  },
+                                                  attrs: { color: "red" }
+                                                },
+                                                on
+                                              ),
+                                              [_vm._v("mdi-close-circle")]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    true
+                                  )
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v("Votre annonce a été refusée")
+                                  ])
+                                ]
+                              ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticStyle: { width: "100%", height: "53px" } },
+                            [
+                              _c("v-card-title", [
+                                _c("div", [
+                                  _c("div", [
+                                    _c(
+                                      "h4",
+                                      { staticStyle: { color: "black" } },
+                                      [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(item.title) +
+                                            "\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "grey--text" }, [
+                                    _vm._v(_vm._s(item.place))
+                                  ])
+                                ])
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-card-text", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("truncate")(item.description, 60, "...")
+                              ) +
+                                "\n                        " +
+                                _vm._s(item.place)
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+            ],
+            1
+          )
+        }),
+        0
       )
-    }),
+    ],
     1
   )
 }
@@ -42601,6 +42728,118 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
+                              item.skills
+                                ? _c("v-card-text", { staticClass: "py-2" }, [
+                                    _c("div", { staticClass: "label-for-ad" }, [
+                                      _vm._v(
+                                        "\n                      Compétences:\n                  "
+                                      )
+                                    ]),
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(_vm.adsArray.skills)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              item.languages
+                                ? _c("v-card-text", { staticClass: "py-2" }, [
+                                    _c("div", { staticClass: "label-for-ad" }, [
+                                      _vm._v(
+                                        "\n                      Languages:\n                  "
+                                      )
+                                    ]),
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(_vm.adsArray.languages)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              item.section_ids
+                                ? _c(
+                                    "v-card-text",
+                                    { staticClass: "py-2" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "label-for-ad" },
+                                        [
+                                          _vm._v(
+                                            "\n                      Section:\n                  "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(item.section_ids, function(
+                                        section,
+                                        key
+                                      ) {
+                                        return _c("span", { key: section }, [
+                                          _vm._v(
+                                            _vm._s(_vm.listeSections[section])
+                                          ),
+                                          key == item.section_ids.length - 1
+                                            ? _c("span", [_vm._v(".")])
+                                            : _c("span", [_vm._v(", ")])
+                                        ])
+                                      })
+                                    ],
+                                    2
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "py-2" }, [
+                                _c("div", { staticClass: "label-for-ad" }, [
+                                  _vm._v(
+                                    "\n                      Durée indicative:\n                  "
+                                  )
+                                ]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(_vm.listeDuree[item.duration])
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "py-2" }, [
+                                _c("div", { staticClass: "label-for-ad" }, [
+                                  _vm._v(
+                                    "\n                      Rémunération:\n                  "
+                                  )
+                                ]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(item.salary) +
+                                    ".-/h"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-text", { staticClass: "py-2" }, [
+                                _c("div", { staticClass: "label-for-ad" }, [
+                                  _vm._v(
+                                    "\n                      Email:\n                  "
+                                  )
+                                ]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(item.contact_email)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.adsArray.contact_phone
+                                ? _c("v-card-text", { staticClass: "py-2" }, [
+                                    _c("div", { staticClass: "label-for-ad" }, [
+                                      _vm._v(
+                                        "\n                      Téléphone:\n                  "
+                                      )
+                                    ]),
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(item.contact_phone)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
                               _c(
                                 "v-card-actions",
                                 [
@@ -42927,9 +43166,9 @@ var render = function() {
               _c("img", {
                 staticStyle: { "padding-left": "16px" },
                 attrs: {
-                  src: "/contents/images/epfl.svg",
+                  src: "/contents/images/myjob.svg",
                   alt: "EPFL",
-                  width: "160"
+                  width: "240"
                 }
               }),
               _vm._v(" "),

@@ -14,7 +14,64 @@
                     <div>{{ $t('ads.labels.description')}}</div>
                   </template>
                 </v-textarea>
+
+                
+            
               </v-card-text>
+              <v-card-text v-if="item.skills" class="py-2"
+                    ><div class="label-for-ad">
+                        Compétences:
+                    </div>
+                    {{ adsArray.skills }}</v-card-text
+                >
+
+                <v-card-text v-if="item.languages" class="py-2"
+                    ><div class="label-for-ad">
+                        Languages:
+                    </div>
+                    {{ adsArray.languages }}</v-card-text
+                >
+
+                <v-card-text v-if="item.section_ids" class="py-2"
+                    ><div class="label-for-ad">
+                        Section:
+                    </div>
+                    <span
+                        v-for="(section, key) in item.section_ids"
+                        :key="section"
+                        >{{ listeSections[section]
+                        }}<span v-if="key == item.section_ids.length - 1"
+                            >.</span
+                        ><span v-else>, </span></span
+                    ></v-card-text
+                >
+
+                <v-card-text class="py-2"
+                    ><div class="label-for-ad">
+                        Durée indicative:
+                    </div>
+                    {{ listeDuree[item.duration] }}</v-card-text
+                >
+
+                <v-card-text class="py-2"
+                    ><div class="label-for-ad">
+                        Rémunération:
+                    </div>
+                    {{ item.salary }}.-/h</v-card-text
+                >
+
+                <v-card-text class="py-2"
+                    ><div class="label-for-ad">
+                        Email:
+                    </div>
+                    {{ item.contact_email }}</v-card-text
+                >
+                <v-card-text v-if="adsArray.contact_phone" class="py-2"
+                    ><div class="label-for-ad">
+                        Téléphone:
+                    </div>
+                    {{ item.contact_phone }}</v-card-text
+                >
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn outlined flat color="red"@click="refuse(i)">refuse</v-btn>
@@ -66,7 +123,35 @@ export default {
   data() {
     return {
       adsArray: JSON.parse(this.ads),
-      currentIndex: 0
+      currentIndex: 0,
+      listeDuree: [
+                "Temps plein",
+                "A côté des études",
+                "Weekends",
+                "Vacances",
+                "Autre"
+            ],
+            listeSections: [
+                "Architecture",
+                "Chimie et génie chimique",
+                "Cours de mathématiques spéciales",
+                "EME (EPFL Middle East)",
+                "Génie civil",
+                "Génie mecanique",
+                "Génie électrique et electronique",
+                "Humanités digitales",
+                "Informatique",
+                "Ingénierie des sciences du vivant",
+                "Ingénierie financière",
+                "Management de la technologie",
+                "Mathématiques",
+                "Microtechnique",
+                "Physique",
+                "Science et génie des materiaux",
+                "Science et ingénierie de l'environnement",
+                "section FCUE",
+                "Système de communication"
+            ]
     };
   },
   filters: {
@@ -80,6 +165,7 @@ export default {
   },
   created() {
     this.fetchData();
+    console.log(JSON.parse(this.ads)[0]);
   },
   methods: {
     fetchData() {

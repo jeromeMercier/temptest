@@ -97,7 +97,7 @@ body {
   border-image-width: initial;
   border-image-outset: initial;
   border-image-repeat: initial;
-  border-radius: 2px !important;
+  border-radius: 0px !important;
 }
 
 .v-toolbar__content {

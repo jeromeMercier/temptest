@@ -1,18 +1,18 @@
 <template>
-    <v-layout row wrap>
-        <v-flex
-            xs12
-            md4
-            v-for="item in adsArray.data"
-            :key="item.url"
-            class="pa-1"
+<v-layout row wrap style="max-width:900px;">
+    <v-flex xs12>
+        <div
+            v-for="(item, key) in adsArrayValidated"
+            :key="key"
         >
             <v-hover
                 class="link-trapeze-horizontal"
                 v-if="item.validated == '1'"
             >
                 <v-card
+                v-if="item.validated == '1'"
                     class="cursor-pointer job-card link-trapeze-horizontal epfl-card"
+                    :style="adsStyle(key)"
                     flat
                     tile
                     @click="redirect('job/' + item.url)"
@@ -42,8 +42,8 @@
                         </v-card-title>
                     </div>
                     <v-card-text
-                        >{{ item.description | truncate(60, "...") }}
-                        {{ item.place }}</v-card-text
+                        >{{ item.description | truncate(200, "...") }} 
+                        <span style="font-style:italic;">{{ item.place }}</span></v-card-text
                     >
                 </v-card>
             </v-hover>
@@ -90,8 +90,9 @@
                     >
                 </v-card>
             </div>
+        </div>
         </v-flex>
-    </v-layout>
+</v-layout>
 </template>
 
 <script>
@@ -114,7 +115,40 @@ export default {
     created() {
         console.log(JSON.parse(this.ads));
     },
-    methods: {}
+    methods: {
+       adsStyle(key){
+           if(this.myjobs){
+            if(key==0){
+               return 'border-bottom:0px!important;'
+           }else if(key==this.adsArray.data.length-1){
+               return ''
+           }return 'border-bottom:1px!important;'
+           }else{
+if(key==0){
+               return 'border-bottom:0px!important;'
+           }else if(key==this.adsArrayValidated.length-1){
+               return ''
+           }return ' border-bottom:1px!important;'
+           }
+           
+       }
+    },
+    computed: {
+        adsArrayValidated: function(){
+                        if(this.myjobs){
+                return this.adsArray.data;
+            }
+            let newArray = [];
+            
+
+            for(let i = 0; i<this.adsArray.data.length; i++){
+                if(this.adsArray.data[i].validated == 1){
+                    newArray.push(this.adsArray.data[i]);
+                }
+            }
+            return newArray;
+        }
+    }
 };
 </script>
 <style>
