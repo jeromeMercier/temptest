@@ -2864,6 +2864,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2951,9 +2973,9 @@ __webpack_require__.r(__webpack_exports__);
       dateRules: [function (v) {
         return !!v || 'Date is required';
       }],
-      listeCategorie: ['Aide à domicile', 'Babysitting', 'Expériences', 'Informatique', 'Job de bureau', 'Flyering', 'Administratif', 'Etudes/expériences', 'Promotion', 'Restauration / Hôtellerie', 'Soutien scolaire', 'Autre'],
-      listeDuree: ['Temps plein', 'A côté des études', 'Weekends', 'Vacances', 'Autre'],
-      listeSections: ['Architecture', 'Chimie et génie chimique', 'Cours de mathématiques spéciales', 'EME (EPFL Middle East)', 'Génie civil', 'Génie mecanique', 'Génie électrique et electronique', 'Humanités digitales', 'Informatique', 'Ingénierie des sciences du vivant', 'Ingénierie financière', 'Management de la technologie', 'Mathématiques', 'Microtechnique', 'Physique', 'Science et génie des materiaux', "Science et ingénierie de l'environnement", 'section FCUE', 'Système de communication'],
+      listeCategorie: ['home', 'babysitting', 'experiments', 'computer', 'office', 'flyering', 'administrative', 'studies_experiments', 'promotion', 'waiter_hospitality', 'tutoring', 'other'],
+      listeDuree: ['full_time', 'beside', 'weekends', 'holiday', 'other'],
+      listeSections: ['architecture', 'chemistry', 'cms', 'civil', 'meca', 'elec', 'humanities', 'computer', 'financial', 'management', 'mathematics', 'microengineering', 'physics', 'materials', 'environmental', 'communication'],
       date: new Date().toISOString().substr(0, 10)
     };
   },
@@ -43454,6 +43476,40 @@ var render = function() {
                                   label: _vm.$t("ads.labels.category_id"),
                                   required: ""
                                 },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "selection",
+                                    fn: function(data) {
+                                      return [
+                                        _vm._v(
+                                          "\n    " +
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.category." + data.item
+                                              )
+                                            ) +
+                                            " \n  "
+                                        )
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    key: "item",
+                                    fn: function(data) {
+                                      return [
+                                        _vm._v(
+                                          "\n    " +
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.category." + data.item
+                                              )
+                                            ) +
+                                            " \n  "
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
                                 model: {
                                   value: _vm.form.category_id,
                                   callback: function($$v) {
@@ -43723,6 +43779,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.listeDuree,
+                                  message: "dick",
                                   label: _vm.$t("ads.labels.duration"),
                                   rules: [
                                     function(v) {
@@ -43731,6 +43788,40 @@ var render = function() {
                                   ],
                                   required: ""
                                 },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "selection",
+                                    fn: function(data) {
+                                      return [
+                                        _vm._v(
+                                          "\n    " +
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.availability." + data.item
+                                              )
+                                            ) +
+                                            " \n  "
+                                        )
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    key: "item",
+                                    fn: function(data) {
+                                      return [
+                                        _vm._v(
+                                          "\n    " +
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.availability." + data.item
+                                              )
+                                            ) +
+                                            " \n  "
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
                                 model: {
                                   value: _vm.form.duration,
                                   callback: function($$v) {
@@ -43862,7 +43953,13 @@ var render = function() {
                                               "v-list-tile-content",
                                               [
                                                 _c("v-list-tile-title", [
-                                                  _vm._v("Select All")
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.$t(
+                                                        "ads.epfl_sections.all"
+                                                      )
+                                                    )
+                                                  )
                                                 ])
                                               ],
                                               1
@@ -43892,7 +43989,13 @@ var render = function() {
                                           _vm.form.section_ids.length - 1
                                         )
                                           ? _c("span", [
-                                              _vm._v(_vm._s(item) + ", ")
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.$t(
+                                                    "ads.epfl_sections." + item
+                                                  )
+                                                ) + ", "
+                                              )
                                             ])
                                           : _vm._e(),
                                         _vm._v(" "),
@@ -43904,7 +44007,13 @@ var render = function() {
                                         index ===
                                           _vm.form.section_ids.length - 1
                                           ? _c("span", [
-                                              _vm._v(_vm._s(item) + " ")
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.$t(
+                                                    "ads.epfl_sections." + item
+                                                  )
+                                                ) + " "
+                                              )
                                             ])
                                           : _vm._e(),
                                         _vm._v(" "),
@@ -43935,8 +44044,32 @@ var render = function() {
                                         _vm.form.section_ids.length ===
                                           _vm.listeSections.length &&
                                         index === 0
-                                          ? _c("span", [_vm._v("All")])
+                                          ? _c("span", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.$t(
+                                                    "ads.epfl_sections.all"
+                                                  )
+                                                )
+                                              )
+                                            ])
                                           : _vm._e()
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    key: "item",
+                                    fn: function(data) {
+                                      return [
+                                        _vm._v(
+                                          "\n    " +
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.epfl_sections." + data.item
+                                              )
+                                            ) +
+                                            " \n  "
+                                        )
                                       ]
                                     }
                                   }
@@ -83069,6 +83202,46 @@ __webpack_require__.r(__webpack_exports__);
         "contact_last_name": "Onymous",
         "contact_email": "anne.onyme@epfl.ch",
         "contact_phone": "+41 21 69 XX XX"
+      },
+      "availability": {
+        "full_time": "Full time",
+        "beside": "Besides studies",
+        "weekends": "Weekends",
+        "holiday": "Holiday",
+        "other": "Other"
+      },
+      "epfl_sections": {
+        "architecture": "Architecture",
+        "chemistry": "Chimie et Génie Chimique",
+        "cms": "Cours de Mathématiques Spéciales",
+        "civil": "Génie Civil",
+        "meca": "Génie Mécanique",
+        "elec": "Génie électrique et électronique",
+        "humanities": "Humanités digitales",
+        "computer": "Informatique",
+        "financial": "Ingénierie Financière",
+        "management": "Management, technologie et entrepreneuriat",
+        "mathematics": "Mathématiques",
+        "microengineering": "Microtechnique",
+        "physics": "Pḧysique",
+        "materials": "Science et Génie des Matériaux",
+        "environmental": "Sciences et ingénierie de l’environnement",
+        "communication": "Systèmes de Communication",
+        "all": "All"
+      },
+      "category": {
+        "home": "Home help",
+        "babysitting": "Babysitting",
+        "experiments": "Experiments",
+        "computer": "Computer",
+        "office": "Office Job",
+        "flyering": "Flyering",
+        "administrative": "Administrative",
+        "studies_experiments": "Studies/experiments",
+        "promotion": "Promotion",
+        "waiter_hospitality": "Waiter/Waitress/Hospitality",
+        "tutoring": "Tutoring",
+        "other": "Others"
       }
     },
     "validation": {
@@ -83326,6 +83499,46 @@ __webpack_require__.r(__webpack_exports__);
         "contact_last_name": "Onyme",
         "contact_email": "anne.onyme@epfl.ch",
         "contact_phone": "+41 21 69 XX XX"
+      },
+      "availability": {
+        "full_time": "Temps plein",
+        "beside": "A côté des études",
+        "weekends": "Weekends",
+        "holiday": "Vacances",
+        "other": "Autre"
+      },
+      "epfl_sections": {
+        "architecture": "Architecture",
+        "chemistry": "Chemistry and Chemical Engineering",
+        "cms": "Special Mathematics Courses",
+        "civil": "Civil Engineering",
+        "meca": "Mechanical Engineering",
+        "elec": "Electrical and Electronic Engineering",
+        "humanities": "Digital Humanities",
+        "computer": "Computer Sciences",
+        "financial": "Financial Engineering",
+        "management": "Management, Technology and Entrepreneurship",
+        "mathematics": "Mathematics",
+        "microengineering": "Microengineering",
+        "physics": "Physics",
+        "materials": "Materials Science and Engineering",
+        "environmental": "Environmental Sciences and Engineering",
+        "communication": "Communication Systems",
+        "all": "Toutes"
+      },
+      "category": {
+        "home": "Aide à domicile",
+        "babysitting": "Babysitting",
+        "experiments": "Expériences",
+        "computer": "Informatique",
+        "office": "Job de bureau",
+        "flyering": "Flyering",
+        "administrative": "Administratif",
+        "studies_experiments": "Etudes/expériences",
+        "promotion": "Promotion",
+        "waiter_hospitality": "Restauration / Hôtellerie",
+        "tutoring": "Soutien scolaire",
+        "other": "Autre"
       }
     },
     "validation": {

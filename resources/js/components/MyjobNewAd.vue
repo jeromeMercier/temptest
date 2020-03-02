@@ -14,7 +14,16 @@
                             <v-text-field v-model="form.title" :label="$t('ads.labels.title')" required :rules="titleRules"></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 class="px-1">
-                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" :label="$t('ads.labels.category_id')" required></v-select>
+                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" :label="$t('ads.labels.category_id')" required>
+                                <template slot="selection" slot-scope="data">
+    <!-- HTML that describe how select should render selected items -->
+    {{ $t("ads.category." + data.item)}} 
+  </template>
+  <template slot="item" slot-scope="data">
+    <!-- HTML that describe how select should render items when the select is open -->
+    {{ $t("ads.category." + data.item)}} 
+  </template>
+                            </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.place" :label="$t('ads.labels.place')" required :rules="baseRules"></v-text-field>
@@ -47,7 +56,16 @@
                             </v-menu>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-select :items="listeDuree" :label="$t('ads.labels.duration')" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required></v-select>
+                            <v-select :items="listeDuree"  :message="'dick'" :label="$t('ads.labels.duration')" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required>
+                                <template slot="selection" slot-scope="data">
+    <!-- HTML that describe how select should render selected items -->
+    {{ $t("ads.availability." + data.item)}} 
+  </template>
+  <template slot="item" slot-scope="data">
+    <!-- HTML that describe how select should render items when the select is open -->
+    {{ $t("ads.availability." + data.item)}} 
+  </template>
+                            </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')" :rules="baseRules" required></v-text-field>
@@ -66,17 +84,21 @@
                                             <v-icon :color="form.section_ids.length > 0 ? 'indigo darken-4' : ''">{{icon}}</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>Select All</v-list-tile-title>
+                                            <v-list-tile-title>{{$t('ads.epfl_sections.all')}}</v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                     <v-divider class="mt-2"></v-divider>
                                 </template>
                                 <template v-slot:selection="{ item, index }">
-                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && !(index===form.section_ids.length-1)">{{ item }},&nbsp;</span>
-                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && (index===form.section_ids.length-1)">{{ item }}&nbsp;</span>
+                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && !(index===form.section_ids.length-1)">{{ $t('ads.epfl_sections.'+item) }},&nbsp;</span>
+                                    <span v-if="index<3 && !(form.section_ids.length === listeSections.length) && (index===form.section_ids.length-1)">{{ $t('ads.epfl_sections.'+item) }}&nbsp;</span>
                                     <span v-if="form.section_ids.length >2 && !(form.section_ids.length === listeSections.length) && index ===3" class="grey--text caption">(+{{ section.length - 3 }} others)</span>
-                                    <span v-if="form.section_ids.length === listeSections.length && index===0">All</span>
+                                    <span v-if="form.section_ids.length === listeSections.length && index===0">{{$t('ads.epfl_sections.all')}}</span>
                                 </template>
+                                  <template slot="item" slot-scope="data">
+    <!-- HTML that describe how select should render items when the select is open -->
+    {{ $t("ads.epfl_sections." + data.item)}} 
+  </template>
                             </v-select>
                         </v-flex>
                     </v-layout>
@@ -270,27 +292,13 @@ export default {
 
 
             listeCategorie: [
-                'Aide à domicile',
-                'Babysitting',
-                'Expériences',
-                'Informatique',
-                'Job de bureau',
-                'Flyering',
-                'Administratif',
-                'Etudes/expériences',
-                'Promotion',
-                'Restauration / Hôtellerie',
-                'Soutien scolaire',
-                'Autre'
+                'home', 'babysitting', 'experiments', 'computer', 'office', 'flyering', 'administrative', 'studies_experiments', 'promotion', 'waiter_hospitality', 'tutoring', 'other'
             ],
             listeDuree: [
-                'Temps plein', 'A côté des études', 'Weekends', 'Vacances', 'Autre'
+                'full_time', 'beside', 'weekends', 'holiday', 'other'
             ],
             listeSections: [
-                'Architecture', 'Chimie et génie chimique', 'Cours de mathématiques spéciales', 'EME (EPFL Middle East)', 'Génie civil',
-                'Génie mecanique', 'Génie électrique et electronique', 'Humanités digitales', 'Informatique', 'Ingénierie des sciences du vivant',
-                'Ingénierie financière', 'Management de la technologie', 'Mathématiques', 'Microtechnique', 'Physique', 'Science et génie des materiaux',
-                "Science et ingénierie de l'environnement", 'section FCUE', 'Système de communication'
+                'architecture', 'chemistry', 'cms', 'civil', 'meca', 'elec', 'humanities', 'computer', 'financial', 'management', 'mathematics', 'microengineering', 'physics', 'materials', 'environmental', 'communication'
             ],
             date: new Date().toISOString().substr(0, 10),
         };

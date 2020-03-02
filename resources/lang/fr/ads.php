@@ -26,9 +26,9 @@ return [
 		'contact_last_name'  => "Nom",
 		'contact_email'      => "Email",
 		'contact_phone'      => "Téléphone",
-		'section_ids'						=>"Sections",
+		'section_ids'						=> "Sections",
 
-		'ask_je'							=>'Je souhaite que ma demande soit suivie par un gestionnaire de projet de la Junior Entreprise Epfl.'
+		'ask_je'							=> 'Je souhaite que ma demande soit suivie par un gestionnaire de projet de la Junior Entreprise Epfl.'
 	],
 
 	'placeholders' => [
@@ -50,5 +50,45 @@ return [
 		'contact_phone'      => "+41 21 69 XX XX",
 
 	],
+	'availability' => [
+		'full_time' =>  "Temps plein",
+		'beside' => "A côté des études",
+		'weekends' => "Weekends",
+		'holiday' => "Vacances",
+		'other' => "Autre",
+	],
+	'epfl_sections' => [
+		'architecture' => "Architecture", 
+		'chemistry' => "Chemistry and Chemical Engineering",
+		'cms'=> "Special Mathematics Courses",
+		'civil'=>"Civil Engineering",
+		'meca' => "Mechanical Engineering",
+		'elec' => "Electrical and Electronic Engineering", 
+		'humanities' => "Digital Humanities", 
+		'computer' => 'Computer Sciences',
+		'financial' => "Financial Engineering",
+		'management' => "Management, Technology and Entrepreneurship",
+		'mathematics' => "Mathematics",
+		'microengineering' => "Microengineering",
+		'physics' => "Physics",
+		'materials' => "Materials Science and Engineering",
+		'environmental' => "Environmental Sciences and Engineering", 
+		'communication' => "Communication Systems",
+		'all'=> 'Toutes'
+	],
+	'category' => [
+		'home' =>'Aide à domicile',
+        'babysitting' => 'Babysitting',
+        'experiments' =>'Expériences',
+        'computer' =>'Informatique',
+        'office' =>'Job de bureau',
+        'flyering' =>'Flyering',
+        'administrative' =>'Administratif',
+        'studies_experiments' => 'Etudes/expériences',
+        'promotion' => 'Promotion',
+        'waiter_hospitality' => 'Restauration / Hôtellerie',
+        'tutoring' =>'Soutien scolaire',
+        'other' =>'Autre'
+	]
 
 ];
