@@ -89,6 +89,9 @@ return [
         'waiter_hospitality' => 'Restauration / Hôtellerie',
         'tutoring' =>'Soutien scolaire',
         'other' =>'Autre'
+	],
+	'show' => [
+		'publisher' => "Publiée par"
 	]
 
 ];

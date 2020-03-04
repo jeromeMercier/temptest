@@ -111,7 +111,9 @@ return [
 		'forgotten-link-success'	=> "Un email contenant le nouveau lien secret de connexion vous a été envoyé.",
 		'forgotten-link-error'		=> "Personne n'a publié d'annonce avec l'email :email.",
 		'forgotten-link-advices'	=> "Si vous avez déjà créé une annonce sur Myjob, vous devriez avoir reçu un email contenant votre lien de connexion. Si ce lien a été perdu ou ne fonctionne pas, veuillez en redemander un nouveau en indiquant votre adresse email. Merci de vérifier qu'il s'agisse bien de l'adresse email utilisée lors de la création d'une annonce.",
-        'error' 		=> "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"" . action('HelpController@index') . "\">contactez-nous</a>.",
+		'error' 		=> "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"" . action('HelpController@index') . "\">contactez-nous</a>.",
+		'moderation' => "Votre annonce est en cour de modération.",
+		'refused' => "Votre annonce a été jugée innapropriée."
 	],
 
 ];

@@ -1793,8 +1793,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       adsArray: JSON.parse(this.ad),
-      listeDuree: ["Temps plein", "A côté des études", "Weekends", "Vacances", "Autre"],
-      listeSections: ["Architecture", "Chimie et génie chimique", "Cours de mathématiques spéciales", "EME (EPFL Middle East)", "Génie civil", "Génie mecanique", "Génie électrique et electronique", "Humanités digitales", "Informatique", "Ingénierie des sciences du vivant", "Ingénierie financière", "Management de la technologie", "Mathématiques", "Microtechnique", "Physique", "Science et génie des materiaux", "Science et ingénierie de l'environnement", "section FCUE", "Système de communication"]
+      listeDuree: ['full_time', 'beside', 'weekends', 'holiday', 'other'],
+      listeSections: ['architecture', 'chemistry', 'cms', 'civil', 'meca', 'elec', 'humanities', 'computer', 'financial', 'management', 'mathematics', 'microengineering', 'physics', 'materials', 'environmental', 'communication']
     };
   },
   filters: {
@@ -3064,7 +3064,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$refs.recaptcha.reset();
         } else {
           _this2.alertType = 'success';
-          _this2.alertMessage = 'Your ad has been submitted.';
+          _this2.alertMessage = $t('general.successes.adcreated');
           _this2.showAlert;
         }
 
@@ -7598,7 +7598,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.label-for-ad {\n    display: inline-block;\n    min-width: 130px;\n}\n.job-card {\n    border: 1px solid #e6e6e6 !important;\n}\n.job-card-header {\n    background-color: #e6e6e6;\n}\n.link-trapeze-horizontal:focus:before,\n.link-trapeze-horizontal:hover:before {\n    border-top-width: 0.5rem;\n}\n.link-trapeze-horizontal:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    z-index: -1;\n    border: 0.5rem solid transparent;\n    transition: border 0.2s;\n    top: 100%;\n    left: 0;\n    width: 100%;\n    height: 0;\n    border-bottom-width: 0;\n    border-top-width: 0;\n    border-top-color: #d5d5d5;\n}\n*,\n:after,\n:before {\n    box-sizing: border-box;\n}\n.link-trapeze-horizontal:focus,\n.link-trapeze-horizontal:hover {\n    transform: translateY(-0.5rem);\n}\n.link-trapeze-horizontal {\n    position: relative;\n    z-index: 0;\n    transition: transform 0.2s;\n}\n", ""]);
+exports.push([module.i, "\n.label-for-ad {\n    display: inline-block;\n    min-width: 155px;\n}\n.job-card {\n    border: 1px solid #e6e6e6 !important;\n}\n.job-card-header {\n    background-color: #e6e6e6;\n}\n.link-trapeze-horizontal:focus:before,\n.link-trapeze-horizontal:hover:before {\n    border-top-width: 0.5rem;\n}\n.link-trapeze-horizontal:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    z-index: -1;\n    border: 0.5rem solid transparent;\n    transition: border 0.2s;\n    top: 100%;\n    left: 0;\n    width: 100%;\n    height: 0;\n    border-bottom-width: 0;\n    border-top-width: 0;\n    border-top-color: #d5d5d5;\n}\n*,\n:after,\n:before {\n    box-sizing: border-box;\n}\n.link-trapeze-horizontal:focus,\n.link-trapeze-horizontal:hover {\n    transform: translateY(-0.5rem);\n}\n.link-trapeze-horizontal {\n    position: relative;\n    z-index: 0;\n    transition: transform 0.2s;\n}\n", ""]);
 
 // exports
 
@@ -41268,7 +41268,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("span", { staticClass: "grey--text" }, [
                     _vm._v(
-                      "Publiée par " +
+                      _vm._s(_vm.$t("ad.show.publisher")) +
+                        " " +
                         _vm._s(_vm.adsArray.contact_first_name) +
                         "\n                        " +
                         _vm._s(_vm.adsArray.contact_last_name) +
@@ -41281,7 +41282,11 @@ var render = function() {
               _vm._v(" "),
               _c("v-card-text", { staticClass: "pb-2" }, [
                 _c("div", { staticClass: "label-for-ad" }, [
-                  _vm._v("\n                    Description:\n                ")
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("ads.labels.description")) +
+                      ":\n                "
+                  )
                 ]),
                 _vm._v("\n                " + _vm._s(_vm.adsArray.description))
               ]),
@@ -41290,7 +41295,9 @@ var render = function() {
                 ? _c("v-card-text", { staticClass: "py-2" }, [
                     _c("div", { staticClass: "label-for-ad" }, [
                       _vm._v(
-                        "\n                    Compétences:\n                "
+                        "\n                    " +
+                          _vm._s(_vm.$t("ads.labels.skills")) +
+                          ":\n                "
                       )
                     ]),
                     _vm._v("\n                " + _vm._s(_vm.adsArray.skills))
@@ -41301,7 +41308,9 @@ var render = function() {
                 ? _c("v-card-text", { staticClass: "py-2" }, [
                     _c("div", { staticClass: "label-for-ad" }, [
                       _vm._v(
-                        "\n                    Languages:\n                "
+                        "\n                    " +
+                          _vm._s(_vm.$t("ads.labels.languages")) +
+                          ":\n                "
                       )
                     ]),
                     _vm._v(
@@ -41317,13 +41326,22 @@ var render = function() {
                     [
                       _c("div", { staticClass: "label-for-ad" }, [
                         _vm._v(
-                          "\n                    Section:\n                "
+                          "\n                    " +
+                            _vm._s(_vm.$t("ads.labels.section_ids")) +
+                            ":\n                "
                         )
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.adsArray.section_ids, function(section, key) {
                         return _c("span", { key: section }, [
-                          _vm._v(_vm._s(_vm.listeSections[section])),
+                          _vm._v(
+                            _vm._s(
+                              _vm.$t(
+                                "ads.epfl_sections." +
+                                  _vm.listeSections[section]
+                              )
+                            )
+                          ),
                           key == _vm.adsArray.section_ids.length - 1
                             ? _c("span", [_vm._v(".")])
                             : _c("span", [_vm._v(", ")])
@@ -41337,19 +41355,28 @@ var render = function() {
               _c("v-card-text", { staticClass: "py-2" }, [
                 _c("div", { staticClass: "label-for-ad" }, [
                   _vm._v(
-                    "\n                    Durée indicative:\n                "
+                    "\n                    " +
+                      _vm._s(_vm.$t("ads.labels.duration")) +
+                      ":\n                "
                   )
                 ]),
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.listeDuree[_vm.adsArray.duration])
+                    _vm._s(
+                      _vm.$t(
+                        "ads.availability." +
+                          _vm.listeDuree[_vm.adsArray.duration]
+                      )
+                    )
                 )
               ]),
               _vm._v(" "),
               _c("v-card-text", { staticClass: "py-2" }, [
                 _c("div", { staticClass: "label-for-ad" }, [
                   _vm._v(
-                    "\n                    Rémunération:\n                "
+                    "\n                    " +
+                      _vm._s(_vm.$t("ads.labels.salary")) +
+                      ":\n                "
                   )
                 ]),
                 _vm._v(
@@ -41360,7 +41387,9 @@ var render = function() {
               _c("v-card-text", { staticClass: "py-2" }, [
                 _c("div", { staticClass: "label-for-ad" }, [
                   _vm._v(
-                    "\n                    Lieu de travail:\n                "
+                    "\n                    " +
+                      _vm._s(_vm.$t("ads.labels.place")) +
+                      ":\n                "
                   )
                 ]),
                 _vm._v("\n                " + _vm._s(_vm.adsArray.place))
@@ -41368,7 +41397,11 @@ var render = function() {
               _vm._v(" "),
               _c("v-card-text", { staticClass: "py-2" }, [
                 _c("div", { staticClass: "label-for-ad" }, [
-                  _vm._v("\n                    Email:\n                ")
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("ads.labels.contact_email")) +
+                      ":\n                "
+                  )
                 ]),
                 _vm._v(
                   "\n                " + _vm._s(_vm.adsArray.contact_email)
@@ -41379,7 +41412,9 @@ var render = function() {
                 ? _c("v-card-text", { staticClass: "py-2" }, [
                     _c("div", { staticClass: "label-for-ad" }, [
                       _vm._v(
-                        "\n                    Téléphone:\n                "
+                        "\n                    " +
+                          _vm._s(_vm.$t("ads.labels.contact_phone")) +
+                          ":\n                "
                       )
                     ]),
                     _vm._v(
@@ -41489,7 +41524,13 @@ var render = function() {
                                     [
                                       _vm._v(" "),
                                       _c("span", [
-                                        _vm._v("Votre annonce a été publiée.")
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.$t(
+                                              "general.successes.adcreated"
+                                            )
+                                          )
+                                        )
                                       ])
                                     ]
                                   )
@@ -41600,7 +41641,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("span", [
                                     _vm._v(
-                                      "Votre annonce est en cour de modération."
+                                      _vm._s(_vm.$t("general.texts.moderation"))
                                     )
                                   ])
                                 ]
@@ -41642,7 +41683,9 @@ var render = function() {
                                 [
                                   _vm._v(" "),
                                   _c("span", [
-                                    _vm._v("Votre annonce a été refusée")
+                                    _vm._v(
+                                      _vm._s(_vm.$t("general.texts.refused"))
+                                    )
                                   ])
                                 ]
                               ),
@@ -42754,7 +42797,9 @@ var render = function() {
                                 ? _c("v-card-text", { staticClass: "py-2" }, [
                                     _c("div", { staticClass: "label-for-ad" }, [
                                       _vm._v(
-                                        "\n                      Compétences:\n                  "
+                                        "\n                      " +
+                                          _vm._s(_vm.$t("ads.labels.skills")) +
+                                          ":\n                  "
                                       )
                                     ]),
                                     _vm._v(
@@ -42768,7 +42813,11 @@ var render = function() {
                                 ? _c("v-card-text", { staticClass: "py-2" }, [
                                     _c("div", { staticClass: "label-for-ad" }, [
                                       _vm._v(
-                                        "\n                      Languages:\n                  "
+                                        "\n                      " +
+                                          _vm._s(
+                                            _vm.$t("ads.labels.languages")
+                                          ) +
+                                          ":\n                  "
                                       )
                                     ]),
                                     _vm._v(
@@ -42788,7 +42837,13 @@ var render = function() {
                                         { staticClass: "label-for-ad" },
                                         [
                                           _vm._v(
-                                            "\n                      Section:\n                  "
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.$t(
+                                                  "ads.general.section_ids"
+                                                )
+                                              ) +
+                                              ":\n                  "
                                           )
                                         ]
                                       ),
@@ -42799,7 +42854,12 @@ var render = function() {
                                       ) {
                                         return _c("span", { key: section }, [
                                           _vm._v(
-                                            _vm._s(_vm.listeSections[section])
+                                            _vm._s(
+                                              _vm.$t(
+                                                "ads.epfl_sections." +
+                                                  _vm.listeSections[section]
+                                              )
+                                            )
                                           ),
                                           key == item.section_ids.length - 1
                                             ? _c("span", [_vm._v(".")])
@@ -42814,7 +42874,9 @@ var render = function() {
                               _c("v-card-text", { staticClass: "py-2" }, [
                                 _c("div", { staticClass: "label-for-ad" }, [
                                   _vm._v(
-                                    "\n                      Durée indicative:\n                  "
+                                    "\n                      " +
+                                      _vm._s(_vm.$t("ads.label.duration")) +
+                                      ":\n                  "
                                   )
                                 ]),
                                 _vm._v(
@@ -42826,7 +42888,9 @@ var render = function() {
                               _c("v-card-text", { staticClass: "py-2" }, [
                                 _c("div", { staticClass: "label-for-ad" }, [
                                   _vm._v(
-                                    "\n                      Rémunération:\n                  "
+                                    "\n                      " +
+                                      _vm._s(_vm.$t("ads.labels.salary")) +
+                                      ":\n                  "
                                   )
                                 ]),
                                 _vm._v(
@@ -42839,7 +42903,11 @@ var render = function() {
                               _c("v-card-text", { staticClass: "py-2" }, [
                                 _c("div", { staticClass: "label-for-ad" }, [
                                   _vm._v(
-                                    "\n                      Email:\n                  "
+                                    "\n                      " +
+                                      _vm._s(
+                                        _vm.$t("ads.labels.contact_email")
+                                      ) +
+                                      ":\n                  "
                                   )
                                 ]),
                                 _vm._v(
@@ -42852,7 +42920,11 @@ var render = function() {
                                 ? _c("v-card-text", { staticClass: "py-2" }, [
                                     _c("div", { staticClass: "label-for-ad" }, [
                                       _vm._v(
-                                        "\n                      Téléphone:\n                  "
+                                        "\n                      " +
+                                          _vm._s(
+                                            _vm.$t("ads.labels.contact_phone")
+                                          ) +
+                                          ":\n                  "
                                       )
                                     ]),
                                     _vm._v(
@@ -42881,7 +42953,11 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("refuse")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.$t("general.buttons.refuse"))
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -42898,7 +42974,11 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("accept")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.$t("general.buttons.accept"))
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
@@ -83129,7 +83209,9 @@ __webpack_require__.r(__webpack_exports__);
         "forgotten-link-success": "An email containing the new management link has been sent.",
         "forgotten-link-error": "No-one published an ad with email {email}.",
         "forgotten-link-advices": "If you already created an ad on Myjob, you should have recieved an email containing your management link. If this link was lost or does not work, please ask a new one by providing your email address. Please verify that it is the email address that was used to create the ads.",
-        "error": "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"http://localhost/help\">contact us</a>."
+        "error": "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"http://localhost/help\">contact us</a>.",
+        "moderation": "Your ad is curently beeing reviewed.",
+        "refused": "Your ad has been judged inappropriate."
       }
     },
     "options": {
@@ -83242,6 +83324,9 @@ __webpack_require__.r(__webpack_exports__);
         "waiter_hospitality": "Waiter/Waitress/Hospitality",
         "tutoring": "Tutoring",
         "other": "Others"
+      },
+      "show": {
+        "publisher": "Published by"
       }
     },
     "validation": {
@@ -83427,7 +83512,9 @@ __webpack_require__.r(__webpack_exports__);
         "forgotten-link-success": "Un email contenant le nouveau lien secret de connexion vous a été envoyé.",
         "forgotten-link-error": "Personne n'a publié d'annonce avec l'email {email}.",
         "forgotten-link-advices": "Si vous avez déjà créé une annonce sur Myjob, vous devriez avoir reçu un email contenant votre lien de connexion. Si ce lien a été perdu ou ne fonctionne pas, veuillez en redemander un nouveau en indiquant votre adresse email. Merci de vérifier qu'il s'agisse bien de l'adresse email utilisée lors de la création d'une annonce.",
-        "error": "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"http://localhost/help\">contactez-nous</a>."
+        "error": "Merci de recharger la page et de réessayer. Si l'erreur persiste et que vous pensez qu'il s'agit d'un comportement anormal, <a href=\"http://localhost/help\">contactez-nous</a>.",
+        "moderation": "Votre annonce est en cour de modération.",
+        "refused": "Votre annonce a été jugée innapropriée."
       }
     },
     "options": {
@@ -83539,6 +83626,9 @@ __webpack_require__.r(__webpack_exports__);
         "waiter_hospitality": "Restauration / Hôtellerie",
         "tutoring": "Soutien scolaire",
         "other": "Autre"
+      },
+      "show": {
+        "publisher": "Publiée par"
       }
     },
     "validation": {

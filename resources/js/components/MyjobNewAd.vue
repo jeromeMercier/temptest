@@ -379,7 +379,7 @@ export default {
 
                 } else {
                     this.alertType = 'success';
-                    this.alertMessage = 'Your ad has been submitted.';
+                    this.alertMessage = $t('general.successes.adcreated');
                     this.showAlert;
                 }
                 this.showAlert = true;

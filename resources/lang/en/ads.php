@@ -89,6 +89,9 @@ return [
         'waiter_hospitality'=> "Waiter/Waitress/Hospitality",
         'tutoring' => "Tutoring",
         'other'=> "Others"
+	],
+	'show' => [
+		'publisher' => "Published by"
 	]
 
 ];

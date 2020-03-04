@@ -11,7 +11,7 @@
                     <div>
                         <div class="headline">{{ adsArray.title }}</div>
                         <span class="grey--text"
-                            >Publiée par {{ adsArray.contact_first_name }}
+                            >{{$t('ad.show.publisher')}} {{ adsArray.contact_first_name }}
                             {{ adsArray.contact_last_name }}, le
                             {{ adsArray.updated_at.substring(0, 10) }}</span
                         >
@@ -19,33 +19,33 @@
                 </v-card-title>
                 <v-card-text class="pb-2"
                     ><div class="label-for-ad">
-                        Description:
+                        {{$t('ads.labels.description')}}:
                     </div>
                     {{ adsArray.description }}</v-card-text
                 >
 
                 <v-card-text v-if="adsArray.skills" class="py-2"
                     ><div class="label-for-ad">
-                        Compétences:
+                        {{$t('ads.labels.skills')}}:
                     </div>
                     {{ adsArray.skills }}</v-card-text
                 >
 
                 <v-card-text v-if="adsArray.languages" class="py-2"
                     ><div class="label-for-ad">
-                        Languages:
+                        {{$t('ads.labels.languages')}}:
                     </div>
                     {{ adsArray.languages }}</v-card-text
                 >
 
                 <v-card-text v-if="adsArray.section_ids" class="py-2"
                     ><div class="label-for-ad">
-                        Section:
+                        {{$t('ads.labels.section_ids')}}:
                     </div>
                     <span
                         v-for="(section, key) in adsArray.section_ids"
                         :key="section"
-                        >{{ listeSections[section]
+                        >{{ $t('ads.epfl_sections.'+listeSections[section])
                         }}<span v-if="key == adsArray.section_ids.length - 1"
                             >.</span
                         ><span v-else>, </span></span
@@ -54,33 +54,33 @@
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Durée indicative:
+                        {{$t('ads.labels.duration')}}:
                     </div>
-                    {{ listeDuree[adsArray.duration] }}</v-card-text
+                    {{ $t('ads.availability.'+listeDuree[adsArray.duration]) }}</v-card-text
                 >
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Rémunération:
+                        {{$t('ads.labels.salary')}}:
                     </div>
                     {{ adsArray.salary }}.-/h</v-card-text
                 >
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Lieu de travail:
+                        {{$t('ads.labels.place')}}:
                     </div>
                     {{ adsArray.place }}</v-card-text
                 >
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Email:
+                        {{$t('ads.labels.contact_email')}}:
                     </div>
                     {{ adsArray.contact_email }}</v-card-text
                 >
                 <v-card-text v-if="adsArray.contact_phone" class="py-2"
                     ><div class="label-for-ad">
-                        Téléphone:
+                        {{$t('ads.labels.contact_phone')}}:
                     </div>
                     {{ adsArray.contact_phone }}</v-card-text
                 >
@@ -96,33 +96,11 @@ export default {
         return {
             adsArray: JSON.parse(this.ad),
             listeDuree: [
-                "Temps plein",
-                "A côté des études",
-                "Weekends",
-                "Vacances",
-                "Autre"
+                'full_time', 'beside', 'weekends', 'holiday', 'other'
             ],
             listeSections: [
-                "Architecture",
-                "Chimie et génie chimique",
-                "Cours de mathématiques spéciales",
-                "EME (EPFL Middle East)",
-                "Génie civil",
-                "Génie mecanique",
-                "Génie électrique et electronique",
-                "Humanités digitales",
-                "Informatique",
-                "Ingénierie des sciences du vivant",
-                "Ingénierie financière",
-                "Management de la technologie",
-                "Mathématiques",
-                "Microtechnique",
-                "Physique",
-                "Science et génie des materiaux",
-                "Science et ingénierie de l'environnement",
-                "section FCUE",
-                "Système de communication"
-            ]
+                'architecture', 'chemistry', 'cms', 'civil', 'meca', 'elec', 'humanities', 'computer', 'financial', 'management', 'mathematics', 'microengineering', 'physics', 'materials', 'environmental', 'communication'
+            ],
         };
     },
     filters: {
@@ -143,7 +121,7 @@ export default {
 <style>
 .label-for-ad {
     display: inline-block;
-    min-width: 130px;
+    min-width: 155px;
 }
 .job-card {
     border: 1px solid #e6e6e6 !important;

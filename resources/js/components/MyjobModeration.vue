@@ -20,26 +20,26 @@
               </v-card-text>
               <v-card-text v-if="item.skills" class="py-2"
                     ><div class="label-for-ad">
-                        Compétences:
+                        {{$t('ads.labels.skills')}}:
                     </div>
                     {{ adsArray.skills }}</v-card-text
                 >
 
                 <v-card-text v-if="item.languages" class="py-2"
                     ><div class="label-for-ad">
-                        Languages:
+                        {{$t('ads.labels.languages')}}:
                     </div>
                     {{ adsArray.languages }}</v-card-text
                 >
 
                 <v-card-text v-if="item.section_ids" class="py-2"
                     ><div class="label-for-ad">
-                        Section:
+                        {{$t('ads.general.section_ids')}}:
                     </div>
                     <span
                         v-for="(section, key) in item.section_ids"
                         :key="section"
-                        >{{ listeSections[section]
+                        >{{ $t('ads.epfl_sections.'+listeSections[section])
                         }}<span v-if="key == item.section_ids.length - 1"
                             >.</span
                         ><span v-else>, </span></span
@@ -48,34 +48,34 @@
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Durée indicative:
+                        {{$t('ads.label.duration')}}:
                     </div>
                     {{ listeDuree[item.duration] }}</v-card-text
                 >
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Rémunération:
+                        {{$t('ads.labels.salary')}}:
                     </div>
                     {{ item.salary }}.-/h</v-card-text
                 >
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        Email:
+                        {{$t('ads.labels.contact_email')}}:
                     </div>
                     {{ item.contact_email }}</v-card-text
                 >
                 <v-card-text v-if="adsArray.contact_phone" class="py-2"
                     ><div class="label-for-ad">
-                        Téléphone:
+                        {{$t('ads.labels.contact_phone')}}:
                     </div>
                     {{ item.contact_phone }}</v-card-text
                 >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn outlined flat color="red"@click="refuse(i)">refuse</v-btn>
-                <v-btn outlined flat color="green" @click="accept(i)" >accept</v-btn>
+                <v-btn outlined flat color="red"@click="refuse(i)">{{$t('general.buttons.refuse')}}</v-btn>
+                <v-btn outlined flat color="green" @click="accept(i)" >{{$t('general.buttons.accept')}}</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>

@@ -111,7 +111,9 @@ return [
 		'forgotten-link-success'	=> "An email containing the new management link has been sent.",
 		'forgotten-link-error'		=> "No-one published an ad with email :email.",
 		'forgotten-link-advices'	=> "If you already created an ad on Myjob, you should have recieved an email containing your management link. If this link was lost or does not work, please ask a new one by providing your email address. Please verify that it is the email address that was used to create the ads.",
-        'error' 		=> "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"" . action('HelpController@index') . "\">contact us</a>.",
+		'error' 		=> "Please reload the page and try again. If the error persists and if you think it is abnormal, <a href=\"" . action('HelpController@index') . "\">contact us</a>.",
+		'moderation' => "Your ad is curently beeing reviewed.",
+		'refused' => "Your ad has been judged inappropriate."
 	],
 
 ];

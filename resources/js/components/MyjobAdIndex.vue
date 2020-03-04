@@ -26,7 +26,7 @@
                                 >mdi-check-circle</v-icon
                             >
                         </template>
-                        <span>Votre annonce a été publiée.</span>
+                        <span>{{$t('general.successes.adcreated')}}</span>
                     </v-tooltip>
 
                     <div style="width:100%; height:53px;">
@@ -58,7 +58,7 @@
                         >mdi-circle-slice-3</v-icon
                     >
                         </template>
-                        <span>Votre annonce est en cour de modération.</span>
+                        <span>{{$t('general.texts.moderation')}}</span>
                     </v-tooltip>
                     <v-tooltip bottom v-else>
       <template v-slot:activator="{ on }">
@@ -69,7 +69,7 @@
                         >mdi-close-circle</v-icon
                     >
       </template>
-      <span>Votre annonce a été refusée</span>
+      <span>{{$t('general.texts.refused')}}</span>
     </v-tooltip>
                     
                     <div style="width:100%; height:53px;">
