@@ -11,22 +11,22 @@
                 <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-text-field v-model="form.title" :label="$t('ads.labels.title')" required :rules="titleRules"></v-text-field>
+                            <v-text-field v-model="form.title" :label="$t('ads.labels.title')+'*'" required :rules="titleRules"></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 class="px-1">
-                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || 'Item is required']" :label="$t('ads.labels.category_id')" required>
+                            <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || $t('validation.required')]" :label="$t('ads.labels.category_id')+'*'" required>
                                 <template slot="selection" slot-scope="data">
     <!-- HTML that describe how select should render selected items -->
-    {{ $t("ads.category." + data.item)}} 
+    {{ $t("ads.category." + data.item)}}
   </template>
   <template slot="item" slot-scope="data">
     <!-- HTML that describe how select should render items when the select is open -->
-    {{ $t("ads.category." + data.item)}} 
+    {{ $t("ads.category." + data.item)}}
   </template>
                             </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.place" :label="$t('ads.labels.place')" required :rules="baseRules"></v-text-field>
+                            <v-text-field v-model="form.place" :label="$t('ads.labels.place')+'*'" required :rules="baseRules"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -42,7 +42,7 @@
                         <v-flex sm6 xs12 class="px-1">
                             <v-menu v-model="menuDateDebut" :close-on-content-click="false" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
                                 <template v-slot:activator="{ on }">
-                                    <v-text-field v-model="form.starts_at" :label="$t('ads.labels.starts_at')" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                                    <v-text-field v-model="form.starts_at" :label="$t('ads.labels.starts_at')" prepend-icon="event" readonly v-on="on" required :rules="[v => !!v || $t('validation.required')]"></v-text-field>
                                 </template>
                                 <v-date-picker v-model="form.starts_at" @input="menuDateDebut = false" :min="date"></v-date-picker>
                             </v-menu>
@@ -56,7 +56,7 @@
                             </v-menu>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-select :items="listeDuree"  :message="'dick'" :label="$t('ads.labels.duration')" v-model="form.duration" :rules="[v => !!v || 'Item is required']" required>
+                            <v-select :items="listeDuree"  :message="'dick'" :label="$t('ads.labels.duration')+'*'" v-model="form.duration" :rules="[v => !!v || $t('validation.required')]" required>
                                 <template slot="selection" slot-scope="data">
     <!-- HTML that describe how select should render selected items -->
     {{ $t("ads.availability." + data.item)}} 
@@ -68,7 +68,7 @@
                             </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')+'*'" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.skills" :label="$t('ads.labels.skills')" :rules="skillRules"></v-text-field>
@@ -116,7 +116,7 @@
                             <v-textarea v-model="form.description"  auto-grow :rules="descriptionRules" :counter="500">
                                 <template v-slot:label>
                                     <div>
-                                        {{ $t('ads.labels.description')}}
+                                        {{ $t('ads.labels.description') +'*'}}
                                     </div>
                                 </template>
                             </v-textarea>
@@ -134,13 +134,13 @@
                 <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')+'*'" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')+'*'" :rules="baseRules" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.contact_email" :label="$t('ads.labels.contact_email')" :rules="emailRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_email" :label="$t('ads.labels.contact_email')+'*'" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_phone" :label="$t('ads.labels.contact_phone')" :rules="phoneRules"></v-text-field>
@@ -149,6 +149,7 @@
                     </v-layout>
                 </v-container>
             </v-card>
+            
             <v-container class="mx-4 mt-4 pa-0" align="left" text-xs-left>
                 <v-checkbox color="#7595af" v-model="form.managed_by_je" :label="$t('ads.labels.ask_je')"></v-checkbox>
                 <div>
@@ -263,31 +264,31 @@ export default {
                 v => (!v || v.length > 1 || 'Item must be at least 2 characters')
             ],
             titleRules: [
-                v => !!v || 'Title is required',
+                v => !!v || this.$t('validation.required'),
                 v => (v && v.length <= 80) || 'Title must be less than 80 characters',
                 v => (v && v.length > 4 || 'Item must be at least 5 characters')
             ],
             descriptionRules: [
-                v => !!v || 'Item is required',
+                v => !!v || this.$t('validation.required'),
                 v => (v && v.length <= 80) || 'Item must be less than 500 characters',
                 v => (v && v.length > 9 || 'Item must be at least 10 characters')
             ],
             baseRules: [
-                v => !!v || 'Item is required',
+                v => !!v || this.$t('validation.required'),
                 v => (v && v.length <= 40) || 'Item must be less than 40 characters',
                 v => (v && v.length > 1 || 'Item must be at least 2 characters')
             ],
             emailRules: [
-                v => !!v || 'E-mail is required',
+                v => !!v || this.$t('validation.required'),
                 v => /.+@.+/.test(v) || 'E-mail must be valid',
                 v => (v && v.length > 4 || 'Item must be at least 5 characters')
             ],
             categorieRules: [
-                v => !!v || 'Categorie is required',
+                v => !!v || this.$t('validation.required'),
                 v => /.+@.+/.test(v) || 'E-mail must be valid'
             ],
             dateRules: [
-                v => !!v || 'Date is required'
+                v => !!v || this.$t('validation.required')
             ],
 
 

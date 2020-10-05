@@ -8,15 +8,11 @@
                 </v-flex>
                 <v-flex md4 xs8 offset-xs2 offset-md0>
                     <v-card-text>
-                        <a class="link-pretty" href="https://github.com/agepoly">AGEPINFO</a> ·
-                        <a class="link-pretty" href="https://github.com/zifeo/Myjob">Sourcejs</a><br>
-                        <a href="https://github.com/jeromemercier">Jérôme Mercier</a><br>
-                        <a href="https://petitesannonces.epfl.ch">Petites annonces</a> ·
-                        <a href="https://polyhelp.epfl.ch">PolyHelp</a>
+                        <span style="color: #707070!important;">2020 - </span><a href="https://je.epfl.ch/">JE EPFL</a><br>
                     </v-card-text>
                 </v-flex>
                 <v-flex md4 class="hidden-sm-and-down">
-                    <img :src="'/contents/images/epfl.svg'" alt="EPFL" width="120"></v-toolbar-items>
+                    <img :src="'/contents/images/epfl.svg'" alt="EPFL" width="120">
                 </v-flex>
             </v-layout>
         </v-container>

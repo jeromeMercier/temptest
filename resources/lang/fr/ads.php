@@ -92,6 +92,7 @@ return [
 	],
 	'show' => [
 		'publisher' => "Publiée par"
-	]
+	],
+	'none' => "Il n'y a acune annonce à montrer pour le moment",
 
 ];

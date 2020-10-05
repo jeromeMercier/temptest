@@ -220,7 +220,8 @@ export default {
             },
             "show": {
                 "publisher": "Published by"
-            }
+            },
+            "none": "There is no ad to show yet"
         },
         "validation": {
             "accepted": "The {attribute} must be accepted.",
@@ -267,7 +268,7 @@ export default {
             "not_in": "The selected {attribute} is invalid.",
             "numeric": "The {attribute} must be a number.",
             "regex": "The {attribute} format is invalid.",
-            "required": "The {attribute} field is required.",
+            "required": "This field is required.",
             "required_if": "The {attribute} field is required when {other} is {value}.",
             "required_with": "The {attribute} field is required when {values} is present.",
             "required_with_all": "The {attribute} field is required when {values} is present.",
@@ -522,7 +523,8 @@ export default {
             },
             "show": {
                 "publisher": "Publiée par"
-            }
+            },
+            "none": "Il n'y a acune annonce à montrer pour le moment"
         },
         "validation": {
             "accepted": "Le champ {attribute} doit être accepté.",
@@ -567,7 +569,7 @@ export default {
             "not_in": "Le champ {attribute} sélectionné n'est pas valide.",
             "numeric": "Le champ {attribute} doit contenir un nombre.",
             "regex": "Le format du champ {attribute} est invalide.",
-            "required": "Le champ {attribute} est obligatoire.",
+            "required": "Ce champ est obligatoire.",
             "required_if": "Le champ {attribute} est obligatoire quand la valeur de {other} est {value}.",
             "required_with": "Le champ {attribute} est obligatoire quand {values} est présent.",
             "required_with_all": "Le champ {attribute} est obligatoire quand {values} est présent.",

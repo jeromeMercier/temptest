@@ -1920,6 +1920,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["ads", "myjobs"],
   data: function data() {
@@ -2157,10 +2161,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -2886,6 +2886,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2893,6 +2894,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['contact'],
   data: function data() {
+    var _this = this;
+
     return {
       showAlert: false,
       alertType: 'success',
@@ -2938,40 +2941,40 @@ __webpack_require__.r(__webpack_exports__);
         return !v || v.length > 1 || 'Item must be at least 2 characters';
       }],
       titleRules: [function (v) {
-        return !!v || 'Title is required';
+        return !!v || _this.$t('validation.required');
       }, function (v) {
         return v && v.length <= 80 || 'Title must be less than 80 characters';
       }, function (v) {
         return v && v.length > 4 || 'Item must be at least 5 characters';
       }],
       descriptionRules: [function (v) {
-        return !!v || 'Item is required';
+        return !!v || _this.$t('validation.required');
       }, function (v) {
         return v && v.length <= 80 || 'Item must be less than 500 characters';
       }, function (v) {
         return v && v.length > 9 || 'Item must be at least 10 characters';
       }],
       baseRules: [function (v) {
-        return !!v || 'Item is required';
+        return !!v || _this.$t('validation.required');
       }, function (v) {
         return v && v.length <= 40 || 'Item must be less than 40 characters';
       }, function (v) {
         return v && v.length > 1 || 'Item must be at least 2 characters';
       }],
       emailRules: [function (v) {
-        return !!v || 'E-mail is required';
+        return !!v || _this.$t('validation.required');
       }, function (v) {
         return /.+@.+/.test(v) || 'E-mail must be valid';
       }, function (v) {
         return v && v.length > 4 || 'Item must be at least 5 characters';
       }],
       categorieRules: [function (v) {
-        return !!v || 'Categorie is required';
+        return !!v || _this.$t('validation.required');
       }, function (v) {
         return /.+@.+/.test(v) || 'E-mail must be valid';
       }],
       dateRules: [function (v) {
-        return !!v || 'Date is required';
+        return !!v || _this.$t('validation.required');
       }],
       listeCategorie: ['home', 'babysitting', 'experiments', 'computer', 'office', 'flyering', 'administrative', 'studies_experiments', 'promotion', 'waiter_hospitality', 'tutoring', 'other'],
       listeDuree: ['full_time', 'beside', 'weekends', 'holiday', 'other'],
@@ -3006,13 +3009,13 @@ __webpack_require__.r(__webpack_exports__);
       this.captchaAlert = false;
     },
     selectAllSections: function selectAllSections() {
-      var _this = this;
+      var _this2 = this;
 
       this.$nextTick(function () {
-        if (_this.form.section_ids.length === _this.listeSections.length) {
-          _this.form.section_ids = [];
+        if (_this2.form.section_ids.length === _this2.listeSections.length) {
+          _this2.form.section_ids = [];
         } else {
-          _this.form.section_ids = _this.listeSections.slice();
+          _this2.form.section_ids = _this2.listeSections.slice();
         }
       });
     },
@@ -3030,7 +3033,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     submit: function submit() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.errors = {};
       var sendableForm = {};
@@ -3057,22 +3060,22 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/new-job', sendableForm).then(function (response) {
         if (response.data == 'bad-captcha') {
-          _this2.alertType = 'error';
-          _this2.alertMessage = 'Bad captcha, it might have expired.';
-          _this2.showAlert;
+          _this3.alertType = 'error';
+          _this3.alertMessage = 'Bad captcha, it might have expired.';
+          _this3.showAlert;
 
-          _this2.$refs.recaptcha.reset();
+          _this3.$refs.recaptcha.reset();
         } else {
-          _this2.alertType = 'success';
-          _this2.alertMessage = $t('general.successes.adcreated');
-          _this2.showAlert;
+          _this3.alertType = 'success';
+          _this3.alertMessage = $t('general.successes.adcreated');
+          _this3.showAlert;
         }
 
-        _this2.showAlert = true;
+        _this3.showAlert = true;
       })["catch"](function (error) {
-        _this2.alertType = 'error';
-        _this2.alertMessage = error;
-        _this2.showAlert;
+        _this3.alertType = 'error';
+        _this3.alertMessage = error;
+        _this3.showAlert;
       });
     }
   }
@@ -41268,7 +41271,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("span", { staticClass: "grey--text" }, [
                     _vm._v(
-                      _vm._s(_vm.$t("ad.show.publisher")) +
+                      _vm._s(_vm.$t("ads.show.publisher")) +
                         " " +
                         _vm._s(_vm.adsArray.contact_first_name) +
                         "\n                        " +
@@ -41456,37 +41459,196 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-layout",
-    { staticStyle: { "max-width": "900px" }, attrs: { row: "", wrap: "" } },
+    { attrs: { row: "", wrap: "" } },
     [
-      _c(
-        "v-flex",
-        { attrs: { xs12: "" } },
-        _vm._l(_vm.adsArrayValidated, function(item, key) {
-          return _c(
-            "div",
-            { key: key },
+      this.adsArray.data.length == 0
+        ? _c(
+            "v-container",
+            { attrs: { "fill-height": "", fluid: "" } },
             [
-              item.validated == "1"
-                ? _c(
-                    "v-hover",
-                    { staticClass: "link-trapeze-horizontal" },
-                    [
-                      item.validated == "1"
-                        ? _c(
+              _c(
+                "v-layout",
+                { attrs: { "align-center": "", "justify-center": "" } },
+                [
+                  _c(
+                    "v-card-title",
+                    {
+                      staticStyle: {
+                        "font-weight": "700",
+                        color: "#707070",
+                        "font-size": "14px"
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("ads.none")))]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      this.adsArray.data.length > 0
+        ? _c(
+            "v-flex",
+            { staticStyle: { "max-width": "900px" }, attrs: { xs12: "" } },
+            _vm._l(_vm.adsArrayValidated, function(item, key) {
+              return _c(
+                "div",
+                { key: key },
+                [
+                  item.validated == "1"
+                    ? _c(
+                        "v-hover",
+                        { staticClass: "link-trapeze-horizontal" },
+                        [
+                          item.validated == "1"
+                            ? _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "cursor-pointer job-card link-trapeze-horizontal epfl-card",
+                                  style: _vm.adsStyle(key),
+                                  attrs: { flat: "", tile: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.redirect("job/" + item.url)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm.myjobs
+                                    ? _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { bottom: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  return [
+                                                    _c(
+                                                      "v-icon",
+                                                      _vm._g(
+                                                        {
+                                                          staticStyle: {
+                                                            position:
+                                                              "absolute",
+                                                            top: "4px",
+                                                            right: "4px"
+                                                          },
+                                                          attrs: {
+                                                            color: "green"
+                                                          }
+                                                        },
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "mdi-check-circle"
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.$t(
+                                                  "general.successes.adcreated"
+                                                )
+                                              )
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticStyle: {
+                                        width: "100%",
+                                        height: "53px"
+                                      }
+                                    },
+                                    [
+                                      _c("v-card-title", [
+                                        _c("div", [
+                                          _c("div", [
+                                            _c(
+                                              "h4",
+                                              {
+                                                staticStyle: { color: "black" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(item.title) +
+                                                    "\n                                    "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "grey--text" },
+                                            [_vm._v(_vm._s(item.place))]
+                                          )
+                                        ])
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-card-text", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("truncate")(
+                                          item.description,
+                                          200,
+                                          "..."
+                                        )
+                                      ) + " \n                        "
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticStyle: { "font-style": "italic" }
+                                      },
+                                      [_vm._v(_vm._s(item.place))]
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    : _c(
+                        "div",
+                        [
+                          _c(
                             "v-card",
                             {
-                              staticClass:
-                                "cursor-pointer job-card link-trapeze-horizontal epfl-card",
-                              style: _vm.adsStyle(key),
-                              attrs: { flat: "", tile: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.redirect("job/" + item.url)
-                                }
-                              }
+                              staticClass: " job-card  epfl-card",
+                              attrs: { flat: "", tile: "" }
                             },
                             [
-                              _vm.myjobs
+                              item.validated == null
                                 ? _c(
                                     "v-tooltip",
                                     {
@@ -41507,11 +41669,11 @@ var render = function() {
                                                         top: "4px",
                                                         right: "4px"
                                                       },
-                                                      attrs: { color: "green" }
+                                                      attrs: { color: "orange" }
                                                     },
                                                     on
                                                   ),
-                                                  [_vm._v("mdi-check-circle")]
+                                                  [_vm._v("mdi-circle-slice-3")]
                                                 )
                                               ]
                                             }
@@ -41526,15 +41688,57 @@ var render = function() {
                                       _c("span", [
                                         _vm._v(
                                           _vm._s(
-                                            _vm.$t(
-                                              "general.successes.adcreated"
-                                            )
+                                            _vm.$t("general.texts.moderation")
                                           )
                                         )
                                       ])
                                     ]
                                   )
-                                : _vm._e(),
+                                : _c(
+                                    "v-tooltip",
+                                    {
+                                      attrs: { bottom: "" },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "activator",
+                                            fn: function(ref) {
+                                              var on = ref.on
+                                              return [
+                                                _c(
+                                                  "v-icon",
+                                                  _vm._g(
+                                                    {
+                                                      staticStyle: {
+                                                        position: "absolute",
+                                                        top: "4px",
+                                                        right: "4px"
+                                                      },
+                                                      attrs: { color: "red" }
+                                                    },
+                                                    on
+                                                  ),
+                                                  [_vm._v("mdi-close-circle")]
+                                                )
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.$t("general.texts.refused")
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -41574,172 +41778,27 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("truncate")(
                                       item.description,
-                                      200,
+                                      60,
                                       "..."
                                     )
-                                  ) + " \n                        "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticStyle: { "font-style": "italic" } },
-                                  [_vm._v(_vm._s(item.place))]
+                                  ) +
+                                    "\n                        " +
+                                    _vm._s(item.place)
                                 )
                               ])
                             ],
                             1
                           )
-                        : _vm._e()
-                    ],
-                    1
-                  )
-                : _c(
-                    "div",
-                    [
-                      _c(
-                        "v-card",
-                        {
-                          staticClass: " job-card  epfl-card",
-                          attrs: { flat: "", tile: "" }
-                        },
-                        [
-                          item.validated == null
-                            ? _c(
-                                "v-tooltip",
-                                {
-                                  attrs: { bottom: "" },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          return [
-                                            _c(
-                                              "v-icon",
-                                              _vm._g(
-                                                {
-                                                  staticStyle: {
-                                                    position: "absolute",
-                                                    top: "4px",
-                                                    right: "4px"
-                                                  },
-                                                  attrs: { color: "orange" }
-                                                },
-                                                on
-                                              ),
-                                              [_vm._v("mdi-circle-slice-3")]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ],
-                                    null,
-                                    true
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("span", [
-                                    _vm._v(
-                                      _vm._s(_vm.$t("general.texts.moderation"))
-                                    )
-                                  ])
-                                ]
-                              )
-                            : _c(
-                                "v-tooltip",
-                                {
-                                  attrs: { bottom: "" },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          return [
-                                            _c(
-                                              "v-icon",
-                                              _vm._g(
-                                                {
-                                                  staticStyle: {
-                                                    position: "absolute",
-                                                    top: "4px",
-                                                    right: "4px"
-                                                  },
-                                                  attrs: { color: "red" }
-                                                },
-                                                on
-                                              ),
-                                              [_vm._v("mdi-close-circle")]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ],
-                                    null,
-                                    true
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("span", [
-                                    _vm._v(
-                                      _vm._s(_vm.$t("general.texts.refused"))
-                                    )
-                                  ])
-                                ]
-                              ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticStyle: { width: "100%", height: "53px" } },
-                            [
-                              _c("v-card-title", [
-                                _c("div", [
-                                  _c("div", [
-                                    _c(
-                                      "h4",
-                                      { staticStyle: { color: "black" } },
-                                      [
-                                        _vm._v(
-                                          "\n                                        " +
-                                            _vm._s(item.title) +
-                                            "\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "grey--text" }, [
-                                    _vm._v(_vm._s(item.place))
-                                  ])
-                                ])
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-card-text", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("truncate")(item.description, 60, "...")
-                              ) +
-                                "\n                        " +
-                                _vm._s(item.place)
-                            )
-                          ])
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
-            ],
-            1
+                ],
+                1
+              )
+            }),
+            0
           )
-        }),
-        0
-      )
+        : _vm._e()
     ],
     1
   )
@@ -42120,46 +42179,14 @@ var render = function() {
                     [
                       _c("v-card-text", [
                         _c(
-                          "a",
-                          {
-                            staticClass: "link-pretty",
-                            attrs: { href: "https://github.com/agepoly" }
-                          },
-                          [_vm._v("AGEPINFO")]
+                          "span",
+                          { staticStyle: { color: "#707070!important" } },
+                          [_vm._v("2020 - ")]
                         ),
-                        _vm._v(" ·\n                        "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "link-pretty",
-                            attrs: { href: "https://github.com/zifeo/Myjob" }
-                          },
-                          [_vm._v("Sourcejs")]
-                        ),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "https://github.com/jeromemercier" }
-                          },
-                          [_vm._v("Jérôme Mercier")]
-                        ),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "https://petitesannonces.epfl.ch" }
-                          },
-                          [_vm._v("Petites annonces")]
-                        ),
-                        _vm._v(" ·\n                        "),
-                        _c(
-                          "a",
-                          { attrs: { href: "https://polyhelp.epfl.ch" } },
-                          [_vm._v("PolyHelp")]
-                        )
+                        _c("a", { attrs: { href: "https://je.epfl.ch/" } }, [
+                          _vm._v("JE EPFL")
+                        ]),
+                        _c("br")
                       ])
                     ],
                     1
@@ -43522,7 +43549,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t("ads.labels.title"),
+                                  label: _vm.$t("ads.labels.title") + "*",
                                   required: "",
                                   rules: _vm.titleRules
                                 },
@@ -43550,10 +43577,12 @@ var render = function() {
                                   items: _vm.listeCategorie,
                                   rules: [
                                     function(v) {
-                                      return !!v || "Item is required"
+                                      return (
+                                        !!v || _vm.$t("validation.required")
+                                      )
                                     }
                                   ],
-                                  label: _vm.$t("ads.labels.category_id"),
+                                  label: _vm.$t("ads.labels.category_id") + "*",
                                   required: ""
                                 },
                                 scopedSlots: _vm._u([
@@ -43568,7 +43597,7 @@ var render = function() {
                                                 "ads.category." + data.item
                                               )
                                             ) +
-                                            " \n  "
+                                            "\n  "
                                         )
                                       ]
                                     }
@@ -43584,7 +43613,7 @@ var render = function() {
                                                 "ads.category." + data.item
                                               )
                                             ) +
-                                            " \n  "
+                                            "\n  "
                                         )
                                       ]
                                     }
@@ -43611,7 +43640,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t("ads.labels.place"),
+                                  label: _vm.$t("ads.labels.place") + "*",
                                   required: "",
                                   rules: _vm.baseRules
                                 },
@@ -43706,7 +43735,9 @@ var render = function() {
                                                     function(v) {
                                                       return (
                                                         !!v ||
-                                                        "Item is required"
+                                                        _vm.$t(
+                                                          "validation.required"
+                                                        )
                                                       )
                                                     }
                                                   ]
@@ -43860,10 +43891,12 @@ var render = function() {
                                 attrs: {
                                   items: _vm.listeDuree,
                                   message: "dick",
-                                  label: _vm.$t("ads.labels.duration"),
+                                  label: _vm.$t("ads.labels.duration") + "*",
                                   rules: [
                                     function(v) {
-                                      return !!v || "Item is required"
+                                      return (
+                                        !!v || _vm.$t("validation.required")
+                                      )
                                     }
                                   ],
                                   required: ""
@@ -43923,7 +43956,7 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t("ads.labels.salary"),
+                                  label: _vm.$t("ads.labels.salary") + "*",
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -44224,7 +44257,9 @@ var render = function() {
                                           _vm._v(
                                             "\n                                        " +
                                               _vm._s(
-                                                _vm.$t("ads.labels.description")
+                                                _vm.$t(
+                                                  "ads.labels.description"
+                                                ) + "*"
                                               ) +
                                               "\n                                    "
                                           )
@@ -44296,9 +44331,9 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t(
-                                    "ads.labels.contact_first_name"
-                                  ),
+                                  label:
+                                    _vm.$t("ads.labels.contact_first_name") +
+                                    "*",
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -44327,7 +44362,9 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t("ads.labels.contact_last_name"),
+                                  label:
+                                    _vm.$t("ads.labels.contact_last_name") +
+                                    "*",
                                   rules: _vm.baseRules,
                                   required: ""
                                 },
@@ -44352,7 +44389,8 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: _vm.$t("ads.labels.contact_email"),
+                                  label:
+                                    _vm.$t("ads.labels.contact_email") + "*",
                                   rules: _vm.emailRules,
                                   required: ""
                                 },
@@ -83327,7 +83365,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       "show": {
         "publisher": "Published by"
-      }
+      },
+      "none": "There is no ad to show yet"
     },
     "validation": {
       "accepted": "The {attribute} must be accepted.",
@@ -83374,7 +83413,7 @@ __webpack_require__.r(__webpack_exports__);
       "not_in": "The selected {attribute} is invalid.",
       "numeric": "The {attribute} must be a number.",
       "regex": "The {attribute} format is invalid.",
-      "required": "The {attribute} field is required.",
+      "required": "This field is required.",
       "required_if": "The {attribute} field is required when {other} is {value}.",
       "required_with": "The {attribute} field is required when {values} is present.",
       "required_with_all": "The {attribute} field is required when {values} is present.",
@@ -83629,7 +83668,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       "show": {
         "publisher": "Publiée par"
-      }
+      },
+      "none": "Il n'y a acune annonce à montrer pour le moment"
     },
     "validation": {
       "accepted": "Le champ {attribute} doit être accepté.",
@@ -83674,7 +83714,7 @@ __webpack_require__.r(__webpack_exports__);
       "not_in": "Le champ {attribute} sélectionné n'est pas valide.",
       "numeric": "Le champ {attribute} doit contenir un nombre.",
       "regex": "Le format du champ {attribute} est invalide.",
-      "required": "Le champ {attribute} est obligatoire.",
+      "required": "Ce champ est obligatoire.",
       "required_if": "Le champ {attribute} est obligatoire quand la valeur de {other} est {value}.",
       "required_with": "Le champ {attribute} est obligatoire quand {values} est présent.",
       "required_with_all": "Le champ {attribute} est obligatoire quand {values} est présent.",

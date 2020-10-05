@@ -1,6 +1,10 @@
 <template>
-<v-layout row wrap style="max-width:900px;">
-    <v-flex xs12>
+<v-layout row wrap >
+    <v-container fill-height fluid v-if="this.adsArray.data.length == 0"><v-layout align-center
+      justify-center>
+      <v-card-title style="font-weight:700; color:#707070; font-size:14px;">{{$t('ads.none')}}</v-card-title>
+  </v-layout></v-container>
+    <v-flex xs12 v-if="this.adsArray.data.length>0" style="max-width:900px;">
         <div
             v-for="(item, key) in adsArrayValidated"
             :key="key"

@@ -11,7 +11,7 @@
                     <div>
                         <div class="headline">{{ adsArray.title }}</div>
                         <span class="grey--text"
-                            >{{$t('ad.show.publisher')}} {{ adsArray.contact_first_name }}
+                            >{{$t('ads.show.publisher')}} {{ adsArray.contact_first_name }}
                             {{ adsArray.contact_last_name }}, le
                             {{ adsArray.updated_at.substring(0, 10) }}</span
                         >

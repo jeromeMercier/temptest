@@ -92,6 +92,7 @@ return [
 	],
 	'show' => [
 		'publisher' => "Published by"
-	]
+	],
+	'none' => 'There is no ad to show yet',
 
 ];
