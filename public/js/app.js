@@ -42398,7 +42398,7 @@ var render = function() {
                               _c("v-card-text", [
                                 _c("img", {
                                   attrs: {
-                                    src: "/contents/images/businessman.svg",
+                                    src: "/contents/images/bbusinessman.svg",
                                     alt: "Boss",
                                     width: "130"
                                   }
@@ -42531,7 +42531,7 @@ var render = function() {
                               _c("v-card-text", [
                                 _c("img", {
                                   attrs: {
-                                    src: "/contents/images/exams.svg",
+                                    src: "/contents/images/bexams.svg",
                                     alt: "Boss",
                                     width: "130"
                                   }

@@ -45,7 +45,7 @@
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <img :src="'/contents/images/businessman.svg'" alt="Boss" width="130">
+                                <img :src="'/contents/images/bbusinessman.svg'" alt="Boss" width="130">
                             </v-card-text>
                         </v-card>
                     </v-flex>
@@ -72,7 +72,7 @@
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <img :src="'/contents/images/exams.svg'" alt="Boss" width="130">
+                                <img :src="'/contents/images/bexams.svg'" alt="Boss" width="130">
                             </v-card-text>
                         </v-card>
                     </v-flex>
