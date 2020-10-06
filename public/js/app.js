@@ -42153,10 +42153,19 @@ var render = function() {
                 "v-layout",
                 { attrs: { row: "", wrap: "", "align-center": "" } },
                 [
-                  _c("v-flex", {
-                    staticClass: "hidden-sm-and-down",
-                    attrs: { md4: "" }
-                  }),
+                  _c(
+                    "v-flex",
+                    { staticClass: "hidden-sm-and-down", attrs: { md4: "" } },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src: "/contents/images/je.svg",
+                          alt: "JE",
+                          height: "50"
+                        }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-flex",
