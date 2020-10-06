@@ -14,9 +14,9 @@
                     <!--<v-card-text v-html="$t('general.texts.description')">-->
                         <v-card-text>
                             Profitez dès maintenant du vivier des compétences des étudiants de l’EPFL en soumettant vos annonces de <strong>petits jobs étudiants</strong>.
-<br>
+<br><br>
 Attention, cette plateforme n’accepte pas les postes à temps plein ni les stages de longue durée.
-<br>
+<br><br>
 N’hésitez pas à consulter la rubrique “Aide” si besoin.
 
                     </v-card-text>
@@ -46,13 +46,13 @@ N’hésitez pas à consulter la rubrique “Aide” si besoin.
         </v-card>
     </v-flex>
     <v-flex xs12 md4>
-        <v-card class="text-xs-center ma-4 epfl-card" flat tile>
+        <v-card class="text-xs-center ma-4 home-card epfl-card" flat tile>
             <v-container>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <img :src="'/contents/images/bbusinessman.svg'" alt="Boss" width="130">
+                                <img :src="'/contents/images/bbusinessman.svg'" alt="Boss" height="144">
                             </v-card-text>
                         </v-card>
                     </v-flex>
@@ -73,13 +73,13 @@ N’hésitez pas à consulter la rubrique “Aide” si besoin.
         </v-card>
     </v-flex>
     <v-flex xs12 md4>
-        <v-card class="text-xs-center ma-4 epfl-card" flat tile>
+        <v-card class="text-xs-center ma-4 home-card epfl-card" flat tile>
             <v-container>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <v-card flat>
                             <v-card-text>
-                                <img :src="'/contents/images/bexams.svg'" alt="Boss" width="130">
+                                <img :src="'/contents/images/bexams.svg'" alt="Boss" height="144">
                             </v-card-text>
                         </v-card>
                     </v-flex>

@@ -42271,9 +42271,11 @@ var render = function() {
                         _c("strong", [_vm._v("petits jobs étudiants")]),
                         _vm._v(".\n"),
                         _c("br"),
+                        _c("br"),
                         _vm._v(
                           "\nAttention, cette plateforme n’accepte pas les postes à temps plein ni les stages de longue durée.\n"
                         ),
+                        _c("br"),
                         _c("br"),
                         _vm._v(
                           "\nN’hésitez pas à consulter la rubrique “Aide” si besoin.\n\n                    "
@@ -42391,7 +42393,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              staticClass: "text-xs-center ma-4 epfl-card",
+              staticClass: "text-xs-center ma-4 home-card epfl-card",
               attrs: { flat: "", tile: "" }
             },
             [
@@ -42415,7 +42417,7 @@ var render = function() {
                                   attrs: {
                                     src: "/contents/images/bbusinessman.svg",
                                     alt: "Boss",
-                                    width: "130"
+                                    height: "144"
                                   }
                                 })
                               ])
@@ -42524,7 +42526,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              staticClass: "text-xs-center ma-4 epfl-card",
+              staticClass: "text-xs-center ma-4 home-card epfl-card",
               attrs: { flat: "", tile: "" }
             },
             [
@@ -42548,7 +42550,7 @@ var render = function() {
                                   attrs: {
                                     src: "/contents/images/bexams.svg",
                                     alt: "Boss",
-                                    width: "130"
+                                    height: "144"
                                   }
                                 })
                               ])
