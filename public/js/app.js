@@ -2183,6 +2183,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {}
 });
@@ -42153,59 +42156,64 @@ var render = function() {
                 "v-layout",
                 { attrs: { row: "", wrap: "", "align-center": "" } },
                 [
-                  _c(
-                    "v-flex",
-                    { staticClass: "hidden-sm-and-down", attrs: { md4: "" } },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src: "/contents/images/je.svg",
-                          alt: "JE",
-                          height: "50"
-                        }
-                      })
-                    ]
-                  ),
+                  _c("v-flex", { attrs: { xs4: "" } }, [
+                    _c("img", {
+                      attrs: {
+                        src: "/contents/images/je.svg",
+                        alt: "JE",
+                        height: _vm.$vuetify.breakpoint.xsOnly ? "40" : "50"
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    {
-                      attrs: {
-                        md4: "",
-                        xs8: "",
-                        "offset-xs2": "",
-                        "offset-md0": ""
-                      }
-                    },
+                    { attrs: { xs4: "", "offset-md0": "" } },
                     [
-                      _c("v-card-text", [
-                        _c(
-                          "span",
-                          { staticStyle: { color: "#707070!important" } },
-                          [_vm._v("2020 - ")]
-                        ),
-                        _c("a", { attrs: { href: "https://je.epfl.ch/" } }, [
-                          _vm._v("JE EPFL")
-                        ]),
-                        _c("br")
-                      ])
+                      !_vm.$vuetify.breakpoint.xsOnly
+                        ? _c("v-card-text", [
+                            _c(
+                              "span",
+                              { staticStyle: { color: "#707070!important" } },
+                              [_vm._v("2020 - ")]
+                            ),
+                            _c(
+                              "a",
+                              { attrs: { href: "https://je.epfl.ch/" } },
+                              [_vm._v("JE EPFL")]
+                            ),
+                            _c("br")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$vuetify.breakpoint.xsOnly
+                        ? _c("v-card-text", [
+                            _c(
+                              "span",
+                              { staticStyle: { color: "#707070!important" } },
+                              [_vm._v("2020 "), _c("br")]
+                            ),
+                            _c(
+                              "a",
+                              { attrs: { href: "https://je.epfl.ch/" } },
+                              [_vm._v("JE EPFL")]
+                            ),
+                            _c("br")
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { staticClass: "hidden-sm-and-down", attrs: { md4: "" } },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src: "/contents/images/epfl.svg",
-                          alt: "EPFL",
-                          width: "120"
-                        }
-                      })
-                    ]
-                  )
+                  _c("v-flex", { attrs: { xs4: "" } }, [
+                    _c("img", {
+                      attrs: {
+                        src: "/contents/images/epfl.svg",
+                        alt: "EPFL",
+                        width: _vm.$vuetify.breakpoint.xsOnly ? "80" : "120"
+                      }
+                    })
+                  ])
                 ],
                 1
               )
