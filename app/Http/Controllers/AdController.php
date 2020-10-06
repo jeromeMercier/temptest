@@ -144,9 +144,9 @@ class AdController extends ProjectController {
 
 		// Redirection to ad if allowed
 		if ($ad->canBeSeen()) {
-			return redirect()->action('AdController@show', $ad->url);
+			return 'done';
 		} else {
-			return redirect()->action('HomeController@index');
+			return 'done';
 		}
 
 

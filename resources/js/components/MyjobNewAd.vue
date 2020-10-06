@@ -11,7 +11,7 @@
                 <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex xs12 class="px-1">
-                            <v-text-field v-model="form.title" :label="$t('ads.labels.title')+'*'" required :rules="titleRules"></v-text-field>
+                            <v-text-field v-model="form.title" :label="$t('ads.labels.title')+'*'" required :rules="titleRules" :counter="80"></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 class="px-1">
                             <v-select v-model="form.category_id" :items="listeCategorie" :rules="[v => !!v || $t('validation.required')]" :label="$t('ads.labels.category_id')+'*'" required>
@@ -26,7 +26,7 @@
                             </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.place" :label="$t('ads.labels.place')+'*'" required :rules="baseRules"></v-text-field>
+                            <v-text-field v-model="form.place" :label="$t('ads.labels.place')+'*'" required :rules="baseRules" :counter="40"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -68,13 +68,13 @@
                             </v-select>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')+'*'" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.salary" :label="$t('ads.labels.salary')+'*'" :rules="baseRules" required :counter="40"></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.skills" :label="$t('ads.labels.skills')" :rules="skillRules"></v-text-field>
+                            <v-text-field v-model="form.skills" :label="$t('ads.labels.skills')" :rules="skillRules" :counter="80"></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.languages" :label="$t('ads.labels.languages')" :rules="languageRules"></v-text-field>
+                            <v-text-field v-model="form.languages" :label="$t('ads.labels.languages')" :rules="languageRules" :counter="40"></v-text-field>
                         </v-flex>
                         <v-flex xs12 class="px-1">
                             <v-select v-model="form.section_ids" :items="listeSections" :label="$t('ads.labels.section_ids')" multiple>
@@ -134,10 +134,10 @@
                 <v-container class="pa-3">
                     <v-layout row wrap>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')+'*'" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_first_name" :label="$t('ads.labels.contact_first_name')+'*'" :rules="baseRules" :counter="40" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
-                            <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')+'*'" :rules="baseRules" required></v-text-field>
+                            <v-text-field v-model="form.contact_last_name" :label="$t('ads.labels.contact_last_name')+'*'" :rules="baseRules" :counter="40" required></v-text-field>
                         </v-flex>
                         <v-flex sm6 xs12 class="px-1">
                             <v-text-field v-model="form.contact_email" :label="$t('ads.labels.contact_email')+'*'" :rules="emailRules" required></v-text-field>
@@ -221,7 +221,7 @@ export default {
     props: ['contact'],
     data() {
         return {
-            showAlert:false,
+            showAlert: false,
             alertType: 'success',
             alertMessage:'Yeeee',
             form: {
@@ -252,40 +252,34 @@ export default {
             valid: true,
             errore: {},
             phoneRules: [
-                v => (!v || v.length <= 15) || 'Item must be less than 15 characters',
-                v => (!v || v.length > 5 || 'Item must be at least 5 characters')
             ],
             skillRules: [
-                v => (!v || v.length <= 40) || 'Item must be less than 40 characters',
-                v => (!v || v.length > 1 || 'Item must be at least 2 characters')
+                v => (!v || v.length <= 80) || this.$t('validation.max_80'),
+                
             ],
             languageRules: [
-                v => (!v || v.length <= 40) || 'Item must be less than 40 characters',
-                v => (!v || v.length > 1 || 'Item must be at least 2 characters')
+                v => (!v || v.length <= 40) || this.$t('validation.max_40'),
+                
             ],
             titleRules: [
                 v => !!v || this.$t('validation.required'),
-                v => (v && v.length <= 80) || 'Title must be less than 80 characters',
-                v => (v && v.length > 4 || 'Item must be at least 5 characters')
+                v => (v && v.length <= 80) || this.$t('validation.max_80'),
+                
             ],
             descriptionRules: [
                 v => !!v || this.$t('validation.required'),
-                v => (v && v.length <= 80) || 'Item must be less than 500 characters',
-                v => (v && v.length > 9 || 'Item must be at least 10 characters')
+                v => (v && v.length <= 500) || this.$t('validation.max_500'),
             ],
             baseRules: [
                 v => !!v || this.$t('validation.required'),
-                v => (v && v.length <= 40) || 'Item must be less than 40 characters',
-                v => (v && v.length > 1 || 'Item must be at least 2 characters')
+                v => (v && v.length <= 40) || this.$t('validation.max_40'),
             ],
             emailRules: [
                 v => !!v || this.$t('validation.required'),
-                v => /.+@.+/.test(v) || 'E-mail must be valid',
-                v => (v && v.length > 4 || 'Item must be at least 5 characters')
+                v => /.+@.+/.test(v) || this.$t('validation.email_valid'),
             ],
             categorieRules: [
                 v => !!v || this.$t('validation.required'),
-                v => /.+@.+/.test(v) || 'E-mail must be valid'
             ],
             dateRules: [
                 v => !!v || this.$t('validation.required')
@@ -372,16 +366,19 @@ export default {
                 }
             }
             axios.post('/new-job', sendableForm).then(response => {
+                console.log(response);
                 if(response.data == 'bad-captcha'){
                     this.alertType = 'error';
                     this.alertMessage = 'Bad captcha, it might have expired.';
-                    this.showAlert;
                     this.$refs.recaptcha.reset();
 
-                } else {
+                } else if(response.data == 'done') {
                     this.alertType = 'success';
-                    this.alertMessage = $t('general.successes.adcreated');
-                    this.showAlert;
+                    this.alertMessage = this.$t('general.successes.adcreated');
+                }
+                else{
+                    this.alertType = 'error';
+                    this.alertMessage = "an error occured, please contact us if you did everything right.";
                 }
                 this.showAlert = true;
             }).catch(error => {

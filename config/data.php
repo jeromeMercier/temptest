@@ -9,8 +9,8 @@ return [
 	'ad'      => [
 		'title'              => [
 			'required' => true,
-			'min'      => 5,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 80,
 		],
 		'category_id'        => [
 			'categories' => true,
@@ -19,13 +19,13 @@ return [
 		],
 		'place'              => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 30,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'description'        => [
 			'required' => true,
-			'min'      => 10,
-			'max'      => 1500,
+			'min'      => 0,
+			'max'      => 500,
 		],
 
 		'starts_at'          => [
@@ -42,36 +42,36 @@ return [
 		],
 		'salary'             => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'skills'             => [
-			'min' => 2,
-			'max' => 50,
+			'min' => 0,
+			'max' => 80,
 		],
 		'languages'          => [
-			'min' => 2,
-			'max' => 50,
+			'min' => 0,
+			'max' => 40,
 		],
 
 		'contact_first_name' => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'contact_last_name'  => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'contact_email'      => [
 			'required' => true,
 			'email'    => true,
-			'min'      => 5,
+			'min'      => 0,
 			'max'      => 100,
 		],
 		'contact_phone'      => [
-			'min' => 5,
+			'min' => 0,
 			'max' => 50,
 		],
 		'section_ids'  						=> [
@@ -81,22 +81,22 @@ return [
 	'contact' => [
 		'first_name' => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'last_name'  => [
 			'required' => true,
-			'min'      => 2,
-			'max'      => 50,
+			'min'      => 0,
+			'max'      => 40,
 		],
 		'email'      => [
 			'required' => true,
-			'min'      => 2,
+			'min'      => 0,
 			'max'      => 100,
 		],
 		'message'    => [
 			'required' => true,
-			'min'      => 10,
+			'min'      => 0,
 			'max'      => 1500,
 		],
 	],

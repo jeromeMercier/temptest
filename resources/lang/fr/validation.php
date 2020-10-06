@@ -130,5 +130,8 @@ return [
 		"available"             => "Disponible",
 		"size"                  => "Taille",
 	],
-
+	'max_40' => 'Ce champ doit faire moins de 40 caractères',
+	'max_80' => 'Ce champ doit faire moins de 80 caractères',
+	'max_500' => 'Ce champ doit faire moins de 500 caractères',
+	'email_valid' => "L'Email doit être valide"
 ];

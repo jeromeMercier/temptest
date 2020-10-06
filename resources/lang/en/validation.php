@@ -104,5 +104,9 @@ return [
 	*/
 
 	'attributes'           => [],
+	'max_40' => 'Item must be less than 40 characters',
+	'max_80' => 'Item must be less than 80 characters',
+	'max_500' => 'Item must be less than 500 characters',
+	'email_valid' => "Email must be valid"
 
 ];

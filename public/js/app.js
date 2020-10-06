@@ -2925,53 +2925,35 @@ __webpack_require__.r(__webpack_exports__);
       arrayContact: JSON.parse(this.contact),
       valid: true,
       errore: {},
-      phoneRules: [function (v) {
-        return !v || v.length <= 15 || 'Item must be less than 15 characters';
-      }, function (v) {
-        return !v || v.length > 5 || 'Item must be at least 5 characters';
-      }],
+      phoneRules: [],
       skillRules: [function (v) {
-        return !v || v.length <= 40 || 'Item must be less than 40 characters';
-      }, function (v) {
-        return !v || v.length > 1 || 'Item must be at least 2 characters';
+        return !v || v.length <= 80 || _this.$t('validation.max_80');
       }],
       languageRules: [function (v) {
-        return !v || v.length <= 40 || 'Item must be less than 40 characters';
-      }, function (v) {
-        return !v || v.length > 1 || 'Item must be at least 2 characters';
+        return !v || v.length <= 40 || _this.$t('validation.max_40');
       }],
       titleRules: [function (v) {
         return !!v || _this.$t('validation.required');
       }, function (v) {
-        return v && v.length <= 80 || 'Title must be less than 80 characters';
-      }, function (v) {
-        return v && v.length > 4 || 'Item must be at least 5 characters';
+        return v && v.length <= 80 || _this.$t('validation.max_80');
       }],
       descriptionRules: [function (v) {
         return !!v || _this.$t('validation.required');
       }, function (v) {
-        return v && v.length <= 80 || 'Item must be less than 500 characters';
-      }, function (v) {
-        return v && v.length > 9 || 'Item must be at least 10 characters';
+        return v && v.length <= 500 || _this.$t('validation.max_500');
       }],
       baseRules: [function (v) {
         return !!v || _this.$t('validation.required');
       }, function (v) {
-        return v && v.length <= 40 || 'Item must be less than 40 characters';
-      }, function (v) {
-        return v && v.length > 1 || 'Item must be at least 2 characters';
+        return v && v.length <= 40 || _this.$t('validation.max_40');
       }],
       emailRules: [function (v) {
         return !!v || _this.$t('validation.required');
       }, function (v) {
-        return /.+@.+/.test(v) || 'E-mail must be valid';
-      }, function (v) {
-        return v && v.length > 4 || 'Item must be at least 5 characters';
+        return /.+@.+/.test(v) || _this.$t('validation.email_valid');
       }],
       categorieRules: [function (v) {
         return !!v || _this.$t('validation.required');
-      }, function (v) {
-        return /.+@.+/.test(v) || 'E-mail must be valid';
       }],
       dateRules: [function (v) {
         return !!v || _this.$t('validation.required');
@@ -3059,16 +3041,19 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios.post('/new-job', sendableForm).then(function (response) {
+        console.log(response);
+
         if (response.data == 'bad-captcha') {
           _this3.alertType = 'error';
           _this3.alertMessage = 'Bad captcha, it might have expired.';
-          _this3.showAlert;
 
           _this3.$refs.recaptcha.reset();
-        } else {
+        } else if (response.data == 'done') {
           _this3.alertType = 'success';
-          _this3.alertMessage = $t('general.successes.adcreated');
-          _this3.showAlert;
+          _this3.alertMessage = _this3.$t('general.successes.adcreated');
+        } else {
+          _this3.alertType = 'error';
+          _this3.alertMessage = "an error occured, please contact us if you did everything right.";
         }
 
         _this3.showAlert = true;
@@ -43551,7 +43536,8 @@ var render = function() {
                                 attrs: {
                                   label: _vm.$t("ads.labels.title") + "*",
                                   required: "",
-                                  rules: _vm.titleRules
+                                  rules: _vm.titleRules,
+                                  counter: 80
                                 },
                                 model: {
                                   value: _vm.form.title,
@@ -43642,7 +43628,8 @@ var render = function() {
                                 attrs: {
                                   label: _vm.$t("ads.labels.place") + "*",
                                   required: "",
-                                  rules: _vm.baseRules
+                                  rules: _vm.baseRules,
+                                  counter: 40
                                 },
                                 model: {
                                   value: _vm.form.place,
@@ -43958,7 +43945,8 @@ var render = function() {
                                 attrs: {
                                   label: _vm.$t("ads.labels.salary") + "*",
                                   rules: _vm.baseRules,
-                                  required: ""
+                                  required: "",
+                                  counter: 40
                                 },
                                 model: {
                                   value: _vm.form.salary,
@@ -43982,7 +43970,8 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: _vm.$t("ads.labels.skills"),
-                                  rules: _vm.skillRules
+                                  rules: _vm.skillRules,
+                                  counter: 80
                                 },
                                 model: {
                                   value: _vm.form.skills,
@@ -44006,7 +43995,8 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: _vm.$t("ads.labels.languages"),
-                                  rules: _vm.languageRules
+                                  rules: _vm.languageRules,
+                                  counter: 40
                                 },
                                 model: {
                                   value: _vm.form.languages,
@@ -44335,6 +44325,7 @@ var render = function() {
                                     _vm.$t("ads.labels.contact_first_name") +
                                     "*",
                                   rules: _vm.baseRules,
+                                  counter: 40,
                                   required: ""
                                 },
                                 model: {
@@ -44366,6 +44357,7 @@ var render = function() {
                                     _vm.$t("ads.labels.contact_last_name") +
                                     "*",
                                   rules: _vm.baseRules,
+                                  counter: 40,
                                   required: ""
                                 },
                                 model: {
@@ -83435,7 +83427,11 @@ __webpack_require__.r(__webpack_exports__);
           "rule-name": "custom-message"
         }
       },
-      "attributes": []
+      "attributes": [],
+      "max_40": "Item must be less than 40 characters",
+      "max_80": "Item must be less than 80 characters",
+      "max_500": "Item must be less than 500 characters",
+      "email_valid": "Email must be valid"
     },
     "contacts": {
       "sections": [],
@@ -83764,7 +83760,11 @@ __webpack_require__.r(__webpack_exports__);
         "time": "Heure",
         "available": "Disponible",
         "size": "Taille"
-      }
+      },
+      "max_40": "Ce champ doit faire moins de 40 caractères",
+      "max_80": "Ce champ doit faire moins de 80 caractères",
+      "max_500": "Ce champ doit faire moins de 500 caractères",
+      "email_valid": "L'Email doit être valide"
     },
     "contacts": {
       "sections": [],
