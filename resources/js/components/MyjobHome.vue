@@ -6,11 +6,18 @@
                 <v-flex xs12>
                     <v-card-text primary-title>
                         <h1>
-                            {{ $t('general.titles.adopt') }}
+                            <!--{{ $t('general.titles.adopt') }}-->
+                            Bienvenue sur la nouvelle plateforme MyJob!
                         </h1>
                     </v-card-text >
 
-                    <v-card-text v-html="$t('general.texts.description')">
+                    <!--<v-card-text v-html="$t('general.texts.description')">-->
+                        <v-card-text>
+                            Profitez dès maintenant du vivier des compétences des étudiants de l’EPFL en soumettant vos annonces de <strong>petits jobs étudiants</strong>.
+<br>
+Attention, cette plateforme n’accepte pas les postes à temps plein ni les stages de longue durée.
+<br>
+N’hésitez pas à consulter la rubrique “Aide” si besoin.
 
                     </v-card-text>
                     <v-container class="pt-0">

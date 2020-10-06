@@ -2295,6 +2295,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['students', 'publishers'],
   components: {
@@ -42252,18 +42259,26 @@ var render = function() {
                       _c("v-card-text", { attrs: { "primary-title": "" } }, [
                         _c("h1", [
                           _vm._v(
-                            "\n                            " +
-                              _vm._s(_vm.$t("general.titles.adopt")) +
-                              "\n                        "
+                            "\n                            Bienvenue sur la nouvelle plateforme MyJob!\n                        "
                           )
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("v-card-text", {
-                        domProps: {
-                          innerHTML: _vm._s(_vm.$t("general.texts.description"))
-                        }
-                      }),
+                      _c("v-card-text", [
+                        _vm._v(
+                          "\n                            Profitez dès maintenant du vivier des compétences des étudiants de l’EPFL en soumettant vos annonces de "
+                        ),
+                        _c("strong", [_vm._v("petits jobs étudiants")]),
+                        _vm._v(".\n"),
+                        _c("br"),
+                        _vm._v(
+                          "\nAttention, cette plateforme n’accepte pas les postes à temps plein ni les stages de longue durée.\n"
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "\nN’hésitez pas à consulter la rubrique “Aide” si besoin.\n\n                    "
+                        )
+                      ]),
                       _vm._v(" "),
                       _c(
                         "v-container",
