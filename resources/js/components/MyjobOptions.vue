@@ -15,9 +15,6 @@
 
     </v-flex>
 
-    <v-alert v-model="showAlert" color="success" icon="check_circle" dismissible class="myjob-alert elevation-24">
-        {{$t('options.labels.options_updated')}}
-    </v-alert>
 </v-layout>
 </template>
 
@@ -39,9 +36,12 @@ export default {
     },
     methods: {
         submit() {
-          this.showAlert=false;
+          this.$root.showAlert=false;
+          var that = this;
             axios.put('/options', this.arrayOptions).then(response => {
-                this.showAlert = true;
+                this.$root.showAlert = true;
+                this.$root.alertType = 'success';
+                this.$root.alertMessage = that.$t('options.labels.options_updated');
             }).catch(error => {
                 console.log(error);
             });

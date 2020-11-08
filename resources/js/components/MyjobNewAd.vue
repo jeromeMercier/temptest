@@ -206,9 +206,7 @@
                 </v-btn>
             </v-card-actions>
         </v-card>
-            <v-alert v-model="showAlert" :type="alertType"  dismissible class="myjob-alert elevation-24">
-        {{alertMessage}}
-    </v-alert>
+            
     </v-flex>
 
 </v-layout>
@@ -221,9 +219,6 @@ export default {
     props: ['contact'],
     data() {
         return {
-            showAlert: false,
-            alertType: 'success',
-            alertMessage:'Yeeee',
             form: {
                 title: '',
                 section_ids: [],
@@ -368,23 +363,27 @@ export default {
             axios.post('/new-job', sendableForm).then(response => {
                 console.log(response);
                 if(response.data == 'bad-captcha'){
-                    this.alertType = 'error';
-                    this.alertMessage = 'Bad captcha, it might have expired.';
+                    this.$root.alertType = 'error';
+                    this.$root.alertMessage = 'Bad captcha, it might have expired.';
                     this.$refs.recaptcha.reset();
 
                 } else if(response.data == 'done') {
-                    this.alertType = 'success';
-                    this.alertMessage = this.$t('general.successes.adcreated');
+                    this.$root.showAlert = true;
+                    this.$root.alertType = 'success';
+                    this.$root.alertMessage = this.$t('general.successes.adcreated');
+                    setTimeout(() => {  this.$root.redirect('/'); }, 4000);
+                    
+
                 }
                 else{
-                    this.alertType = 'error';
-                    this.alertMessage = "an error occured, please contact us if you did everything right.";
+                    this.$root.alertType = 'error';
+                    this.$root.alertMessage = "an error occured, please contact us if you did everything right.";
                 }
-                this.showAlert = true;
+                this.$root.showAlert = true;
             }).catch(error => {
-                this.alertType = 'error';
-                    this.alertMessage = error;
-                    this.showAlert;
+                this.$root.alertType = 'error';
+                    this.$root.alertMessage = error;
+                    this.$root.showAlert;
             });
         },
     }

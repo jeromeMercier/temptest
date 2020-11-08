@@ -59,7 +59,7 @@ return [
 	'successes'       => [
 		'options' => "Options mises à jour.",
 		'sent'    => "Message envoyé.",
-		'adcreated' => "L'annonce a été créée avec succès !",
+		'adcreated' => "L'annonce a été créée avec succès ! Vous allez être redirigé vers la page d'accueil",
 	],
 
 	'titles'          => [

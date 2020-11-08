@@ -1,5 +1,8 @@
 <template>
   <div>
+    <v-alert v-model="$root.showAlert" :type="$root.alertType"  dismissible class="myjob-alert elevation-24">
+        {{$root.alertMessage}}
+    </v-alert>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list class="pt-0 navbar-links drawer-links" dense justify-start>
         <v-list-tile

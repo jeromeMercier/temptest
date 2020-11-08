@@ -53,7 +53,7 @@ export default {
             "successes": {
                 "options": "Options have been updated.",
                 "sent": "The message has been sent.",
-                "adcreated": "The ad was created with success!"
+                "adcreated": "The ad was created with success! You are going to get redirected to home page"
             },
             "titles": {
                 "managing": "Manage the ad",
@@ -361,7 +361,7 @@ export default {
             "successes": {
                 "options": "Options mises à jour.",
                 "sent": "Message envoyé.",
-                "adcreated": "L'annonce a été créée avec succès !"
+                "adcreated": "L'annonce a été créée avec succès ! Vous allez être redirigé vers la page d'accueil"
             },
             "titles": {
                 "managing": "Gestion de l'annonce",

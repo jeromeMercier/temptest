@@ -59,7 +59,7 @@ return [
 	'successes'       => [
 		'options' => "Options have been updated.",
 		'sent'    => "The message has been sent.",
-		'adcreated' => "The ad was created with success!",
+		'adcreated' => "The ad was created with success! You are going to get redirected to home page",
 	],
 
 	'titles'          => [

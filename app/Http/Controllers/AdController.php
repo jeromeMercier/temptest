@@ -30,7 +30,7 @@ class AdController extends ProjectController {
 			'description',
 			'place',
 			'ads.updated_at'];
-
+		dd(Auth::user());
 		$ads = Ad::where('validated', '=', 1)->simplePaginate(config('App.ads.numberDisplay'));
 		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => false]);
 	}
