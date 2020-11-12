@@ -7,6 +7,8 @@ use Input;
 use App\Models\FAQ;
 use Session;
 use Validator;
+use Mail;
+use Log;
 
 class HelpController extends ProjectController {
 
@@ -28,19 +30,18 @@ class HelpController extends ProjectController {
             return back()->withInput()->withErrors($validator);
         }
 
-        $first_name = e(Input::get('first_name'));
-        $last_name = e(Input::get('last_name'));
-        $email = e(Input::get('email'));
-        $message = e(Input::get('message'));
-
-        Mail::raw($message, function ($message) use (&$first_name, &$last_name, &$email) {
-            $message->from($email, $first_name . ' ' . $last_name);
-            $message->to('App@epfl.ch')->subject('App contact');
+        $first_name = Input::get('first_name');
+        $last_name = Input::get('last_name');
+        $email = Input::get('email');
+        $message = Input::get('message');
+        Mail::send('emails.contact', ['first_name' => $first_name, 'last_name' => $last_name, 'message_content' => $message], function ($m) use (&$first_name, $last_name, $email) {
+            $m->from($email, $first_name . ' ' . $last_name);
+            $m->to('myjob@epfl.ch')->subject('Contact');
         });
 
         Log::debug('help mail sent');
 
-        return redirect()->action('HelpController@index')->with('success', trans('general.successes.sent'));
+        return 'done';
     }
 
     private function contactValidation() {

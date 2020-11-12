@@ -25,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('sendnotificationmails --subscribed=instantly')->everyThirtyMinutes();
+        $schedule->command('sendnotificationmails --subscribed=daily')->dailyAt('13:00');
+        $schedule->command('sendnotificationmails --subscribed=weekly')->weeklyOn(1, '8:00');;
+        $schedule->command('sendnotificationmails --subscribed=moderation')->weeklyOn(7, '8:00');;
     }
 
     /**
@@ -39,5 +41,12 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+    protected function dailyMail()
+    {
+
+    }
+    protected function weeklyMail(){
+
     }
 }

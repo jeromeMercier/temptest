@@ -1,9 +1,9 @@
 <template>
-  <v-layout v-on:keyup.ctrl.right="accept(0)" >
+  <v-layout v-on:keyup.ctrl.right="accept(0)" row wrap>
     <v-flex xs12 md6 lg5 v-on:keyup.ctrl.left="refuse(0)">
-      <v-layout>
+      <v-layout row wrap>
         <template v-for="(item, i) in adsArray">
-          <v-flex xs12 v-if="activeIndex(i)" :key="i" class="pa-1">
+          <v-flex xs12 v-if="activeIndex(i)" :key="i" >
             <v-card class="job-card epfl-card" flat tile @click="currentIndex = i">
               <v-card-text>
                 <v-text-field v-model="item.title" :label="$t('ads.labels.title')" autofocus></v-text-field>
@@ -83,9 +83,9 @@
       </v-layout>
     </v-flex>
     <v-flex xs12 md6 lg7>
-        <v-layout>
+        <v-layout row wrap>
       <template v-for="(item, i) in adsArray">
-        <v-flex xs12 md4 class="pa-1" :key="i" v-if="!activeIndex(i)">
+        <v-flex xs12 md4  :key="i" v-if="!activeIndex(i)">
           <v-hover class="link-trapeze-horizontal">
             <v-card
               class="cursor-pointer job-card link-trapeze-horizontal epfl-card"

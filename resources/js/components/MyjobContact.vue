@@ -12,13 +12,13 @@
                 <v-layout row wrap class="pa-0">
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="form.first_name" :label="$t('contacts.placeholders.first_name')" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.first_name" :label="$t('contacts.placeholders.first_name')" required :rules="[v => !!v || $t('validation.required')]"></v-text-field>
 
 
                     </v-flex>
                     <v-flex xs12 md4 class="px-1">
 
-                        <v-text-field v-model="form.last_name" :label="$t('contacts.placeholders.last_name')" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+                        <v-text-field v-model="form.last_name" :label="$t('contacts.placeholders.last_name')" required :rules="[v => !!v || $t('validation.required')]"></v-text-field>
 
 
                     </v-flex>
@@ -43,7 +43,7 @@
         </v-card-text>
     </v-form>
     <v-card-actions class="justify-center">
-      <v-btn :disabled="!valid" flat @click="submit" :class="buttonColor" ><v-icon left dark>send</v-icon>{{ $t('general.buttons.submit.send') }}</v-btn>
+      <v-btn :disabled="!valid" flat @click="validate" :class="buttonColor" ><v-icon left dark>send</v-icon>{{ $t('general.buttons.submit.send') }}</v-btn>
 
     </v-card-actions>
 
@@ -64,12 +64,12 @@ export default {
 
 
             emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+/.test(v) || 'E-mail must be valid'
+                v => !!v || this.$t('validation.required'),
+                v => /.+@.+/.test(v) || this.$t('validation.email_valid')
             ],
             messageRules: [
-                v => !!v || 'Message is required',
-                v => (v && v.length <= 500) || 'Title must be less than 500 characters'
+                v => !!v || this.$t('validation.required'),
+                v => (v && v.length <= 500) || this.$t('validation.max_500')
             ],
         };
     },
@@ -87,15 +87,25 @@ export default {
       validate() {
           if (this.$refs.form.validate()) {
               this.snackbar = true
-          }
-          else{
-            this.sumbit();
+              this.submit();
           }
       },
       submit() {
           this.errors = {};
           axios.post('/help', this.form).then(response => {
-              alert('Message sent!');
+             if(response.data ='done'){
+                    this.$root.showAlert = true;
+                    this.$root.alertType = 'success';
+                    this.$root.alertMessage = this.$t('general.successes.contactSent');
+                    setTimeout(() => {  this.$root.redirect('/'); }, 4000);
+                    
+
+                }
+                else{
+                    this.$root.showAlert = true;
+                    this.$root.alertType = 'error';
+                    this.$root.alertMessage = "an error occured, please contact us if you did everything right.";
+                }
           }).catch(error => {
               console.log(error);
           });

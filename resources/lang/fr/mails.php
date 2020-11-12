@@ -11,6 +11,9 @@ return [
 		'seeads'	=>	"Consulter les annonces",
 		'teammyjob'	=>	"A bientôt, l\'équipe de Myjob.",
 		'options'	=>	"Options",
+		'contact' => "Contact",
+		'moderation' => "Annonces à modérer",
+		'newadstomoderate' => "Voilà les annonces restantes à modérer !"
 	],
 
     'publishers' => [

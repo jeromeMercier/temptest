@@ -53,7 +53,8 @@ export default {
             "successes": {
                 "options": "Options have been updated.",
                 "sent": "The message has been sent.",
-                "adcreated": "The ad was created with success! You are going to get redirected to home page"
+                "adcreated": "The ad was created with success! You are going to get redirected to home page",
+                "contactSent": "Your mail has been successfully sent! You are goint to get redirected to home page"
             },
             "titles": {
                 "managing": "Manage the ad",
@@ -126,7 +127,8 @@ export default {
                 "newjobjustappeared": "New ads are available on Myjob.",
                 "seeads": "See the ads",
                 "teammyjob": "See you soon, the Myjob team.",
-                "options": "Options"
+                "options": "Options",
+                "contact": "Contact"
             },
             "publishers": {
                 "link": "Management link",
@@ -361,7 +363,8 @@ export default {
             "successes": {
                 "options": "Options mises à jour.",
                 "sent": "Message envoyé.",
-                "adcreated": "L'annonce a été créée avec succès ! Vous allez être redirigé vers la page d'accueil"
+                "adcreated": "L'annonce a été créée avec succès! Vous allez être redirigé vers la page d'accueil",
+                "contactSent": "Votre mail à été envoyé avec succès! Vous allez être redirigé vers la page d'accueil"
             },
             "titles": {
                 "managing": "Gestion de l'annonce",
@@ -434,7 +437,8 @@ export default {
                 "newjobjustappeared": "Des nouvelles annonces sont disponibles sur Myjob.",
                 "seeads": "Consulter les annonces",
                 "teammyjob": "A bientôt, l\\'équipe de Myjob.",
-                "options": "Options"
+                "options": "Options",
+                "contact": "Contact"
             },
             "publishers": {
                 "link": "Lien d\\'administration",

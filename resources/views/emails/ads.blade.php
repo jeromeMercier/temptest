@@ -1,6 +1,6 @@
 @extends('emails.layout')
 
-@section('title', trans('mails.notifications.newads'))
+@section('title', $moderation ? trans('mails.notifications.moderation'): trans('mails.notifications.newads'))
 
 @section('content')
     <tr>
@@ -9,7 +9,7 @@
                 <tr>
                     <td>
                         <p>{{ trans('mails.notifications.hi') }} {{ $user->first_name }},</p>
-                        <p class="spacer">{{ trans('mails.notifications.newjobjustappeared') }}</p>
+                        <p class="spacer">{{ $moderation ? trans('mails.notifications.newadstomoderate') : trans('mails.notifications.newjobjustappeared') }}</p>
                     </td>
                 </tr>
                 @foreach ($ads as $ad)

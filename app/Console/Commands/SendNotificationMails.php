@@ -32,7 +32,10 @@ class SendNotificationMails extends Command
     /**
      * The possible options for --subscribed
      */
-    private $subscribedOptions = ['instantly', 'daily', 'weekly'];
+    private $subscribedOptions = ['instantly', 'daily', 'weekly', 'moderation'];
+
+    private $subject = '';
+    private $isModeration = false;
 
     /**
      * Create a new command instance.
@@ -58,12 +61,12 @@ class SendNotificationMails extends Command
             echo "Please specify option --subscribed with one of the following: " . implode(", ", $this->subscribedOptions) . "\n";
             return;
         }
-
+        $this->subject = trans('mails.notifications.newjobs');
         switch ($subscribed) {
             case 'instantly':
                 $users = User::where('notifications_instant', 1);
-                $ads = Ad::withCategories();
-                // should be $ads = Ad::withCategories()->where('validated', 1)->where('validated_at', '>=', formatDate(strtotime("-30 minutes")));
+                //$ads = Ad::withCategories();
+                $ads = Ad::withCategories()->where('validated', 1)->where('validated_at', '>=', formatDate(strtotime("-30 minutes")));
                 break;
 
             case 'daily':
@@ -75,9 +78,17 @@ class SendNotificationMails extends Command
                 $users = User::where('notifications_week', 1);
                 $ads = Ad::withCategories()->where('validated', 1)->where('validated_at', '>=', formatDate(strtotime("-1 week")));
                 break;
+            
+            case 'moderation':
+                $users = User::where('admin', 1);
+                $ads = Ad::withCategories()->where('validated_at', null);
+                $this->subject = trans('mails.notifications.moderation');
+                $this->isModeration = true;
+            break;
 
             default:
                 /* Impossible state */
+               
                 Log::error("Impossible state during command sendnotificationmails");
                 break;
         }
@@ -93,15 +104,11 @@ class SendNotificationMails extends Command
             $users->chunk(200, function($users) use (&$ads, &$categoryMappings) {
 
                 foreach ($users as $user) {
-                    /* Only send to user with id == 1, for testing purposes.
-                    We're starting to populate the DB with real users and
-                    don't want to bother them. TODO when it's ready, remove the
-                    "if" */
-                    if ($user->user_id == 1) {
-                        Mail::send('emails.ads', ['user' => $user, 'ads' => $ads, 'category_names' => $categoryMappings], function ($m) use (&$user) {
-                            $m->to($user->email, $user->first_name)->subject(trans('mails.notifications.newjobs'));
+
+                        Mail::send('emails.ads', ['user' => $user, 'ads' => $ads, 'category_names' => $categoryMappings, 'moderation' => $this->isModeration], function ($m) use (&$user) {
+                            $m->to($user->email, $user->first_name)->subject($this->subject);
                         });
-                    }
+                    
                 }
             });
             Log::info('email notifications (' . $subscribed . '): terminate sending ' . count($ads) . ' new ads');

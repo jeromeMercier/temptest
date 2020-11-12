@@ -11,6 +11,9 @@ return [
 		'seeads'	=>	"See the ads",
 		'teammyjob'	=>	"See you soon, the Myjob team.",
 		'options'	=>	"Options",
+		'contact' => "Contact",
+		'moderation' => "Ads to moderate",
+		'newadstomoderate' => "Here are the ads left to moderate !"
 	],
 
     'publishers' => [

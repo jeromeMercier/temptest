@@ -44,7 +44,6 @@
         <myjob-navbar links='{!!json_encode($links)!!}' ></myjob-navbar>
         <v-content>
             <v-container fluid fill-height class="pa-4 main-container">
-            
                 @yield('content')
             </v-container>
         </v-content>

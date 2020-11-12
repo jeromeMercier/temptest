@@ -6,6 +6,7 @@ use App;
 use Auth;
 use Input;
 use App\Models\Ad;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Publisher;
 use GuzzleHttp\Client;
@@ -30,9 +31,10 @@ class AdController extends ProjectController {
 			'description',
 			'place',
 			'ads.updated_at'];
-		dd(Auth::user());
 		$ads = Ad::where('validated', '=', 1)->simplePaginate(config('App.ads.numberDisplay'));
-		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => false]);
+		$publishers = Ad::withTrashed()->count();
+        $students = User::withTrashed()->count();
+		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => false, 'publishers' => $publishers, 'students'=>$students]);
 	}
 
 	/**
@@ -48,7 +50,9 @@ class AdController extends ProjectController {
 
 		$publisher = Auth::check() ? Auth::user()->email: Session::get('connected_visitor');
 		$ads = Ad::withCategories()->where('contact_email', '=', $publisher)->select($fields)->simplePaginate(config('App.ads.numberDisplay'));
-		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => true]);
+		$publishers = Ad::withTrashed()->count();
+        $students = User::withTrashed()->count();
+		return view('ads.index', ['ads' => json_encode($ads), 'myJobs' => true, 'publishers' => $publishers, 'students'=>$students]);
 	}
 
 	/** Each App 1.0 job creation request redirects its data here. */
