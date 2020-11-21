@@ -244,7 +244,7 @@ class AdController extends ProjectController {
 	 * the @param $email email
 	 */
 	public function manage_ads_with_email($email, $secret) {
-		if (Publisher::is_valid($secret, Auth::user()->email)) {
+		if (Publisher::is_valid($secret, $email)) {
 			/* Disconnect previous sessions */
 			Controller::disconnect();
 

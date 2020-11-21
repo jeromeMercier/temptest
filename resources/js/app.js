@@ -61,6 +61,7 @@ Vue.component(
     require("./components/MyjobModeration.vue").default
 );
 Vue.component("myjob-ad", require("./components/MyjobAd.vue").default);
+Vue.component("myjob-forgotten-link", require("./components/MyJobForgottenLink.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

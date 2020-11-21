@@ -17,10 +17,10 @@ class PublishersController extends ProjectController {
     }
 
     public function postForgottenLink() {
-        $email = Input::get('email');
+        $email = Input::get('contact_email');
 
         if (!Publisher::exists($email)) {
-            return back()->withErrors(trans('general.texts.forgotten-link-error', ['email' => $email]));
+            return $email;
         } else {
             $secret = Publisher::generate_new_secret($email);
 
@@ -32,7 +32,7 @@ class PublishersController extends ProjectController {
             Log::info("Forgotten link for ". $email . ", mail sent with admin link");
 
             Session::flash('success', trans('general.texts.forgotten-link-success'));
-            return redirect()->Action('HomeController@index');
+            return 'success';
         }
     }
 

@@ -1688,6 +1688,117 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["options"],
+  data: function data() {
+    var _this = this;
+
+    return {
+      valid: null,
+      emailRules: [function (v) {
+        return !!v || _this.$t("validation.required");
+      }, function (v) {
+        return /.+@.+/.test(v) || _this.$t("validation.email_valid");
+      }],
+      form: {
+        contact_email: null
+      }
+    };
+  },
+  created: function created() {},
+  methods: {
+    validate: function validate() {
+      if (this.$refs.form.validate()
+      /*&& this.form.g_recaptcha_response != ''*/
+      ) {
+          this.snackbar = true;
+          this.submit();
+        }
+      /* Uncomment for recaptcha activation
+      else if(this.form.g_recaptcha_response == ''){
+          this.captchaAlert=true;
+      }*/
+
+    },
+    submit: function submit() {
+      var _this2 = this;
+
+      axios.post('/forgotten-link', this.form).then(function (response) {
+        if (response.data == 'success') {
+          _this2.$root.showAlert = true;
+          _this2.$root.alertType = 'success';
+          _this2.$root.alertMessage = _this2.$t('general.texts.forgotten-link-success');
+          setTimeout(function () {
+            _this2.$root.redirect('/');
+          }, 4000);
+        } else {
+          _this2.$root.alertType = 'error';
+          _this2.$root.alertMessage = _this2.$t('general.texts.forgotten-link-error', {
+            email: response.data
+          });
+          _this2.$root.showAlert = true;
+        }
+      })["catch"](function (error) {
+        _this2.$root.alertType = 'error';
+        _this2.$root.alertMessage = error;
+        _this2.$root.showAlert;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyjobAd.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyjobAd.vue?vue&type=script&lang=js& ***!
@@ -41384,6 +41495,124 @@ VueI18n.install = install;
 VueI18n.version = '8.15.0';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-layout",
+    { attrs: { row: "", wrap: "" } },
+    [
+      _c(
+        "v-flex",
+        { attrs: { xs12: "" } },
+        [
+          _c(
+            "v-card",
+            {
+              staticClass:
+                "text-xs-left ma-4 align-center text-xs-left epfl-card",
+              attrs: { flat: "", tile: "", "max-width": "550" }
+            },
+            [
+              _c("v-card-title", { staticClass: "pb-2" }, [
+                _c("h2", [
+                  _vm._v(_vm._s(_vm.$t("general.titles.forgotten-link")))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("general.texts.forgotten-link")) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "v-form",
+                    {
+                      ref: "form",
+                      attrs: { "lazy-validation": "" },
+                      model: {
+                        value: _vm.valid,
+                        callback: function($$v) {
+                          _vm.valid = $$v
+                        },
+                        expression: "valid"
+                      }
+                    },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          label:
+                            _vm.$t("general.placeholders.forgotten-link-mail") +
+                            "*",
+                          rules: _vm.emailRules,
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.form.contact_email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "contact_email", $$v)
+                          },
+                          expression: "form.contact_email"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "white-text ma-0",
+                          attrs: {
+                            disabled: !_vm.valid,
+                            color: "secondary",
+                            depressed: ""
+                          },
+                          on: { click: _vm.validate }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.$t("general.buttons.submit.send-short"))
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
 
 
 /***/ }),
@@ -84230,6 +84459,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("myjob-new-ad", __webpack_r
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("myjob-options", __webpack_require__(/*! ./components/MyjobOptions.vue */ "./resources/js/components/MyjobOptions.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("myjob-moderation", __webpack_require__(/*! ./components/MyjobModeration.vue */ "./resources/js/components/MyjobModeration.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("myjob-ad", __webpack_require__(/*! ./components/MyjobAd.vue */ "./resources/js/components/MyjobAd.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("myjob-forgotten-link", __webpack_require__(/*! ./components/MyJobForgottenLink.vue */ "./resources/js/components/MyJobForgottenLink.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -84315,6 +84545,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/MyJobForgottenLink.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/MyJobForgottenLink.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyJobForgottenLink.vue?vue&type=template&id=a6537324& */ "./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324&");
+/* harmony import */ var _MyJobForgottenLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyJobForgottenLink.vue?vue&type=script&lang=js& */ "./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyJobForgottenLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MyJobForgottenLink.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyJobForgottenLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyJobForgottenLink.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyJobForgottenLink.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyJobForgottenLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyJobForgottenLink.vue?vue&type=template&id=a6537324& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MyJobForgottenLink.vue?vue&type=template&id=a6537324&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyJobForgottenLink_vue_vue_type_template_id_a6537324___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
