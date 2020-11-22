@@ -18,7 +18,7 @@ class PublisherAuth {
 	public function handle($request, Closure $next) {
 		if (Auth::guest() && !Session::has('connected_visitor')) {
 
-			App::abort(404);
+			return redirect('connect');
 		}
 
 		return $next($request);

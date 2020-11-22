@@ -76,28 +76,18 @@
         #ad {
             background: #ffffff;
             box-shadow: 0 1px 3px 0 #bcbdbd, 0 0 0 1px #d4d4d5;
+            border: 1px solid black;
+            
             width: 100%;
             border-radius: 0px;
             padding: 10px;
             margin: 0 0 15px 0;
         }
-
         #footer {
             border-top: 1px solid #dddddd;
         }
 
-        a.button {
-            background-color: red;
-            border-radius: 0px;
-            text-align: center;
-            padding: 8px 10px;
-            color: #ffffff;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Montserrat', inherit;
-            border: 1px solid red;
-            font-size: 0.9em;
-        }
+       
 
         a.inverted {
             border-color: #ffffff;
@@ -106,7 +96,19 @@
 
         a {
             text-decoration: none;
-            color: rgba(0, 0, 0, .8);
+            color: rgba(0, 0, 0, .8)!important;
+        }
+        a.button {
+            background-color: red;
+            border-radius: 0px;
+            text-align: center;
+            padding: 8px 10px;
+            color: #ffffff!important;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', inherit;
+            border: 1px solid red;
+            font-size: 0.9em;
         }
         .navbarBackground{
             background-color:white;

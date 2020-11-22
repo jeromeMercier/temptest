@@ -48,7 +48,7 @@
 
                 <v-card-text class="py-2"
                     ><div class="label-for-ad">
-                        {{$t('ads.label.duration')}}:
+                        {{$t('ads.labels.duration')}}:
                     </div>
                     {{ listeDuree[item.duration] }}</v-card-text
                 >
