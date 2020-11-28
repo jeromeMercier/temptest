@@ -67,7 +67,7 @@ UPDATE myjobcopy.users
 SET is_student = 0 where is_student IS NULL;
 Drop table myjobcopy.usersTemp2;
 Drop table myjobcopy.usersTemp;
-DELETE FROM myjobcopy.users where email='nicolas.buchwalder@epfl.ch';
-INSERT INTO mjv2copy2.users ( sciper, first_name, last_name, email, notifications_instant, notifications_day, notifications_week, admin, is_student)
+DELETE FROM myjobcopy.users where email!='nicolas.buchwalder@epfl.ch';
+INSERT INTO mjv2.users ( sciper, first_name, last_name, email, notifications_instant, notifications_day, notifications_week, admin, is_student)
 SELECT sciper , first_name, last_name, email, notifications_instant, notifications_day, notifications_week, admin, is_student
 FROM myjobcopy.users;
